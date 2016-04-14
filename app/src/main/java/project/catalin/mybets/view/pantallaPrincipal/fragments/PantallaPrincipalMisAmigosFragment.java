@@ -37,7 +37,7 @@ public class PantallaPrincipalMisAmigosFragment extends FragmentConTitulo {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ControladorMisAmigos controladorMisAmigos = new ControladorMisAmigos();
+        ControladorMisAmigos controladorMisAmigos = new ControladorMisAmigos(null);
 
         ListView listaElementos = (ListView) getActivity().findViewById(R.id.lista_contactos);
         listaElementos.setAdapter(new AdaptadorEntradasLista(controladorMisAmigos.getListaAmigos()));

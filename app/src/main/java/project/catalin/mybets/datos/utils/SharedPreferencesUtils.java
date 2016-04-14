@@ -7,7 +7,7 @@ import android.preference.PreferenceManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import project.catalin.mybets.view.MainApp;
+import project.catalin.mybets.view.ContextCreator;
 
 /**
  * Created by Catalin on 08/04/2016.
@@ -22,7 +22,7 @@ public class SharedPreferencesUtils {
     private static SharedPreferences prefs;
 
     static {
-        Context context = MainApp.getAppContext();
+        Context context = ContextCreator.getAppContext();
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
 

@@ -12,7 +12,6 @@ import project.catalin.mybets.datos.excepciones.EmailVacioException;
 import project.catalin.mybets.datos.excepciones.ErrorInternoException;
 import project.catalin.mybets.datos.excepciones.ErrorServerException;
 import project.catalin.mybets.datos.objetosData.LoginData;
-import project.catalin.mybets.view.iniciarSesion.IniciarSesionPantallaPrincipal;
 import project.catalin.mybets.view.iniciarSesion.fragments.IniciarSesionFragmentFormularioLogin;
 
 /**
@@ -21,16 +20,15 @@ import project.catalin.mybets.view.iniciarSesion.fragments.IniciarSesionFragment
 public class ControladorIniciarSesion implements INotificable {
 
     private final IGestorData mGestorDatos;
-    private IniciarSesionFragmentFormularioLogin fragmentFormularioLogin;
+    private IniciarSesionFragmentFormularioLogin mFragmentFormularioLogin;
 
-    public ControladorIniciarSesion(IniciarSesionPantallaPrincipal vista, IGestorData gestorDatoss) {
+    public ControladorIniciarSesion(IGestorData gestorDatoss) {
         mGestorDatos = gestorDatoss;
-        fragmentFormularioLogin = vista.getFragmentFormularioLogin();
         GestorEventosUtil.suscribirseAEvento(this, TipoEvento.PULSADO_BOTON_LOGIN_PANTALLA_INICIO);
     }
 
     @Override
-    public void notificar(final int idEvento, Object msg) {
+    public void notificar(final int idEvento, Object info) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
@@ -45,9 +43,10 @@ public class ControladorIniciarSesion implements INotificable {
     }
 
     private void intentarIdentificarUsuario() {
+
         try {
 
-            mGestorDatos.validarIdentificación(new LoginData(fragmentFormularioLogin.getEmail(), fragmentFormularioLogin.getPassword()));
+            mGestorDatos.validarIdentificación(new LoginData(mFragmentFormularioLogin.getEmail(), mFragmentFormularioLogin.getPassword()));
             GestorEventosUtil.notificarEvento(TipoEvento.LOGIN_SUCCESS);
         } catch (EmailVacioException e) {
             GestorEventosUtil.notificarEvento(TipoEvento.CAMPO_EMAIL_VACIO);
@@ -61,5 +60,9 @@ public class ControladorIniciarSesion implements INotificable {
             GestorEventosUtil.notificarEvento(TipoEvento.ERROR_SERVER, e.getMessage());
         }
 
+    }
+
+    public void setFragmentFormularioLogin(IniciarSesionFragmentFormularioLogin fragmentFormularioLogin) {
+        mFragmentFormularioLogin = fragmentFormularioLogin;
     }
 }

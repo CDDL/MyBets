@@ -18,6 +18,7 @@ public class IniciarSesionPantallaPrincipal extends AppCompatActivity {
     private IniciarSesionFragmentFormularioLogin fragmentFormularioLogin;
     private IniciarSesionFragmentFormularioRegistrarse fragmentFormularioRegistro;
 
+
     public void clickLoginText(View view) {
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations( R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left,  R.anim.slide_out_right)
@@ -64,6 +65,4 @@ public class IniciarSesionPantallaPrincipal extends AppCompatActivity {
     public IniciarSesionFragmentFormularioLogin getFragmentFormularioLogin() {
         return fragmentFormularioLogin;
     }
-
-
 }
