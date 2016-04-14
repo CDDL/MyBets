@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#125688</color>
+    <color name="colorPrimaryDark">#125688</color>
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="navigationBarColor">#000000</color>
+    <color name="colorAccent">#c8e8ff</color>
+
+    <color name="textEditColor">#BDBDBD</color>
+    <color name="colorSeparadorMorado">#7E57C2</color>
+    <color name="colorPrimaryMorado">#7E57C2</color>
+    <color name="colorPrimaryMoradoDark">#512DA8</color>
+    <color name="colorAccentMorado">#FFFFFF</color>
+    <color name="colorTextoAzul">#7986CB</color>
+    <color name="gris">#757575</color>
+    <color name="blanco_transparente">#FFFFFF33</color>
+    <color name="colorFondoTextoClickable">#44FFFFFF</color>
+</resources>

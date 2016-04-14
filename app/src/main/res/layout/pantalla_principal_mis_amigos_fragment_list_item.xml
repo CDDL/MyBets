@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+
+    <ImageView
+        android:id="@+id/img_placeholder"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="26dp"
+        android:src="@drawable/mybets_icon_circulo_azul" />
+
+    <TextView
+        android:id="@+id/text_name"
+        style="@style/MyBetsTextTitulo"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@id/img_placeholder"
+        android:text="@string/text_amigos_nombre_placeholder"/>
+
+    <TextView
+        android:id="@+id/text_desc"
+        style="@style/MyBetsTextNormal"
+        android:layout_below="@id/text_name"
+        android:layout_toRightOf="@id/img_placeholder"
+        android:text="@string/text_amigos_estado_placeholder" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:alpha="0.2"
+        android:background="@color/gris" />
+</RelativeLayout>

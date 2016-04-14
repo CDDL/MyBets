@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">MyBets</string>
+
+    <string name="icon_facebook_desc">Facebook</string>
+    <string name="boton_login_text">Iniciar sesión con tu cuenta</string>
+    <string name="boton_crear_cuenta_text">Crear una cuenta</string>
+    <string name="boton_login_facebook_text">Iniciar sesión con Facebook</string>
+    <string name="boton_login_correo_text">Iniciar sesión con Correo</string>
+    <string name="edittext_email_hint">Email</string>
+    <string name="edittext_password_hint">Password</string>
+    <string name="buscar_amigos_text">Buscar amigos</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="text_amigos_nombre_placeholder">Nombre</string>
+    <string name="text_amigos_estado_placeholder">Estado</string>
+    <string name="text_amigos_añadidos_recientemente">Añadidos recientemente</string>
+    <string name="text_placeholder_puntos">0 puntos</string>
+
+    <string name="title_tab_amigos">AMIGOS</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

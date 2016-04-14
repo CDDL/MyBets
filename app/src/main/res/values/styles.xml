@@ -1,0 +1,69 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="MyBetsThemeNoActionBar" parent="Theme.AppCompat.NoActionBar">
+
+    </style>
+
+    <style name="MyBetsThemeMorado" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryMorado</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryMoradoDark</item>
+        <item name="colorAccent">@color/colorAccentMorado</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+    </style>
+
+    <style name="MyBetsTextArea" parent="android:TextAppearance.Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="MyBetsTextAreaClickable" parent="MyBetsTextArea">
+        <item name="android:background">@drawable/mybets_fondo_texto_clickable</item>
+    </style>
+
+
+
+    <style name="MyBetsEditText" parent="android:Widget.EditText">
+        <item name="android:layout_width">@dimen/edittext_anchura</item>
+        <item name="android:layout_height">@dimen/edittext_altura</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:textColorHint">@color/textEditColor</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:background">@drawable/mybets_formulario_input_fondo</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="MyBetsTextTitulo" parent="android:TextAppearance.Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/gris</item>
+    </style>
+
+    <style name="MyBetsTextNormal" parent="android:TextAppearance.Widget.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/gris</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+</resources>
