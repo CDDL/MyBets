@@ -11,4 +11,5 @@ public abstract class TipoEvento{
     public static final int ERROR_SERVER = 7;
     public static final int AMIGO_NUEVO = 8;
     public static final int USUARIO_NO_IDENTIFICADO = 9;
+    public static final int AMIGO_BORRADO = 10;
 }

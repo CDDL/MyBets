@@ -21,12 +21,15 @@ import project.catalin.mybets.datos.objetosData.Persona;
 public class ControladorMisAmigos implements INotificable {
     private final IGestorData mGestorDatos;
     private MisAmigosView mListaAmigosView;
+    private int[] eventosSuscritos = {
+            TipoEvento.AMIGO_NUEVO,
+            TipoEvento.AMIGO_BORRADO};
 
     public ControladorMisAmigos(MisAmigosView listaAmigos) {
         mListaAmigosView = listaAmigos;
         mGestorDatos = new GestorDataWebServices();
 
-        GestorEventosUtil.suscribirseAEvento(this, TipoEvento.AMIGO_NUEVO);
+        GestorEventosUtil.suscribirseAEventos(this, eventosSuscritos);
     }
 
     public List<Persona> getContactos() {
@@ -43,19 +46,19 @@ public class ControladorMisAmigos implements INotificable {
     }
 
     @Override
-    public void notificar(final int idEvento, Object mensaje) {
+    public void notificar(final int idEvento, final Object event) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
                 switch (idEvento){
                     case TipoEvento.AMIGO_NUEVO:
-                        List<Persona> listaPersonas = getContactos();
-                        Persona ultima = listaPersonas.get(listaPersonas.size()-1);
-                        mListaAmigosView.add(ultima);
+                        mListaAmigosView.add((Persona) event);
                         break;
                     case TipoEvento.AMIGO_BORRADO:
-
+                        mListaAmigosView.remove((Persona) event);
+                        break;
                 }
+                return null;
             }
         }.execute();
     }

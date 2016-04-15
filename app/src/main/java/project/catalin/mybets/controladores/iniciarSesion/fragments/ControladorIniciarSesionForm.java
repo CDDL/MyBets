@@ -32,7 +32,7 @@ public class ControladorIniciarSesionForm implements INotificable, ControllerLog
     }
 
     @Override
-    public void notificar(final int idEvento, String info) {
+    public void notificar(final int idEvento, Object info) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {

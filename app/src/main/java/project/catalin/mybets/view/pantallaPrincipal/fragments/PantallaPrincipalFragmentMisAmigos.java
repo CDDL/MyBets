@@ -43,12 +43,6 @@ public class PantallaPrincipalFragmentMisAmigos extends FragmentConTitulo {
         ListView listaElementos = (ListView) getActivity().findViewById(R.id.lista_contactos);
         adaptador = new AdaptadorEntradasLista(controladorMisAmigos.getContactos());
         listaElementos.setAdapter(adaptador);
-
-
-    }
-
-    public void addItem(){
-        adaptador.addItem();
     }
 
 

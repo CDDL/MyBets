@@ -21,7 +21,7 @@ public class GestorEventosUtil {
         notificarEvento(idEvento, null);
     }
 
-    public static void notificarEvento(final int idEvento, final String info) {
+    public static void notificarEvento(final int idEvento, final Object info) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {

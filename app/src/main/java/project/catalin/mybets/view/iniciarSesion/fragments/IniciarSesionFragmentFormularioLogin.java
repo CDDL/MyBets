@@ -48,7 +48,7 @@ public class IniciarSesionFragmentFormularioLogin extends Fragment implements IN
     }
 
     @Override
-    public void notificar(final int idEvento, final String msg) {
+    public void notificar(final int idEvento, final Object msg) {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -66,7 +66,7 @@ public class IniciarSesionFragmentFormularioLogin extends Fragment implements IN
                         break;
 
                     case (TipoEvento.ERROR_SERVER):
-                        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG);
+                        Toast.makeText(getContext(), msg.toString(), Toast.LENGTH_LONG);
                         break;
 
                     case (TipoEvento.LOGIN_SUCCESS):

@@ -7,4 +7,6 @@ import project.catalin.mybets.datos.objetosData.Persona;
  */
 public interface MisAmigosView {
     void add(Persona persona);
+
+    void remove(Persona persona);
 }
