@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import project.catalin.mybets.view.iniciarSesion.fragments.IniciarSesionFragmentFormularioLogin;
+
 /**
  * Created by Demils on 31/03/2016.
  */
@@ -19,7 +21,7 @@ public class GestorEventosUtil {
         notificarEvento(idEvento, null);
     }
 
-    public static void notificarEvento(final int idEvento, final Object info) {
+    public static void notificarEvento(final int idEvento, final String info) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
@@ -57,5 +59,13 @@ public class GestorEventosUtil {
                 return null;
             }
         }.execute();
+    }
+
+    public static void suscribirseAEventos(INotificable notificable, int[] eventos) {
+        for(int evento:eventos) suscribirseAEvento(notificable, evento);
+    }
+
+    public static void desuscribirseDeEventos(INotificable notificable, int[] eventos) {
+        for(int evento:eventos) desuscribirseDeEvento(notificable, evento);
     }
 }

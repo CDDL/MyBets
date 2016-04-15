@@ -3,35 +3,24 @@ package project.catalin.mybets.datos.utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.annotation.Config;
 
-import java.io.IOException;
-
-import project.catalin.mybets.datos.MyBetsMock;
-import project.catalin.mybets.view.MainApp;
+import project.catalin.mybets.BuildConfig;
+import project.catalin.mybets.datos.shadows.ShadowSharedPreferences;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createRequest_UsuarioIdentificado;
 
 /**
  * Created by Trabajo on 12/04/2016.
  */
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(MainApp.class)
+@RunWith(RobolectricGradleTestRunner.class)
+@Config(constants = BuildConfig.class, sdk = 21, shadows={ShadowSharedPreferences.class})
 public class SharedPreferencesUtilTest {
-
-    @Before
-    public void setUp() throws IOException, JSONException {
-        mockStatic(MainApp.class);
-
-        new MyBetsMock().setUpSharedPrefs();
-    }
 
     @Test
     public void saveLoginTest() throws JSONException {

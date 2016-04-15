@@ -14,7 +14,7 @@ import java.io.IOException;
 import project.catalin.mybets.datos.jsons.JsonCreatorUtils;
 import project.catalin.mybets.datos.jsons.JsonObjectComparator;
 import project.catalin.mybets.datos.utils.JsonWebServiceUtils;
-import project.catalin.mybets.view.MainApp;
+import project.catalin.mybets.view.ContextCreator;
 
 import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Matchers.anyInt;
@@ -60,7 +60,7 @@ public class MyBetsMock {
         mockedSharedPrefs = Mockito.mock(SharedPreferences.class);
         mockedEditor = Mockito.mock(SharedPreferences.Editor.class);
 
-        when(MainApp.getAppContext()).thenReturn(mockedContext);
+        when(ContextCreator.getAppContext()).thenReturn(mockedContext);
 
         when(mockedContext.getSharedPreferences(anyString(),anyInt())).thenReturn(mockedSharedPrefs);
         when(mockedSharedPrefs.edit()).thenReturn(mockedEditor);

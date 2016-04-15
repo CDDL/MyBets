@@ -1,10 +1,12 @@
-package project.catalin.mybets.controladores.iniciarSesion;
+package project.catalin.mybets.controladores.iniciarSesion.fragments;
 
 import android.os.AsyncTask;
 
 import project.catalin.mybets.comunicación.eventos.GestorEventosUtil;
 import project.catalin.mybets.comunicación.eventos.INotificable;
 import project.catalin.mybets.comunicación.eventos.TipoEvento;
+import project.catalin.mybets.controladores.iniciarSesion.comunicación.ViewLogin;
+import project.catalin.mybets.datos.GestorDataWebServices;
 import project.catalin.mybets.datos.IGestorData;
 import project.catalin.mybets.datos.excepciones.ContraseñaVaciaException;
 import project.catalin.mybets.datos.excepciones.EmailMalFormadoException;
@@ -12,23 +14,25 @@ import project.catalin.mybets.datos.excepciones.EmailVacioException;
 import project.catalin.mybets.datos.excepciones.ErrorInternoException;
 import project.catalin.mybets.datos.excepciones.ErrorServerException;
 import project.catalin.mybets.datos.objetosData.LoginData;
-import project.catalin.mybets.view.iniciarSesion.fragments.IniciarSesionFragmentFormularioLogin;
+import project.catalin.mybets.view.iniciarSesion.comunicación.ControllerLogin;
 
 /**
  * Created by Catalin on 31/03/2016.
  */
-public class ControladorIniciarSesion implements INotificable {
+public class ControladorIniciarSesionForm implements INotificable, ControllerLogin {
 
     private final IGestorData mGestorDatos;
-    private IniciarSesionFragmentFormularioLogin mFragmentFormularioLogin;
+    private ViewLogin mLoginView;
 
-    public ControladorIniciarSesion(IGestorData gestorDatoss) {
-        mGestorDatos = gestorDatoss;
+    public ControladorIniciarSesionForm(ViewLogin loginView) {
+        mLoginView = loginView;
+        mGestorDatos = new GestorDataWebServices();
+
         GestorEventosUtil.suscribirseAEvento(this, TipoEvento.PULSADO_BOTON_LOGIN_PANTALLA_INICIO);
     }
 
     @Override
-    public void notificar(final int idEvento, Object info) {
+    public void notificar(final int idEvento, String info) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
@@ -41,12 +45,10 @@ public class ControladorIniciarSesion implements INotificable {
             }
         }.execute();
     }
-
     private void intentarIdentificarUsuario() {
 
         try {
-
-            mGestorDatos.validarIdentificación(new LoginData(mFragmentFormularioLogin.getEmail(), mFragmentFormularioLogin.getPassword()));
+            mGestorDatos.validarIdentificación(new LoginData(mLoginView.getEmail(), mLoginView.getPassword()));
             GestorEventosUtil.notificarEvento(TipoEvento.LOGIN_SUCCESS);
         } catch (EmailVacioException e) {
             GestorEventosUtil.notificarEvento(TipoEvento.CAMPO_EMAIL_VACIO);
@@ -62,7 +64,8 @@ public class ControladorIniciarSesion implements INotificable {
 
     }
 
-    public void setFragmentFormularioLogin(IniciarSesionFragmentFormularioLogin fragmentFormularioLogin) {
-        mFragmentFormularioLogin = fragmentFormularioLogin;
+    @Override
+    public void destroy() {
+        GestorEventosUtil.desuscribirseDeEvento(this, TipoEvento.PULSADO_BOTON_LOGIN_PANTALLA_INICIO);
     }
 }

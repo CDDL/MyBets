@@ -24,7 +24,8 @@ public interface IGestorData {
 
     Persona validarIdentificación(LoginData dataLogin) throws ContraseñaVaciaException, EmailVacioException, EmailMalFormadoException, ErrorInternoException, ErrorServerException;
 
-    void añadirAmigo(int idAmigo) throws UsuarioNoIdentificadoException, ErrorInternoException;
+    void añadirAmigo(int idAmigo) throws UsuarioNoIdentificadoException, ErrorInternoException, ErrorServerException;
 
-    List<Persona> getContactos() throws UsuarioNoIdentificadoException, ErrorInternoException;
+    List<Persona> getContactos() throws UsuarioNoIdentificadoException, ErrorInternoException, ErrorServerException;
+
 }

@@ -19,9 +19,11 @@ import project.catalin.mybets.datos.objetosData.Persona;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PantallaPrincipalMisAmigosFragment extends FragmentConTitulo {
+public class PantallaPrincipalFragmentMisAmigos extends FragmentConTitulo {
 
-    public PantallaPrincipalMisAmigosFragment() {
+    private AdaptadorEntradasLista adaptador;
+
+    public PantallaPrincipalFragmentMisAmigos() {
         super();
         setIdTitulo(R.string.title_tab_amigos);
     }
@@ -30,18 +32,25 @@ public class PantallaPrincipalMisAmigosFragment extends FragmentConTitulo {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         return inflater.inflate(R.layout.pantalla_principal_mis_amigos_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ControladorMisAmigos controladorMisAmigos = new ControladorMisAmigos(null);
+        ControladorMisAmigos controladorMisAmigos = new ControladorMisAmigos(this);
 
         ListView listaElementos = (ListView) getActivity().findViewById(R.id.lista_contactos);
-        listaElementos.setAdapter(new AdaptadorEntradasLista(controladorMisAmigos.getListaAmigos()));
+        adaptador = new AdaptadorEntradasLista(controladorMisAmigos.getContactos());
+        listaElementos.setAdapter(adaptador);
+
+
     }
+
+    public void addItem(){
+        adaptador.addItem();
+    }
+
 
     public class AdaptadorEntradasLista extends BaseAdapter{
 
@@ -62,9 +71,16 @@ public class PantallaPrincipalMisAmigosFragment extends FragmentConTitulo {
             return mListaEntradas.get(position);
         }
 
+        public void addItem(){
+            mListaEntradas.add(null);
+            notifyDataSetChanged();
+        }
+
         @Override
         public long getItemId(int position) {
-            return mListaEntradas.get(position).getId();
+
+            return 22;
+//            return mListaEntradas.get(position).getId();
         }
 
         @Override

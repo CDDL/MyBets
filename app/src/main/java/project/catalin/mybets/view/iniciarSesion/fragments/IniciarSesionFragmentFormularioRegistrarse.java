@@ -15,11 +15,6 @@ import project.catalin.mybets.R;
 public class IniciarSesionFragmentFormularioRegistrarse extends Fragment {
 
 
-    public IniciarSesionFragmentFormularioRegistrarse() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

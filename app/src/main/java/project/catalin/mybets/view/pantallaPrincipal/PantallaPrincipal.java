@@ -16,9 +16,10 @@ import java.util.List;
 
 import project.catalin.mybets.R;
 import project.catalin.mybets.view.pantallaPrincipal.fragments.FragmentConTitulo;
-import project.catalin.mybets.view.pantallaPrincipal.fragments.PantallaPrincipalMisAmigosFragment;
+import project.catalin.mybets.view.pantallaPrincipal.fragments.PantallaPrincipalFragmentMisAmigos;
 
 public class PantallaPrincipal extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,16 +30,13 @@ public class PantallaPrincipal extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-
         AdaptadorPestañas mSectionsPagerAdapter = new AdaptadorPestañas(getSupportFragmentManager());
-
 
         ViewPager mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
     }
 
 
@@ -66,7 +64,7 @@ public class PantallaPrincipal extends AppCompatActivity {
         public AdaptadorPestañas(FragmentManager fm) {
             super(fm);
             listaFragmentos = new LinkedList<>();
-            listaFragmentos.add(new PantallaPrincipalMisAmigosFragment());
+            listaFragmentos.add(new PantallaPrincipalFragmentMisAmigos());
         }
 
         @Override

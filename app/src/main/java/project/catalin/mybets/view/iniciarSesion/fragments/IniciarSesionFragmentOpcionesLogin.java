@@ -15,6 +15,4 @@ public class IniciarSesionFragmentOpcionesLogin extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.iniciar_sesion_fragment_opciones_login, container, false);
     }
-
-
 }

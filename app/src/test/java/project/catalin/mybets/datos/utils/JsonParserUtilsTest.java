@@ -3,11 +3,16 @@ package project.catalin.mybets.datos.utils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.annotation.Config;
 
 import java.util.List;
 
+import project.catalin.mybets.BuildConfig;
 import project.catalin.mybets.datos.objetosData.LoginData;
 import project.catalin.mybets.datos.objetosData.Persona;
+import project.catalin.mybets.datos.shadows.ShadowSharedPreferences;
 
 import static org.junit.Assert.assertTrue;
 import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createResponse_ConsultarContactos_UnContacto;
@@ -16,6 +21,9 @@ import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createResponse
 /**
  * Created by Demils on 31/03/2016.
  */
+
+@RunWith(RobolectricGradleTestRunner.class)
+@Config(constants = BuildConfig.class, sdk = 21, shadows={ShadowSharedPreferences.class})
 public class JsonParserUtilsTest {
 
     @Test
