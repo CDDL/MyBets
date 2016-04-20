@@ -46,7 +46,7 @@ import static org.powermock.api.mockito.PowerMockito.when;
 @PrepareForTest(JsonWebServiceUtils.class)
 public class HU21_Identificarse {
 
-    private IGestorData gestorData;
+    private GestorDataWebServices gestorData;
 
     @Rule
     public PowerMockRule rule = new PowerMockRule();

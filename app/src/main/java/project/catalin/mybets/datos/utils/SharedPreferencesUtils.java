@@ -7,7 +7,7 @@ import android.preference.PreferenceManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import project.catalin.mybets.view.ContextCreator;
+import project.catalin.mybets.vistas.ContextCreator;
 
 /**
  * Created by Catalin on 08/04/2016.

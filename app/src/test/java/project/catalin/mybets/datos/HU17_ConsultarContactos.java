@@ -45,7 +45,7 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 @PrepareForTest(JsonWebServiceUtils.class)
 public class HU17_ConsultarContactos {
 
-    private IGestorData gestorData;
+    private GestorDataWebServices gestorData;
 
     @Rule
     public PowerMockRule rule = new PowerMockRule();

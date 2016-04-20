@@ -4,6 +4,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+
 import project.catalin.mybets.datos.utils.EncryptionUtils;
 
 /**
@@ -27,9 +31,18 @@ public class JsonCreatorUtils {
     private static JSONObject jsonRequestNoIndentificado;
     private static JSONObject jsonResponseNoIdentificado;
     private static JSONObject jsonRequestNuevoAmigo;
+    private static JSONObject jsonRequestNuevaPartidaInexistente;
+    private static JSONObject jsonResponseNuevaPartidaFailPartidaInexistente;
+    private static JSONObject jsonRequestNuevaPartidaAmigosNoEnContactos;
+    private static JSONObject jsonResponseNuevaPartidaAmigosNoEnContactos;
+    private static JSONObject jsonRequestNuevaPartidaSinAmigos;
+    private static JSONObject jsonResponseNuevaPartidaSinAmigos;
+    private static JSONObject jsonRequestNuevaPartidaConAmigos;
+    private static JSONObject jsonResponseNuevaPartidaOk;
+
 
     public static JSONObject createRequest_Login_Valido() throws JSONException {
-        if(jsonRequestLoginValido != null) return jsonRequestLoginValido;
+        if (jsonRequestLoginValido != null) return jsonRequestLoginValido;
 
 
         JSONObject jsonRequest = new JSONObject();
@@ -42,7 +55,7 @@ public class JsonCreatorUtils {
     }
 
     public static JSONObject createRequest_Login_Invalido() throws JSONException {
-        if(jsonRequestLoginInvalido != null) return jsonRequestLoginInvalido;
+        if (jsonRequestLoginInvalido != null) return jsonRequestLoginInvalido;
 
         JSONObject jsonRequest = new JSONObject();
         jsonRequest.put("email", "datos@validos.com");
@@ -56,7 +69,7 @@ public class JsonCreatorUtils {
     }
 
     public static JSONObject createResponse_Login_Ok() throws JSONException {
-        if(jsonResponseLoginSuccess != null) return jsonResponseLoginSuccess;
+        if (jsonResponseLoginSuccess != null) return jsonResponseLoginSuccess;
 
         JSONObject jsonData = new JSONObject();
         jsonData.put("id", 0);
@@ -66,7 +79,7 @@ public class JsonCreatorUtils {
         jsonData.put("phone", "+123456789");
 
         jsonResponseLoginSuccess = new JSONObject();
-        jsonResponseLoginSuccess.put("data",jsonData);
+        jsonResponseLoginSuccess.put("data", jsonData);
         jsonResponseLoginSuccess.put("code", 0);
         jsonResponseLoginSuccess.put("message", "");
 
@@ -74,19 +87,19 @@ public class JsonCreatorUtils {
     }
 
     public static JSONObject createResponse_Login_FailDatosIncorrectos() throws JSONException {
-        if(jsonResponseLoginFail_DatosRepetidos != null) return jsonResponseLoginFail_DatosRepetidos;
+        if (jsonResponseLoginFail_DatosRepetidos != null)
+            return jsonResponseLoginFail_DatosRepetidos;
 
         jsonResponseLoginFail_DatosRepetidos = new JSONObject();
         jsonResponseLoginFail_DatosRepetidos.put("code", 1);
         jsonResponseLoginFail_DatosRepetidos.put("message", "El usuario y la contraseña no coinciden.");
 
-        return  jsonResponseLoginFail_DatosRepetidos;
+        return jsonResponseLoginFail_DatosRepetidos;
     }
 
 
-
     public static JSONObject createRequest_Registro_DatosValidos() throws JSONException {
-        if(jsonRequestRegistroValido != null) return jsonRequestRegistroValido;
+        if (jsonRequestRegistroValido != null) return jsonRequestRegistroValido;
 
         JSONObject jsonRequest = new JSONObject();
         jsonRequest.put("email", "datos@validos.com");
@@ -103,7 +116,7 @@ public class JsonCreatorUtils {
     }
 
     public static JSONObject createRequest_Registro_DatosValidosAmigo() throws JSONException {
-        if(jsonRequestRegistroAmigoValido != null) return jsonRequestRegistroAmigoValido;
+        if (jsonRequestRegistroAmigoValido != null) return jsonRequestRegistroAmigoValido;
 
         JSONObject jsonRequest = new JSONObject();
         jsonRequest.put("email", "amigo@validos.com");
@@ -120,7 +133,7 @@ public class JsonCreatorUtils {
     }
 
     public static JSONObject createResponse_Registro_Ok() throws JSONException {
-        if(jsonResponseRegistroSuccess != null) return jsonResponseRegistroSuccess;
+        if (jsonResponseRegistroSuccess != null) return jsonResponseRegistroSuccess;
 
         JSONObject jsonData = new JSONObject();
         jsonData.put("id", 0);
@@ -138,7 +151,7 @@ public class JsonCreatorUtils {
     }
 
     public static JSONObject createResponse_Registro_AmigoOk() throws JSONException {
-        if(jsonResponseRegistroAmigoSuccess != null) return jsonResponseRegistroAmigoSuccess;
+        if (jsonResponseRegistroAmigoSuccess != null) return jsonResponseRegistroAmigoSuccess;
 
         JSONObject jsonData = new JSONObject();
         jsonData.put("id", 1);
@@ -156,7 +169,8 @@ public class JsonCreatorUtils {
     }
 
     public static JSONObject createResponse_Registro_FailDatosYaExistentes() throws JSONException {
-        if(jsonResponseRegistroFail_DatosRepetidos != null) return jsonResponseRegistroFail_DatosRepetidos;
+        if (jsonResponseRegistroFail_DatosRepetidos != null)
+            return jsonResponseRegistroFail_DatosRepetidos;
 
         jsonResponseRegistroFail_DatosRepetidos = new JSONObject();
         jsonResponseRegistroFail_DatosRepetidos.put("code", 1);
@@ -166,9 +180,8 @@ public class JsonCreatorUtils {
     }
 
 
-
     public static JSONObject createRequest_NuevoAmigo() throws JSONException {
-        if(jsonRequestNuevoAmigo!= null) return jsonRequestDataIdentificación;
+        if (jsonRequestNuevoAmigo != null) return jsonRequestDataIdentificación;
 
         JSONObject requestData = new JSONObject();
         requestData.put("email", "datos@validos.com");
@@ -180,9 +193,9 @@ public class JsonCreatorUtils {
 
         return jsonRequestDataIdentificación;
     }
-    
+
     public static JSONObject createResponse_NuevoAmigo_Ok() throws JSONException {
-        if(jsonResponseNuevoAmigoOk != null) return jsonResponseNuevoAmigoOk;
+        if (jsonResponseNuevoAmigoOk != null) return jsonResponseNuevoAmigoOk;
 
         jsonResponseNuevoAmigoOk = new JSONObject();
         jsonResponseNuevoAmigoOk.put("code", 0);
@@ -193,9 +206,9 @@ public class JsonCreatorUtils {
     }
 
 
-
     public static JSONObject createResponse_ConsultarContactos_UnContacto() throws JSONException {
-        if(jsonResponseConsultarContactosUnContacto != null) return jsonResponseConsultarContactosUnContacto;
+        if (jsonResponseConsultarContactosUnContacto != null)
+            return jsonResponseConsultarContactosUnContacto;
 
         JSONArray vectorJsonContactos = new JSONArray();
 
@@ -218,7 +231,8 @@ public class JsonCreatorUtils {
     }
 
     public static JSONObject createResponse_ConsultarContactos_SinContactos() throws JSONException {
-        if(jsonResponseConsultarContactosSinContactos != null) return jsonResponseConsultarContactosSinContactos;
+        if (jsonResponseConsultarContactosSinContactos != null)
+            return jsonResponseConsultarContactosSinContactos;
 
 
         jsonResponseConsultarContactosSinContactos = new JSONObject();
@@ -231,7 +245,7 @@ public class JsonCreatorUtils {
 
 
     public static JSONObject createRequest_UsuarioIdentificado() throws JSONException {
-        if(jsonRequestDataIdentificación != null) return jsonRequestDataIdentificación;
+        if (jsonRequestDataIdentificación != null) return jsonRequestDataIdentificación;
 
         JSONObject requestData = new JSONObject();
         requestData.put("email", "datos@validos.com");
@@ -244,7 +258,7 @@ public class JsonCreatorUtils {
     }
 
     public static JSONObject createRequest_UsuarioNoIdentificado() throws JSONException {
-        if(jsonRequestNoIndentificado != null) return jsonRequestNoIndentificado;
+        if (jsonRequestNoIndentificado != null) return jsonRequestNoIndentificado;
 
         JSONObject requestData = new JSONObject();
         requestData.put("email", "no@identificado.com");
@@ -257,12 +271,105 @@ public class JsonCreatorUtils {
     }
 
     public static JSONObject createResponse_NoIdentificado() throws JSONException {
-        if(jsonResponseNoIdentificado != null) return jsonResponseNoIdentificado;
+        if (jsonResponseNoIdentificado != null) return jsonResponseNoIdentificado;
 
         jsonResponseNoIdentificado = new JSONObject();
         jsonResponseNoIdentificado.put("code", 1);
         jsonResponseNoIdentificado.put("message", "El usuario no esta identificado.");
 
         return jsonResponseNoIdentificado;
+    }
+
+    public static JSONObject createRequest_NuevaPartida_PartidaInexistente() throws JSONException {
+        if (jsonRequestNuevaPartidaInexistente != null) return jsonRequestNuevaPartidaInexistente;
+
+        jsonRequestNuevaPartidaInexistente = createRequest_Login_Valido();
+        JSONObject requestData = jsonRequestNuevaPartidaInexistente.getJSONObject("request");
+
+        requestData.put("idjuego", -1);
+        requestData.put("idamigos", new JSONArray(Collections.singletonList(1)));
+
+        return jsonRequestNuevaPartidaInexistente;
+    }
+
+    public static JSONObject createResponse_NuevaPartida_FailPartidaInexistente() throws JSONException {
+        if (jsonResponseNuevaPartidaFailPartidaInexistente != null)
+            return jsonResponseNuevaPartidaFailPartidaInexistente;
+
+        jsonResponseNuevaPartidaFailPartidaInexistente = new JSONObject();
+        jsonResponseNuevaPartidaFailPartidaInexistente.put("code", 1);
+        jsonResponseNuevaPartidaFailPartidaInexistente.put("message", "La partida no existe.");
+
+        return jsonRequestNuevaPartidaInexistente;
+    }
+
+    public static JSONObject createRequest_NuevaPartida_AmigosNoEnContactos() throws JSONException {
+        if (jsonRequestNuevaPartidaAmigosNoEnContactos != null)
+            return jsonRequestNuevaPartidaAmigosNoEnContactos;
+
+        JSONObject loginData = createRequest_Login_Valido();
+        loginData.put("idjuego", 0);
+        loginData.put("idamigos", new JSONArray(Collections.singletonList(1)));
+        jsonRequestNuevaPartidaAmigosNoEnContactos = new JSONObject();
+        jsonRequestNuevaPartidaAmigosNoEnContactos.put("request", loginData);
+
+        return jsonRequestNuevaPartidaAmigosNoEnContactos;
+    }
+
+    public static JSONObject createResponse_NuevaPartida_FailNoEnContactos() throws JSONException {
+        if (jsonResponseNuevaPartidaAmigosNoEnContactos != null)
+            return jsonResponseNuevaPartidaAmigosNoEnContactos;
+
+        jsonResponseNuevaPartidaAmigosNoEnContactos = new JSONObject();
+        jsonResponseNuevaPartidaAmigosNoEnContactos.put("code", 1);
+        jsonResponseNuevaPartidaAmigosNoEnContactos.put("message", "Hay usuarios que intentas retar que no estan en tus contactos.");
+
+        return jsonResponseNuevaPartidaAmigosNoEnContactos;
+    }
+
+    public static JSONObject createRequest_NuevaPartida_SinAmigos() throws JSONException {
+        if(jsonRequestNuevaPartidaSinAmigos != null) return jsonRequestNuevaPartidaSinAmigos;
+
+        JSONObject jsonLogin = createRequest_Login_Valido();
+        jsonLogin.put("idjuego", 0);
+        jsonLogin.put("idamigos", new JSONArray(Collections.emptyList()));
+
+        jsonRequestNuevaPartidaSinAmigos = new JSONObject();
+        jsonRequestNuevaPartidaSinAmigos.put("request", jsonLogin);
+
+        return jsonRequestNuevaPartidaSinAmigos;
+    }
+
+    public static JSONObject createResponse_NuevaPartida_FailSinAmigos() throws JSONException {
+        if(jsonResponseNuevaPartidaSinAmigos != null) return jsonResponseNuevaPartidaSinAmigos;
+
+        jsonResponseNuevaPartidaSinAmigos = new JSONObject();
+        jsonResponseNuevaPartidaSinAmigos.put("code", 1);
+        jsonResponseNuevaPartidaSinAmigos.put("message", "No se puede crear una partida solitaria.");
+
+        return jsonResponseNuevaPartidaSinAmigos;
+    }
+
+    public static JSONObject createRequest_NuevaPartida_ConAmigos() throws JSONException {
+        if(jsonRequestNuevaPartidaConAmigos != null) return jsonRequestNuevaPartidaConAmigos;
+
+        JSONObject jsonLogin = createRequest_Login_Valido();
+        jsonLogin.put("idjuego", 0);
+        jsonLogin.put("idamigos", new JSONArray(Collections.singletonList(1)));
+
+        jsonRequestNuevaPartidaConAmigos = new JSONObject();
+        jsonRequestNuevaPartidaConAmigos.put("request", jsonLogin);
+
+        return jsonRequestNuevaPartidaConAmigos;
+    }
+
+    public static JSONObject createResponse_NuevaPartida_Ok() throws JSONException {
+        if(jsonResponseNuevaPartidaOk != null) return jsonResponseNuevaPartidaOk;
+
+        jsonResponseNuevaPartidaOk = new JSONObject();
+        jsonResponseNuevaPartidaOk.put("code", 0);
+        jsonResponseNuevaPartidaOk.put("message", "");
+
+        return jsonResponseNuevaPartidaOk;
     }
 }

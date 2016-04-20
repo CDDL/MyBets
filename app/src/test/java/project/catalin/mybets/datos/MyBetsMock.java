@@ -14,7 +14,7 @@ import java.io.IOException;
 import project.catalin.mybets.datos.jsons.JsonCreatorUtils;
 import project.catalin.mybets.datos.jsons.JsonObjectComparator;
 import project.catalin.mybets.datos.utils.JsonWebServiceUtils;
-import project.catalin.mybets.view.ContextCreator;
+import project.catalin.mybets.vistas.ContextCreator;
 
 import static org.mockito.Matchers.anyBoolean;
 import static org.mockito.Matchers.anyInt;
@@ -25,6 +25,10 @@ import static org.mockito.Matchers.eq;
 import static org.powermock.api.mockito.PowerMockito.when;
 import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createRequest_Login_Invalido;
 import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createRequest_Login_Valido;
+import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createRequest_NuevaPartida_AmigosNoEnContactos;
+import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createRequest_NuevaPartida_ConAmigos;
+import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createRequest_NuevaPartida_PartidaInexistente;
+import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createRequest_NuevaPartida_SinAmigos;
 import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createRequest_Registro_DatosValidos;
 import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createRequest_Registro_DatosValidosAmigo;
 import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createRequest_UsuarioIdentificado;
@@ -33,6 +37,10 @@ import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createResponse
 import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createResponse_Login_FailDatosIncorrectos;
 import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createResponse_Login_Ok;
 import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createResponse_NoIdentificado;
+import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createResponse_NuevaPartida_FailNoEnContactos;
+import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createResponse_NuevaPartida_FailPartidaInexistente;
+import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createResponse_NuevaPartida_FailSinAmigos;
+import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createResponse_NuevaPartida_Ok;
 import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createResponse_NuevoAmigo_Ok;
 import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createResponse_Registro_AmigoOk;
 import static project.catalin.mybets.datos.jsons.JsonCreatorUtils.createResponse_Registro_FailDatosYaExistentes;
@@ -132,9 +140,31 @@ public class MyBetsMock {
             public JSONObject answer(InvocationOnMock invocation) throws Throwable {
                 peticiónGetContactos_respuestaSinContactos();
                 peticiónAñadirAmigo_respuestaOk_añadirUsuarioContactos();
+                peticiónCrearPartidaExistente_ConAmigos_respuestaOk();
+                peticiónCrearPartidaExistente_SinAmigos_respuestaError();
+                peticiónCrearPartidaExistente_AmigosNoEnContactos_respuestaError();
+                peticiónCrearPartidaNoExistente_respuestaError();
                 return createResponse_Login_Ok();
             }
         });
+    }
+
+    private void peticiónCrearPartidaNoExistente_respuestaError() throws JSONException, IOException {
+        when(JsonWebServiceUtils.petición(eq(GestorDataWebServices.URL_PETICIÓN_NUEVA_PARTIDA), argThat(new JsonObjectComparator(createRequest_NuevaPartida_PartidaInexistente())))).thenReturn(createResponse_NuevaPartida_FailPartidaInexistente());
+    }
+
+
+
+    private void peticiónCrearPartidaExistente_AmigosNoEnContactos_respuestaError() throws JSONException, IOException {
+        when(JsonWebServiceUtils.petición(eq(GestorDataWebServices.URL_PETICIÓN_LOGIN), argThat(new JsonObjectComparator(createRequest_NuevaPartida_AmigosNoEnContactos())))).thenReturn(createResponse_NuevaPartida_FailNoEnContactos());
+    }
+
+    private void peticiónCrearPartidaExistente_SinAmigos_respuestaError() throws JSONException, IOException {
+        when(JsonWebServiceUtils.petición(eq(GestorDataWebServices.URL_PETICIÓN_NUEVA_PARTIDA), argThat(new JsonObjectComparator(createRequest_NuevaPartida_SinAmigos())))).thenReturn(createResponse_NuevaPartida_FailSinAmigos());
+    }
+
+    private void peticiónCrearPartidaExistente_ConAmigos_respuestaOk() throws JSONException, IOException {
+        when(JsonWebServiceUtils.petición(eq(GestorDataWebServices.URL_PETICIÓN_NUEVA_PARTIDA), argThat(new JsonObjectComparator(createRequest_NuevaPartida_ConAmigos())))).thenReturn(createResponse_NuevaPartida_Ok());
     }
 
     private void peticiónAñadirAmigo_respuestaOk_añadirUsuarioContactos() throws IOException, JSONException {

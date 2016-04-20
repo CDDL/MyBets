@@ -39,7 +39,7 @@ import static org.powermock.api.mockito.PowerMockito.when;
 @PrepareForTest(JsonWebServiceUtils.class)
 public class HU20_RegistrarUsuario {
 
-    private IGestorData gestorData;
+    private GestorDataWebServices gestorData;
 
     @Rule
     public PowerMockRule rule = new PowerMockRule();

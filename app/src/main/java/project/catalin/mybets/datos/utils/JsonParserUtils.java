@@ -1,13 +1,17 @@
 package project.catalin.mybets.datos.utils;
 
+import android.text.format.DateUtils;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import project.catalin.mybets.datos.objetosData.LoginData;
+import project.catalin.mybets.datos.objetosData.Partida;
 import project.catalin.mybets.datos.objetosData.Persona;
 
 /**
@@ -70,5 +74,32 @@ public class JsonParserUtils {
 
 
         return listaPersonas;
+    }
+
+    public static JSONArray contactsToJsonArray(List<Integer> contactos) {
+        JSONArray array = new JSONArray();
+        for (int idContacto : contactos) array.put(idContacto);
+
+        return array;
+    }
+
+    public static List<Partida> jsonToPartidasList(JSONObject jsonObject) throws JSONException {
+        JSONArray jsonArray = jsonObject.getJSONArray("data");
+        List<Partida> partidas = new LinkedList<>();
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonData = jsonArray.getJSONObject(i);
+
+            Partida partida = new Partida(
+                    jsonData.getInt("idpartida"),
+                    jsonData.getString("nombrepartida"),
+                    new Date(jsonData.getString("fecha")),
+                    jsonData.getInt("bote"),
+                    jsonData.getInt("numpersonas"),
+                    jsonData.getString("urlicono"));
+
+            partidas.add(partida);
+        }
+        return partidas;
     }
 }

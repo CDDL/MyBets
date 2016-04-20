@@ -4,8 +4,8 @@
     android:layout_height="80dp">
 
 
-    <ImageView
-        android:id="@+id/img_placeholder"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/icono_foto_perfil"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_centerVertical="true"
@@ -14,17 +14,17 @@
         android:src="@drawable/mybets_icon_circulo_azul" />
 
     <TextView
-        android:id="@+id/text_name"
+        android:id="@+id/text_contacto_nombre"
         style="@style/MyBetsTextTitulo"
         android:layout_marginTop="15dp"
-        android:layout_toRightOf="@id/img_placeholder"
+        android:layout_toRightOf="@id/icono_foto_perfil"
         android:text="@string/text_amigos_nombre_placeholder"/>
 
     <TextView
-        android:id="@+id/text_desc"
+        android:id="@+id/text_contacto_desc"
         style="@style/MyBetsTextNormal"
-        android:layout_below="@id/text_name"
-        android:layout_toRightOf="@id/img_placeholder"
+        android:layout_below="@id/text_contacto_nombre"
+        android:layout_toRightOf="@id/icono_foto_perfil"
         android:text="@string/text_amigos_estado_placeholder" />
 
     <View

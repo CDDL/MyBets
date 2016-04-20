@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
-    tools:context=".view.pantallaPrincipal.fragments.PantallaPrincipalFragmentMisAmigos">
+    tools:context=".vistas.pantallaPrincipal.fragments.PantallaPrincipalFragmentMisAmigos">
 
     <RelativeLayout android:id="@+id/barra_buscar_amigos"
         android:layout_width="match_parent"

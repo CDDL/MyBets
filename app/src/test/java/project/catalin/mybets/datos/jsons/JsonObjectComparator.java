@@ -3,15 +3,8 @@ package project.catalin.mybets.datos.jsons;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.mockito.ArgumentMatcher;
-
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Objects;
-import java.util.Set;
 
 /**
  * Created by Catalin on 11/04/2016.
