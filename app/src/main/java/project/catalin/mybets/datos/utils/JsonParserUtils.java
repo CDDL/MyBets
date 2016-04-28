@@ -6,9 +6,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 import project.catalin.mybets.datos.objetosData.LoginData;
 import project.catalin.mybets.datos.objetosData.Partida;
@@ -83,7 +86,7 @@ public class JsonParserUtils {
         return array;
     }
 
-    public static List<Partida> jsonToPartidasList(JSONObject jsonObject) throws JSONException {
+    public static List<Partida> jsonToPartidasList(JSONObject jsonObject) throws JSONException, ParseException {
         JSONArray jsonArray = jsonObject.getJSONArray("data");
         List<Partida> partidas = new LinkedList<>();
 
@@ -93,10 +96,13 @@ public class JsonParserUtils {
             Partida partida = new Partida(
                     jsonData.getInt("idpartida"),
                     jsonData.getString("nombrepartida"),
-                    new Date(jsonData.getString("fecha")),
+                    new SimpleDateFormat("dd/MM/yy HH:mm", Locale.US).parse(jsonData.getString("fecha")),
                     jsonData.getInt("bote"),
                     jsonData.getInt("numpersonas"),
                     jsonData.getString("urlicono"));
+
+            partida.setColorIcono(Integer.parseInt(jsonData.getString("coloricono").substring(1)));
+            partida.setTipoPartida(jsonData.getInt("tipopartida"));
 
             partidas.add(partida);
         }

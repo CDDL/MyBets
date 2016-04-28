@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="project.catalin.mybets.vistas.pantallaApostar1x2.pantallaApostar1x2">
+
+    <TextView
+        android:id="@+id/apostar1x2_barra_titulo"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="@color/colorTextoAzul"
+        android:text="FIFA"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-medium"/>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/apostar1x2_barra_apuestas"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:background="@color/colorTextoAzul"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:id="@+id/editText"
+            android:hint="Puntuación"
+            android:maxLength="4"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/apostar1x2_formulario_apuestas"
+        android:layout_below="@id/apostar1x2_barra_titulo"
+        android:layout_above="@id/apostar1x2_barra_apuestas"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+</RelativeLayout>

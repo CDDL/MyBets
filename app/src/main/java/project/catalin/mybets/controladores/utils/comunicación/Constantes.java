@@ -7,4 +7,5 @@ public abstract class Constantes {
 
     public static final int RESPUESTA_WEBSERV_OK = 0;
     public static final int RESPUESTA_WEBSERV_ERROR = 1;
+    public static final int TIEMPO_HORA_MS = 86400000;
 }

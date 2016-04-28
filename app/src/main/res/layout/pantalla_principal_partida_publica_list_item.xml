@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="89dp">
+
+    <RelativeLayout
+        android:id="@+id/partida_item_fondo"
+        android:layout_width="364dp"
+        android:layout_height="83dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/mybets_fondo_juego">
+
+
+        <ImageView
+            android:id="@+id/partida_item_fondo_icon"
+            android:layout_width="44dp"
+            android:layout_height="83dp"
+            android:src="@drawable/mybets_fondo_partida" />
+
+        <ImageView
+            android:id="@+id/partida_item_icon_placeholder"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/mybets_icon_sobre" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/partida_item_fondo_icon">
+
+            <TextView
+                style="@style/MyBetsBotonTextoAmarillo"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:text="@string/apuesta_boton_juega_ya_text"
+                android:textSize="12sp" />
+
+
+            <ImageView
+                android:id="@+id/partida_item_icono_persona"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/mybets_icon_personas" />
+
+            <TextView
+                android:id="@+id/partida_item_text_num_personas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="2dp"
+                android:layout_toLeftOf="@id/partida_item_icono_persona"
+                android:text="@string/apuestas_numpersonas_placeholder_text"
+                android:textColor="@color/gris_medio"
+                android:textSize="12sp"
+                android:textStyle="italic|bold" />
+
+            <TextView
+                android:id="@+id/partida_item_text_titulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/apuestas_titulo_placeholder_text"
+                android:textColor="@color/gris_oscuro"
+                android:textSize="16sp" />
+
+
+            <ImageView
+                android:id="@+id/partida_item_icon_reloj"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_below="@id/partida_item_text_titulo"
+                android:layout_marginTop="7dp"
+                android:src="@drawable/mybets_icon_reloj"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/partida_item_text_countdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/partida_item_text_titulo"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/partida_item_icon_reloj"
+                android:fontFamily="sans-serif"
+                android:text="@string/apuestas_countdown_placeholder_text"
+                android:textColor="@color/timer_color"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/partida_item_text_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/partida_item_text_titulo"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@id/partida_item_icon_reloj"
+                android:fontFamily="sans-serif"
+                android:text="@string/apuestas_fecha_fin_placeholder_text"
+                android:textColor="@color/timer_color"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/partida_item_text_bote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:text="@string/apuestas_bote_placeholder_text"
+                android:textColor="@color/gris_medio_oscuro"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

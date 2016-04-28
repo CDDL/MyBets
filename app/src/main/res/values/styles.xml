@@ -32,7 +32,6 @@
     </style>
 
 
-
     <style name="MyBetsEditText" parent="android:Widget.EditText">
         <item name="android:layout_width">@dimen/edittext_anchura</item>
         <item name="android:layout_height">@dimen/edittext_altura</item>
@@ -64,6 +63,47 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MyBetsBotonCategoriaToggle" parent="android:Widget.Holo.CompoundButton.RadioButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">28dp</item>
+        <item name="android:background">@drawable/mybets_boton_categoria_toggle</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingBottom">3dp</item>
+    </style>
+
+    <style name="MyBetsBotonTextoAmarillo" parent="android:TextAppearance.Widget.TextView">
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/mybets_boton_jugar_amarillo</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">italic|bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="MyBetsBotonTextoAmarillo.redondo" parent="MyBetsBotonTextoAmarillo" >
+        <item name="android:background">@drawable/mybets_boton_jugar_amarillo_redondo</item>
+    </style>
+
+    <style name="mybets_radiobutton_apuesta">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:background">@drawable/mybets_radiobutton_toggle</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">18dp</item>
+    </style>
 
 
 </resources>

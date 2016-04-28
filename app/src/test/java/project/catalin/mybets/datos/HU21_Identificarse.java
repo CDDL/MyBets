@@ -1,20 +1,14 @@
 package project.catalin.mybets.datos;
 
 import org.json.JSONException;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.rule.PowerMockRule;
-import org.robolectric.RobolectricGradleTestRunner;
-import org.robolectric.annotation.Config;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.io.IOException;
 
-import project.catalin.mybets.BuildConfig;
 import project.catalin.mybets.datos.excepciones.ContraseñaVaciaException;
 import project.catalin.mybets.datos.excepciones.EmailMalFormadoException;
 import project.catalin.mybets.datos.excepciones.EmailVacioException;
@@ -26,7 +20,6 @@ import project.catalin.mybets.datos.excepciones.UsuarioRepetidoException;
 import project.catalin.mybets.datos.excepciones.UsuarioVacioException;
 import project.catalin.mybets.datos.objetosData.LoginData;
 import project.catalin.mybets.datos.objetosData.Persona;
-import project.catalin.mybets.datos.shadows.ShadowSharedPreferences;
 import project.catalin.mybets.datos.utils.JsonWebServiceUtils;
 import project.catalin.mybets.datos.utils.SharedPreferencesUtils;
 
@@ -40,35 +33,31 @@ import static org.powermock.api.mockito.PowerMockito.when;
  * Created by Demils on 22/03/2016.
  */
 
-@RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21, shadows={ShadowSharedPreferences.class})
-@PowerMockIgnore({ "org.mockito.*", "org.robolectric.*", "android.*", "org.json.*" })
-@PrepareForTest(JsonWebServiceUtils.class)
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({JsonWebServiceUtils.class, SharedPreferencesUtils.class})
 public class HU21_Identificarse {
 
-    private GestorDataWebServices gestorData;
-
-    @Rule
-    public PowerMockRule rule = new PowerMockRule();
+    private GestorDataWebServices mGestorData;
+    private MyBetsMock mMyBetsMock;
 
     @Before
     public void reInicializarGestor() throws IOException, JSONException {
-        gestorData = new GestorDataWebServices();
+        mGestorData = new GestorDataWebServices();
+        mMyBetsMock = new MyBetsMock();
 
         mockStatic(JsonWebServiceUtils.class);
+        mockStatic(SharedPreferencesUtils.class);
 
-        new project.catalin.mybets.datos.MyBetsMock()
-                .setUpWebServiceLogic();
     }
 
     @Test
     public void sistemaConUnUsuario_identificarUsuarioContraseñaNoCoincide_usuarioNoIdentificado() throws EmailMalFormadoException, UsuarioRepetidoException, IOException, JSONException, TelefonoMalFormadoException, NombreVacioException, EmailVacioException, ErrorInternoException, ContraseñaVaciaException, UsuarioVacioException, ErrorServerException {
         //Estado inicial
-        gestorData.registrarUsuario(new Persona("datos@validos.com", "test", "test123", "+123456789"), "123456");
+        mMyBetsMock.sistemaConUnUsuarioRegistrado();
 
         //Acción
         try {
-            gestorData.validarIdentificación(new LoginData("datos@validos.com", "123"));
+            mGestorData.validarIdentificación(new LoginData("datos@validos.com", "123"));
             fail("La persona se ha identificado con datos no válidos.");
 
         //Estado esperado
@@ -77,12 +66,12 @@ public class HU21_Identificarse {
     }
 
     @Test
-    public void sistemaSinUsuarios_identificarUsuarioCamposVacios_UsuarioVacioException() throws IOException, JSONException, EmailVacioException, ContraseñaVaciaException, EmailMalFormadoException, ErrorInternoException, ErrorServerException {
+    public void sistemaSinUsuarios_identificarUsuarioCamposVacios_EmailVacíoException() throws IOException, JSONException, EmailVacioException, ContraseñaVaciaException, EmailMalFormadoException, ErrorInternoException, ErrorServerException {
         //Estado inicial
 
         //Acción
         try {
-            gestorData.validarIdentificación(new LoginData("",""));
+            mGestorData.validarIdentificación(new LoginData("",""));
             fail("Se ha intentado validar la identificación de un campo vacío.");
 
         //Estado esperado
@@ -91,12 +80,13 @@ public class HU21_Identificarse {
     }
 
     @Test
+
     public void sistemaConUnUsuario_identificarUsuarioCoincideContraseña_usuarioIdentificado() throws EmailMalFormadoException, UsuarioRepetidoException, IOException, JSONException, TelefonoMalFormadoException, NombreVacioException, EmailVacioException, ErrorInternoException, ErrorServerException, ContraseñaVaciaException {
         //Estado inicial
-        gestorData.registrarUsuario(new Persona("datos@validos.com","test","test123","+123456789"), "123456");
+        mMyBetsMock.sistemaConUnUsuarioRegistrado();
 
         //Acción
-        Persona usuarioIdentificado = gestorData.validarIdentificación(new LoginData("datos@validos.com", "123456"));
+        Persona usuarioIdentificado = mGestorData.validarIdentificación(new LoginData("datos@validos.com", "123456"));
 
         //Estado esperado
         assertTrue(usuarioIdentificado.getEmail().equals("datos@validos.com"));

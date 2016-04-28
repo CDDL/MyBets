@@ -7,16 +7,13 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.modules.junit4.rule.PowerMockRule;
-import org.robolectric.RobolectricGradleTestRunner;
-import org.robolectric.annotation.Config;
 
 import java.io.IOException;
 import java.util.List;
 
-import project.catalin.mybets.BuildConfig;
 import project.catalin.mybets.datos.excepciones.ContraseñaVaciaException;
 import project.catalin.mybets.datos.excepciones.EmailMalFormadoException;
 import project.catalin.mybets.datos.excepciones.EmailVacioException;
@@ -28,7 +25,6 @@ import project.catalin.mybets.datos.excepciones.UsuarioNoIdentificadoException;
 import project.catalin.mybets.datos.excepciones.UsuarioRepetidoException;
 import project.catalin.mybets.datos.objetosData.LoginData;
 import project.catalin.mybets.datos.objetosData.Persona;
-import project.catalin.mybets.datos.shadows.ShadowSharedPreferences;
 import project.catalin.mybets.datos.utils.JsonWebServiceUtils;
 import project.catalin.mybets.datos.utils.SharedPreferencesUtils;
 
@@ -39,38 +35,29 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 /**
  * Created by Catalin on 01/04/2016.
  */
-@RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21, shadows={ShadowSharedPreferences.class})
-@PowerMockIgnore({ "org.mockito.*", "org.robolectric.*", "android.*", "org.json.*" })
-@PrepareForTest(JsonWebServiceUtils.class)
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({JsonWebServiceUtils.class, SharedPreferencesUtils.class})
 public class HU17_ConsultarContactos {
 
-    private GestorDataWebServices gestorData;
-
-    @Rule
-    public PowerMockRule rule = new PowerMockRule();
+    private GestorDataWebServices mGestorData;
+    private MyBetsMock mMyBetsMock;
 
     @Before
     public void reInicializarGestor() throws IOException, JSONException {
-        gestorData = new GestorDataWebServices();
+        mGestorData = new GestorDataWebServices();
+        mMyBetsMock = new MyBetsMock();
 
         mockStatic(JsonWebServiceUtils.class);
-
-        new project.catalin.mybets.datos.MyBetsMock()
-                .setUpWebServiceLogic();
+        mockStatic(SharedPreferencesUtils.class);
     }
 
     @Test
-    public void sistemaUnUsuarioConUnAmigo_getContactosUsuario_ListaContactos() throws NombreVacioException, ErrorServerException, UsuarioRepetidoException, ErrorInternoException, EmailMalFormadoException, TelefonoMalFormadoException, EmailVacioException, ContraseñaVaciaException, UsuarioNoIdentificadoException {
+    public void sistemaUnUsuarioConUnAmigo_getContactosUsuario_ListaContactos() throws NombreVacioException, ErrorServerException, UsuarioRepetidoException, ErrorInternoException, EmailMalFormadoException, TelefonoMalFormadoException, EmailVacioException, ContraseñaVaciaException, UsuarioNoIdentificadoException, IOException, JSONException {
         //Estado inicial
-        gestorData.registrarUsuario(new Persona("datos@validos.com", "test", "test123", "+123456789"), "123456");
-        int idAmigo = gestorData.registrarUsuario(new Persona("amigo@validos.com", "test2", "test321", "+123456799"), "123456");
-
-        gestorData.validarIdentificación(new LoginData("datos@validos.com", "123456"));
-        gestorData.añadirAmigo(idAmigo);
+        mMyBetsMock.sistemUnUsuarioConAmigo();
 
         //Acción
-        List<Persona> listaAmigos = gestorData.getContactos();
+        List<Persona> listaAmigos = mGestorData.getContactos();
 
         //Estado esperado
         assertTrue(listaAmigos.get(0).getEmail().equals("amigo@validos.com"));
@@ -79,11 +66,10 @@ public class HU17_ConsultarContactos {
     @Test
     public void sistemaConUnUsuarioSinAmigos_getContactosUsuario_ListaVacia() throws NombreVacioException, ErrorServerException, UsuarioRepetidoException, ErrorInternoException, EmailMalFormadoException, TelefonoMalFormadoException, EmailVacioException, ContraseñaVaciaException, UsuarioNoIdentificadoException, JSONException, IOException {
         //Estado inicial
-        gestorData.registrarUsuario(new Persona("datos@validos.com", "test", "test123", "+123456789"), "123456");
-        gestorData.validarIdentificación(new LoginData("datos@validos.com", "123456"));
+        mMyBetsMock.sistemaUnUsuarioSinAmigos();
 
         //Acción
-        List<Persona> listaAmigos = gestorData.getContactos();
+        List<Persona> listaAmigos = mGestorData.getContactos();
 
         //Estado esperado
         assertTrue(listaAmigos.size() == 0);
@@ -92,20 +78,14 @@ public class HU17_ConsultarContactos {
     @Test
     public void sisteamConUnUsuarioNoIdentificado_getContactosUsuario_UsuarioNoIdentificadoException() throws NombreVacioException, ErrorServerException, UsuarioRepetidoException, ErrorInternoException, EmailMalFormadoException, TelefonoMalFormadoException, EmailVacioException {
         //Estado inicial
-        gestorData.registrarUsuario(new Persona("datos@validos.com", "test", "test123", "+123456789"), "123456");
+        mMyBetsMock.sistemaUsuarioNoIdentificado();
 
         //Acción
         try {
-            gestorData.getContactos();
+            mGestorData.getContactos();
             fail("Un usuario ha conseguido sus contactos sin estar identificado.");
 
         //Esperado
-        } catch (UsuarioNoIdentificadoException e) {
-        }
-    }
-
-    @After
-    public void logOut() {
-        SharedPreferencesUtils.logOut();
+        } catch (UsuarioNoIdentificadoException e) {}
     }
 }

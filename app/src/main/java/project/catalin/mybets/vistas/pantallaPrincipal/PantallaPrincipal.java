@@ -16,6 +16,8 @@ import java.util.List;
 
 import project.catalin.mybets.R;
 import project.catalin.mybets.vistas.pantallaPrincipal.fragments.FragmentConTitulo;
+import project.catalin.mybets.vistas.pantallaPrincipal.fragments.PantallaPrincipalFragmentApuestas;
+import project.catalin.mybets.vistas.pantallaPrincipal.fragments.PantallaPrincipalFragmentDialogJuegaYa;
 import project.catalin.mybets.vistas.pantallaPrincipal.fragments.PantallaPrincipalFragmentMisAmigos;
 
 public class PantallaPrincipal extends AppCompatActivity {
@@ -26,7 +28,7 @@ public class PantallaPrincipal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pantalla_principal);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.pantalla_principal_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -37,6 +39,9 @@ public class PantallaPrincipal extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+        new PantallaPrincipalFragmentDialogJuegaYa().show(getSupportFragmentManager(), "dialog_juega_ya");
+
     }
 
 
@@ -50,10 +55,6 @@ public class PantallaPrincipal extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -64,7 +65,9 @@ public class PantallaPrincipal extends AppCompatActivity {
         public AdaptadorPestañas(FragmentManager fm) {
             super(fm);
             listaFragmentos = new LinkedList<>();
+            listaFragmentos.add(new PantallaPrincipalFragmentApuestas());
             listaFragmentos.add(new PantallaPrincipalFragmentMisAmigos());
+
         }
 
         @Override

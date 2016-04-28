@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="64dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="327dp"
+        android:layout_height="56dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.3"
+            android:src="@drawable/mybets_fondo_apuesta1x2_equipos" />
+
+        <RelativeLayout
+            android:id="@+id/apostar1x2_equipos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp">
+
+            <ImageView
+                android:id="@+id/apostar1x2_icon_equipo1"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="2dp"
+                android:src="@drawable/mybets_icono_equipo_placeholder" />
+
+            <TextView
+                android:id="@+id/apostar1x2_nombre_equipo1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/apostar1x2_icon_equipo1"
+                android:text="Barcelona"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/apostar1x2_icon_equipo2"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_below="@id/apostar1x2_icon_equipo1"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/mybets_icono_equipo_placeholder" />
+
+            <TextView
+                android:id="@+id/apostar1x2_nombre_equipo2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/apostar1x2_nombre_equipo1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/apostar1x2_icon_equipo2"
+                android:text="Ath. Bilbao"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                style="@style/mybets_radiobutton_apuesta"
+                android:checked="true"
+                android:text="1" />
+
+            <RadioButton
+                style="@style/mybets_radiobutton_apuesta"
+                android:layout_marginLeft="10dp"
+                android:text="X" />
+
+            <RadioButton
+                style="@style/mybets_radiobutton_apuesta"
+                android:layout_marginLeft="10dp"
+                android:text="2" />
+
+        </RadioGroup>
+
+    </RelativeLayout>
+
+</RelativeLayout>

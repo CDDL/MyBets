@@ -16,4 +16,40 @@
     <color name="gris">#757575</color>
     <color name="blanco_transparente">#FFFFFF33</color>
     <color name="colorFondoTextoClickable">#44FFFFFF</color>
+
+    //PALETA DE COLORES
+    <!--<color name="mybets_color_azul_claro_1">#90CAF9</color>-->
+    <!--<color name="mybets_color_azul_claro_2">#64B5F6</color>-->
+    <!--<color name="mybets_color_azul_claro_3">#42A5F5</color>-->
+    <!--<color name="mybets_color_azul_claro_4">#1E88E5</color>-->
+
+    <!--<color name="mybets_color_morado_1">#D1C4E9</color>-->
+    <!--<color name="mybets_color_morado_2">#B39DDB</color>-->
+    <!--<color name="mybets_color_morado_3">#9575CD</color>-->
+    <!--<color name="mybets_color_morado_4">#7E57C2</color>-->
+    <!--<color name="mybets_color_morado_5">#5E35B1</color>-->
+    <!--<color name="mybets_color_morado_6">#512DA8</color>-->
+    <!--<color name="mybets_color_morado_7">#4527A0</color>-->
+    <!--<color name="mybets_color_morado_8">#311B92</color>-->
+
+    <!--<color name="mybets_color_naranja_1">#FFF8E1</color>-->
+    <!--<color name="mybets_color_naranja_2">#FFECB3</color>-->
+    <!--<color name="mybets_color_naranja_3">#FFE082</color>-->
+    <!--<color name="mybets_color_naranja_4">#FFD54F</color>-->
+    <!--<color name="mybets_color_naranja_5">#FFCA28</color>-->
+    <!--<color name="mybets_color_naranja_6">#FFB300</color>-->
+    <!--<color name="mybets_color_naranja_7">#FFA000</color>-->
+    <!--<color name="mybets_color_naranja_8">#FF8F00</color>-->
+
+
+    <color name="mybets_color_categoria_azul">#00B9FF</color>
+    <color name="mybets_color_categoria_azul_oscuro">#3F51B5</color>
+    <color name="mybets_color_apuestas_fondo">#EEEEEE</color>
+    <color name="timer_color">#F9A825</color>
+    <color name="gris_oscuro">#616161</color>
+    <color name="mybets_color_juega_ya">#F9A825</color>
+    <color name="gris_medio">#BDBDBD</color>
+    <color name="gris_medio_oscuro">#424242</color>
+
+
 </resources>

@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="project.catalin.mybets.vistas.pantallaPrincipal.fragments.PantallaPrincipalFragmentDialogJuegaYa"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:minWidth="0dp"
+    android:minHeight="0dp"
+    >
+
+
+    <RelativeLayout
+        android:id="@+id/dialog_juega_ya_icon_placeholder"
+        android:layout_alignParentTop="true"
+        android:layout_width="345dp"
+        android:layout_height="86dp"
+        android:background="@drawable/mybets_icon_juega_ya_dialog_placeholder" >
+        
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/mybets_icon_cerrar"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="7dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Balón de oro 2016"
+            android:textColor="@android:color/white"
+            android:textSize="26sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dialog_juega_ya_fondo"
+        android:layout_below="@id/dialog_juega_ya_icon_placeholder"
+        android:layout_width="345dp"
+        android:layout_height="250dp"
+        android:background="@drawable/mybets_fondo_dialog_juega_ya">
+
+        <TextView
+            android:id="@+id/dialog_juega_ya_text_bote"
+            android:layout_marginTop="44dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="Bote: 20.000 puntos"
+            android:textSize="29sp"
+            android:textColor="@color/gris_medio_oscuro"/>
+
+        <TextView
+            android:id="@+id/dialog_juega_ya_boton_buscar_oponente"
+            style="@style/MyBetsBotonTextoAmarillo"
+            android:layout_width="129dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="20dp"
+            android:text="Buscar\noponente"
+            android:gravity="center"
+            android:textSize="16sp" />
+
+        <TextView
+            style="@style/MyBetsBotonTextoAmarillo"
+            android:layout_width="129dp"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="30dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="Apostar"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
+

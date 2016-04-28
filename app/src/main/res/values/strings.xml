@@ -9,15 +9,30 @@
     <string name="edittext_email_hint">Email</string>
     <string name="edittext_password_hint">Password</string>
     <string name="buscar_amigos_text">Buscar amigos</string>
-    <string name="title_activity_main">MainActivity</string>
     <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
     <string name="text_amigos_nombre_placeholder">Nombre</string>
     <string name="text_amigos_estado_placeholder">Estado</string>
     <string name="text_amigos_añadidos_recientemente">Añadidos recientemente</string>
     <string name="text_placeholder_puntos">0 puntos</string>
 
     <string name="title_tab_amigos">AMIGOS</string>
+    <string name="title_tab_apuestas">APUESTAS</string>
+    <string name="boton_categorias_text">CATEGORÍAS</string>
+    <string name="boton_populares_text">POPULARES</string>
+    <string name="boton_futbol_text">FUTBOL</string>
+    <string name="text_apuestas_hoy">Hoy</string>
+    <string name="text_apuestas_mas">MAS</string>
+    <string name="partida_item_icono_placeholder_desc">Icono del juego</string>
+    <string name="apuesta_boton_juega_ya_text">¡Juega ya!</string>
+    <string name="apuestas_bote_placeholder_text">Bote: 20.000 puntos</string>
+    <string name="apuestas_titulo_placeholder_text">Balón de oro 2016</string>
+    <string name="apuestas_numpersonas_placeholder_text">2.087.084</string>
+    <string name="apuestas_countdown_placeholder_text">10 : 08 : 12</string>
+    <string name="apuestas_fecha_fin_placeholder_text">Fin 12/10/16 - 08:00</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_cuadro_busqueda_hint">Buscar</string>
+    <string name="text_search_hint">Buscar</string>
+    <string name="text_search_text">Buscar</string>
+    <string name="text_icono_equipo_1_desc">Icono del equipo 1</string>
+    <string name="text_icono_equipo_2_desc">Icono del equpio 2</string>
 </resources>

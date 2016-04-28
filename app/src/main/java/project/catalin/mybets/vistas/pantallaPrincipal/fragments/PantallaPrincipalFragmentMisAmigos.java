@@ -41,7 +41,7 @@ public class PantallaPrincipalFragmentMisAmigos extends FragmentConTitulo implem
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.pantalla_principal_mis_amigos_fragment, container, false);
+        View layout = inflater.inflate(R.layout.pantalla_principal_fragment_mis_amigos, container, false);
 
         mControladorMisAmigos = new ControladorMisAmigos(this);
         mAdaptadorContactos = new AdaptadorEntradasLista(mControladorMisAmigos.getContactos());
@@ -111,7 +111,7 @@ public class PantallaPrincipalFragmentMisAmigos extends FragmentConTitulo implem
             if(convertView != null) return convertView;
 
             LayoutInflater inflater = (LayoutInflater) getContext() .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            RelativeLayout layout = (RelativeLayout) inflater.inflate(R.layout.pantalla_principal_mis_amigos_fragment_list_item, parent, false);
+            RelativeLayout layout = (RelativeLayout) inflater.inflate(R.layout.pantalla_principal_contactos_list_item, parent, false);
 
             CircleImageView img = (CircleImageView) layout.findViewById(R.id.icono_foto_perfil);
             TextView nombre = (TextView) layout.findViewById(R.id.text_contacto_nombre);
@@ -123,7 +123,7 @@ public class PantallaPrincipalFragmentMisAmigos extends FragmentConTitulo implem
                     .load(persona.getImage())
                     .into(img);
 
-            nombre.setText(persona.getNombre());
+            nombre.setText(persona.getUsername());
             desc.setText(persona.getEmail());
 
             return layout;
