@@ -17,8 +17,7 @@ import java.util.List;
 import project.catalin.mybets.R;
 import project.catalin.mybets.vistas.pantallaPrincipal.fragments.FragmentConTitulo;
 import project.catalin.mybets.vistas.pantallaPrincipal.fragments.PantallaPrincipalFragmentApuestas;
-import project.catalin.mybets.vistas.pantallaPrincipal.fragments.PantallaPrincipalFragmentDialogJuegaYa;
-import project.catalin.mybets.vistas.pantallaPrincipal.fragments.PantallaPrincipalFragmentMisAmigos;
+import project.catalin.mybets.vistas.pantallaPrincipal.fragments.PantallaPrincipalFragmentListaAmigos;
 
 public class PantallaPrincipal extends AppCompatActivity {
 
@@ -39,8 +38,6 @@ public class PantallaPrincipal extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-        new PantallaPrincipalFragmentDialogJuegaYa().show(getSupportFragmentManager(), "dialog_juega_ya");
 
     }
 
@@ -66,7 +63,7 @@ public class PantallaPrincipal extends AppCompatActivity {
             super(fm);
             listaFragmentos = new LinkedList<>();
             listaFragmentos.add(new PantallaPrincipalFragmentApuestas());
-            listaFragmentos.add(new PantallaPrincipalFragmentMisAmigos());
+            listaFragmentos.add(new PantallaPrincipalFragmentListaAmigos());
 
         }
 

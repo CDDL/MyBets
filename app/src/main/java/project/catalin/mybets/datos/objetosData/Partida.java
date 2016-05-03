@@ -6,15 +6,18 @@ import java.util.Date;
  * Created by Trabajo on 19/04/2016.
  */
 public class Partida {
-    private final int mIdPartida;
-    private final String mNombrePartida;
-    private final Date mFecha;
-    private final int mBote;
-    private final int mNumPersonas;
-    private final String mUrlIcono;
-    private long mId;
+    public static int TIPO_PARTIDA_1x2 = 0;
+    public static int TIPO_PARTIDA_RESULT_EXACT = 1;
+
+
+    private int mIdPartida;
+    private int mBote;
+    private int mNumPersonas;
     private int mTipoPartida;
-    private int mColorPartida;
+    private String mNombrePartida;
+    private String mUrlIcono;
+    private String mColorPartida;
+    private Date mFecha;
 
     public Partida(int idPartida, String nombrePartida, Date fecha, int bote, int numPersonas, String urlIcono) {
         mIdPartida = idPartida;
@@ -25,12 +28,16 @@ public class Partida {
         mUrlIcono = urlIcono;
     }
 
-    public long getId() {
-        return mId;
+    public int getIdPartida() {
+        return mIdPartida;
     }
 
-    public int getColorIcono() {
+    public String getColorIcono() {
         return mColorPartida;
+    }
+
+    public void setColorIcono(String colorIcono) {
+        mColorPartida = colorIcono;
     }
 
     public String getUrlIcono() {
@@ -53,11 +60,12 @@ public class Partida {
         return mFecha;
     }
 
+    public int getTipoPartida() {
+        return mTipoPartida;
+    }
+
     public void setTipoPartida(int tipoPartida) {
         mTipoPartida = tipoPartida;
     }
 
-    public void setColorIcono(int colorIcono) {
-        mColorPartida = colorIcono;
-    }
 }

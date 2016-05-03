@@ -50,6 +50,7 @@
     <color name="mybets_color_juega_ya">#F9A825</color>
     <color name="gris_medio">#BDBDBD</color>
     <color name="gris_medio_oscuro">#424242</color>
+    <color name="mybets_color_checkbox">#F9AB25</color>
 
 
 </resources>

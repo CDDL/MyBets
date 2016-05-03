@@ -13,18 +13,8 @@
         <activity
             android:name=".vistas.pantallaElegirOponentes.PantallaElegirOponentes"
             android:screenOrientation="portrait"
-            android:theme="@style/MyBetsThemeMorado">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
+            android:theme="@style/MyBetsThemeMorado" />
 
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/busqueda" />
-        </activity>
         <activity
             android:name=".vistas.iniciarSesion.IniciarSesionPantallaPrincipal"
             android:configChanges="orientation|screenSize"
@@ -40,17 +30,11 @@
             android:name=".vistas.pantallaPrincipal.PantallaPrincipal"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/MyBetsThemeMorado">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/MyBetsThemeMorado" />
+        <activity
+            android:name=".vistas.pantallaApostar.PantallaApostar"
+            android:theme="@style/MyBetsThemeMorado" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".vistas.pantallaApostar1x2.pantallaApostar1x2"
-            android:theme="@style/MyBetsThemeMorado">
-
-        </activity>
     </application>
 
 </manifest>

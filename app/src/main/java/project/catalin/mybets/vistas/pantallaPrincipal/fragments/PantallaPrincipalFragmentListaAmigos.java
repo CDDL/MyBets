@@ -19,7 +19,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import project.catalin.mybets.R;
-import project.catalin.mybets.controladores.pantallaPrincipal.comunicaciónVista.MisAmigosView;
+import project.catalin.mybets.controladores.pantallaPrincipal.comunicaciónVista.ViewListaAmigos;
 import project.catalin.mybets.controladores.pantallaPrincipal.fragments.ControladorMisAmigos;
 import project.catalin.mybets.datos.objetosData.Persona;
 import project.catalin.mybets.vistas.pantallaPrincipal.comunicaciónControlador.ControllerMisAmigos;
@@ -27,13 +27,13 @@ import project.catalin.mybets.vistas.pantallaPrincipal.comunicaciónControlador.
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PantallaPrincipalFragmentMisAmigos extends FragmentConTitulo implements MisAmigosView {
+public class PantallaPrincipalFragmentListaAmigos extends FragmentConTitulo implements ViewListaAmigos {
 
     private AdaptadorEntradasLista mAdaptadorContactos;
     private ControllerMisAmigos mControladorMisAmigos;
     private ListView mListaElementos;
 
-    public PantallaPrincipalFragmentMisAmigos() {
+    public PantallaPrincipalFragmentListaAmigos() {
         super();
         setIdTitulo(R.string.title_tab_amigos);
     }

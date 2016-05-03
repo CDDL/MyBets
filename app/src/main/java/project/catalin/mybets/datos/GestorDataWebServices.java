@@ -35,13 +35,13 @@ import project.catalin.mybets.datos.utils.UserInputValidationUtils;
  */
 public class GestorDataWebServices implements DataIdentificación, DataRegister, DataContacts, DataPartidasPopulares {
 
-    private final String URL_PETICIÓN_REGISTER = "http://mybetstest.cuatroochenta.com/services/response_login_error.json";
-    private final String URL_PETICIÓN_LOGIN = "http://www.mocky.io/v2/570f41e8250000661729c725";
-    private final String URL_PETICIÓN_AÑADIR_AMIGO = "http://mybetstest.cuatroochenta.com/services/responsfasdfe_login_ok.json";
-    private final String URL_PETICIÓN_GET_CONTACTOS = "http://mybetstest.cuatroochenta.com/services/response_amigos_ok.json";
-    private final String URL_PETICIÓN_NUEVA_PARTIDA = "fasdfasdf";
-    private final String URL_PETICIÓN_GET_PARTIDAS_PENDIENDES = "";
-    private final String URL_PETICIÓN_GET_PARTIDAS_POPULARES = "asdfkasdf";
+    public static final String URL_PETICIÓN_REGISTER = "http://mybetstest.cuatroochenta.com/services/response_login_error.json";
+    public static final String URL_PETICIÓN_LOGIN = "http://www.mocky.io/v2/570f41e8250000661729c725";
+    public static final String URL_PETICIÓN_AÑADIR_AMIGO = "http://mybetstest.cuatroochenta.com/services/responsfasdfe_login_ok.json";
+    public static final String URL_PETICIÓN_GET_CONTACTOS = "http://mybetstest.cuatroochenta.com/services/response_amigos_ok.json";
+    public static final String URL_PETICIÓN_NUEVA_PARTIDA = "fasdfasdf";
+    public static final String URL_PETICIÓN_GET_PARTIDAS_PENDIENDES = "";
+    public static final String URL_PETICIÓN_GET_PARTIDAS_POPULARES = "http://mybetstest.cuatroochenta.com/services/response_partidas_populares.json";
 
     @Override
     public int registrarUsuario(Persona dataUsuario, String password) throws EmailMalFormadoException, UsuarioRepetidoException, TelefonoMalFormadoException, EmailVacioException, NombreVacioException, ErrorInternoException, ErrorServerException {
@@ -138,12 +138,13 @@ public class GestorDataWebServices implements DataIdentificación, DataRegister,
     }
 
     @Override
-    public List<Partida> getPartidasPopulares() throws ErrorInternoException {
+    public List<Partida> getPartidasPopulares() throws ErrorInternoException, ErrorServerException {
         try{
             JSONObject loginData = SharedPreferencesUtils.getLoginJsonCopy();
             JSONObject resultData = JsonWebServiceUtils.petición((URL_PETICIÓN_GET_PARTIDAS_POPULARES), loginData);
+            if(resultData.getInt("code") == Constantes.RESPUESTA_WEBSERV_ERROR) throw new ErrorServerException(resultData.getString("message"));
             return JsonParserUtils.jsonToPartidasList(resultData);
-        } catch (Exception e) {
+        } catch (ParseException | IOException | JSONException e) {
             throw new ErrorInternoException();
         }
     }

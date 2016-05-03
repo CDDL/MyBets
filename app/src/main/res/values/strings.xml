@@ -28,11 +28,23 @@
     <string name="apuestas_titulo_placeholder_text">Balón de oro 2016</string>
     <string name="apuestas_numpersonas_placeholder_text">2.087.084</string>
     <string name="apuestas_countdown_placeholder_text">10 : 08 : 12</string>
-    <string name="apuestas_fecha_fin_placeholder_text">Fin 12/10/16 - 08:00</string>
+    <string name="apuestas_fecha_fin_placeholder_text">Fin 12/10/16 – 08:00</string>
 
     <string name="text_cuadro_busqueda_hint">Buscar</string>
     <string name="text_search_hint">Buscar</string>
     <string name="text_search_text">Buscar</string>
     <string name="text_icono_equipo_1_desc">Icono del equipo 1</string>
     <string name="text_icono_equipo_2_desc">Icono del equpio 2</string>
+    <string name="partida_item_icono_numpersonas_desc">Icono numero de personas</string>
+    <string name="partida_item_icono_reloj_desc">Icono reloj</string>
+    <string name="partida_item_text_apuesta_rechazada">Apuesta rechazada</string>
+    <string name="partida_item_text_apuesta_esperando_resultados">Esperando resultados</string>
+    <string name="partida_view_bote_text">Bote: {0} puntos</string>
+    <string name="partida_view_formato_fecha_fin">dd/MM/yy - HH:mm</string>
+    <string name="partida_view_formato_contador">HH : mm : ss</string>
+    <string name="partida_veiw_texto_fecha_fin">Fin {0}</string>
+    <string name="dialog_juega_ya_text_apostar">Apostar</string>
+    <string name="dialog_juega_ya_text_buscar_oponente">Buscar\noponente</string>
+    <string name="dialog_juega_ya_icon_desc">Icono del tipo de partida</string>
+    <string name="dialog_juega_ya_bote_format">Bote: {0} puntos</string>
 </resources>

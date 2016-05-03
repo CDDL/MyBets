@@ -5,8 +5,7 @@
 
     <item
         android:id="@+id/mybets_action_search"
-        app:actionViewClass="android.widget.SearchView"
-        android:icon="@android:drawable/ic_menu_search"
-        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="ifRoom"
         android:title="@string/text_search_text"/>
 </menu>

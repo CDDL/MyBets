@@ -1,44 +1,39 @@
 package project.catalin.mybets.vistas.pantallaPrincipal.fragments;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
-
-import java.text.MessageFormat;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 import project.catalin.mybets.R;
-import project.catalin.mybets.controladores.pantallaPrincipal.fragments.ControllerFragmentApuestas;
-import project.catalin.mybets.controladores.utils.comunicación.Constantes;
+import project.catalin.mybets.controladores.pantallaPrincipal.comunicaciónVista.ViewListaPartidas;
+import project.catalin.mybets.controladores.pantallaPrincipal.fragments.ControladorFragmentApuestas;
 import project.catalin.mybets.datos.objetosData.Partida;
-import project.catalin.mybets.datos.objetosData.Persona;
+import project.catalin.mybets.vistas.customAndroidComponents.PartidaView;
+import project.catalin.mybets.vistas.pantallaApostar.PantallaApostar;
 import project.catalin.mybets.vistas.pantallaPrincipal.comunicaciónControlador.ControllerPartidasPopulares;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PantallaPrincipalFragmentApuestas extends FragmentConTitulo {
+public class PantallaPrincipalFragmentApuestas extends FragmentConTitulo implements ViewListaPartidas {
 
 
-    private BaseAdapter mAdaptadorContactos;
+    private AdaptadorEntradasLista mAdaptadorContactos;
     private ControllerPartidasPopulares mController;
+    private ProgressDialog mDialogLoadingPartidas;
 
     public PantallaPrincipalFragmentApuestas() {
         super();
@@ -49,17 +44,38 @@ public class PantallaPrincipalFragmentApuestas extends FragmentConTitulo {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.pantalla_principal_fragment_apuestas, container, false);
 
+        mAdaptadorContactos = new AdaptadorEntradasLista();
+        mController = new ControladorFragmentApuestas(this);
+        mController.getPartidasPopulares();
 
-        mController = new ControllerFragmentApuestas();
-        mAdaptadorContactos = new AdaptadorEntradasLista(mController.getPartidasPopulares());
         ListView mListaElementos = (ListView) layout.findViewById(R.id.lista_apuestas);
-
         mListaElementos.setAdapter(mAdaptadorContactos);
 
         return layout;
+    }
+
+    @Override
+    public void alert(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showLoadingPartidas() {
+        mDialogLoadingPartidas = ProgressDialog.show(getContext(), "", "Cargando partidas...", false, false);
+        mDialogLoadingPartidas.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+
+    }
+
+    @Override
+    public void dismissLoadingPartidas() {
+        mDialogLoadingPartidas.dismiss();
+    }
+
+    @Override
+    public void setListaPartidas(List<Partida> partidas) {
+        mAdaptadorContactos.recargarDatos(partidas);
     }
 
     public class AdaptadorEntradasLista extends BaseAdapter {
@@ -67,8 +83,8 @@ public class PantallaPrincipalFragmentApuestas extends FragmentConTitulo {
 
         private List<Partida> mListaEntradas;
 
-        public AdaptadorEntradasLista(List<Partida> listaPartidas) {
-            mListaEntradas = listaPartidas;
+        public AdaptadorEntradasLista() {
+            mListaEntradas = Collections.emptyList();
             notifyDataSetChanged();
         }
 
@@ -85,66 +101,50 @@ public class PantallaPrincipalFragmentApuestas extends FragmentConTitulo {
 
         @Override
         public long getItemId(int position) {
-            return mListaEntradas.get(position).getId();
+            return mListaEntradas.get(position).getIdPartida();
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            if (convertView != null) return convertView;
-            Partida partida = (Partida) getItem(position);
-            NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.ENGLISH);
+            final Partida partida = (Partida) getItem(position);
 
-            LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            PartidaView partidaView;
+            if (convertView == null) {
+                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                partidaView = (PartidaView) inflater.inflate(R.layout.pantalla_principal_fragment_apuestas_item, parent, false);
+            } else partidaView = (PartidaView) convertView;
 
-            RelativeLayout layout = (RelativeLayout) inflater.inflate(R.layout.pantalla_principal_partida_publica_list_item, parent, false);
+            partidaView.setColorFondoIcono(partida.getColorIcono());
 
-            GradientDrawable fondo = (GradientDrawable) layout.findViewById(R.id.partida_item_fondo_icon).getBackground();
-            fondo.setColor(partida.getColorIcono());
+            partidaView.setUrlImagenIcono(partida.getUrlIcono());
 
-            ImageView icono = (ImageView) layout.findViewById(R.id.partida_item_icon_placeholder);
-            Picasso.with(getContext()).load(partida.getUrlIcono()).into(icono);
+            partidaView.setTitulo(partida.getTitulo());
 
-            TextView titulo = (TextView) layout.findViewById(R.id.partida_item_text_titulo);
-            titulo.setText(partida.getTitulo());
+            partidaView.setBoteNum(partida.getBote());
 
-            TextView bote = (TextView) layout.findViewById(R.id.partida_item_text_bote);
-            bote.setText(MessageFormat.format("Bote: {0} puntos", numberFormat.format(partida.getBote())));
+            partidaView.setNumPersonas(partida.getNumPersonas());
 
-            TextView personas = (TextView) layout.findViewById(R.id.partida_item_text_num_personas);
-            personas.setText(numberFormat.format(partida.getNumPersonas()));
+            partidaView.setFechaFin(partida.getFecha());
 
-            final Date fechaHoy = partida.getFecha();
+            partidaView.setJuegaYaButtonListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(PantallaPrincipalFragmentDialogJuegaYa.TAG_COLOR, partida.getColorIcono());
+                    bundle.putString(PantallaPrincipalFragmentDialogJuegaYa.TAG_TITULO, partida.getTitulo());
+                    bundle.putString(PantallaPrincipalFragmentDialogJuegaYa.TAG_ICON, partida.getUrlIcono());
+                    bundle.putInt(PantallaPrincipalFragmentDialogJuegaYa.TAG_BOTE, partida.getBote());
+                    bundle.putInt(PantallaApostar.TAG_TIPO_PARTIDA, partida.getTipoPartida());
+                    bundle.putInt(PantallaApostar.TAG_ID_PARTIDA, partida.getIdPartida());
 
-            if (fechaHoy.getTime() < System.currentTimeMillis() + Constantes.TIEMPO_HORA_MS) {
-                layout.findViewById(R.id.partida_item_icon_reloj).setVisibility(View.VISIBLE);
+                    PantallaPrincipalFragmentDialogJuegaYa dialogFramgnet = new PantallaPrincipalFragmentDialogJuegaYa();
+                    dialogFramgnet.setArguments(bundle);
+                    dialogFramgnet.show(getFragmentManager(), "DialogJuegaYa");
+                }
+            });
 
-                final TextView countdown = (TextView) layout.findViewById(R.id.partida_item_text_countdown);
-                countdown.setVisibility(View.VISIBLE);
 
-                final SimpleDateFormat formatoCountdown = new SimpleDateFormat("HH : mm : ss", Locale.US);
-
-                new CountDownTimer(fechaHoy.getTime(), System.currentTimeMillis()) {
-
-                    @Override
-                    public void onTick(long millisUntilFinished) {
-                        countdown.setText(formatoCountdown.format(fechaHoy));
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        countdown.setText("00 : 00 : 00");
-                    }
-                };
-            } else {
-                TextView fechaFin = (TextView) layout.findViewById(R.id.partida_item_text_fecha);
-                fechaFin.setVisibility(View.VISIBLE);
-
-                SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yy - HH:mm", Locale.US);
-
-                fechaFin.setText(MessageFormat.format("Fin {0}", formatoFecha.format(partida.getFecha())));
-            }
-
-            return layout;
+            return partidaView;
 
         }
 
@@ -163,5 +163,6 @@ public class PantallaPrincipalFragmentApuestas extends FragmentConTitulo {
             notifyDataSetChanged();
         }
     }
+
 
 }

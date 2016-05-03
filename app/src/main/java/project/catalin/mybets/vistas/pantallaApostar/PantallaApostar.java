@@ -1,11 +1,14 @@
-package project.catalin.mybets.vistas.pantallaApostar1x2;
+package project.catalin.mybets.vistas.pantallaApostar;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import project.catalin.mybets.R;
 
-public class pantallaApostar1x2 extends AppCompatActivity {
+public class PantallaApostar extends AppCompatActivity {
+
+    public static final String TAG_TIPO_PARTIDA = "tipopartida";
+    public static final String TAG_ID_PARTIDA = "idpartida";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

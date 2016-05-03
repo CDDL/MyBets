@@ -1,93 +1,80 @@
 package project.catalin.mybets.vistas.pantallaElegirOponentes;
 
-import android.app.ListActivity;
-import android.app.SearchManager;
 import android.content.Context;
-import android.content.Entity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SearchView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 import project.catalin.mybets.R;
+import project.catalin.mybets.controladores.pantallaElegirOponentes.ControladorPantallaElegirOponentes;
+import project.catalin.mybets.controladores.pantallaPrincipal.fragments.ControladorFragmentApuestas;
+import project.catalin.mybets.datos.objetosData.Persona;
+import project.catalin.mybets.vistas.pantallaElegirOponentes.comunicaciónControlador.ControllerListaAmigos;
 
-public class PantallaElegirOponentes extends ListActivity {
+public class PantallaElegirOponentes extends AppCompatActivity {
+
+    private AdaptadorPersonas mAdaptadorPersonas;
+    private ControllerListaAmigos mController;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        handleIntent(getIntent());
-
-
         setContentView(R.layout.pantalla_elegir_oponentes);
 
-        RowEjemploAdapter adapter = new RowEjemploAdapter(this, Arrays.asList(null,null,null,null));
+        setSupportActionBar((Toolbar) findViewById(R.id.elegir_oponentes_toolbar));
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setListAdapter(adapter);
+        mAdaptadorPersonas = new AdaptadorPersonas();
+        mController = new ControladorPantallaElegirOponentes(this);
+        mController.getListaAmigos();
+
+        ListView mListContactos = (ListView) findViewById(R.id.elegir_oponentes_search_list);
+        mListContactos.setAdapter(mAdaptadorPersonas);
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_search, menu);
-
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.mybets_action_search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setQueryHint(getString(R.string.text_cuadro_busqueda_hint));
+        searchView.setIconified(false);
+
         return true;
     }
 
-    @Override
-    public void onNewIntent(Intent intent) {
-        setIntent(intent);
-        handleIntent(intent);
-    }
 
-    @Override
-    public void onListItemClick(ListView l,
-                                View v, int position, long id) {
-        // call detail activity for clicked entry
-    }
+    public class AdaptadorPersonas extends BaseAdapter {
 
-    private void handleIntent(Intent intent) {
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query =
-                    intent.getStringExtra(SearchManager.QUERY);
-            realizarBusqueda(query);
-        }
-    }
+        private final List<Persona> mPersonas;
 
-    private void realizarBusqueda(String queryStr) {
-        // get a Cursor, prepare the ListAdapter
-        // and set it
-    }
-
-    public class RowEjemploAdapter extends BaseAdapter {
-
-        private Context mContext;
-        private List<Object> elements;
-
-        public RowEjemploAdapter (Context mContext, List<Object> elements) {
-            this.mContext = mContext;
-            this.elements = elements;
+        public AdaptadorPersonas () {
+            mPersonas = Collections.emptyList();
         }
 
         public int getCount() {
-            return elements.size();
+            return mPersonas.size();
         }
 
-        public Entity getItem(int position) {
-            return (Entity)elements.get(position);
+        public Persona getItem(int position) {
+            return mPersonas.get(position);
         }
 
         public long getItemId(int position) {
@@ -95,8 +82,21 @@ public class PantallaElegirOponentes extends ListActivity {
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
-            View v = View.inflate(mContext, R.layout.pantalla_elegir_oponentes_item_xml, null);
-            return v;
+            RelativeLayout layout;
+            Persona persona = mPersonas.get(position);
+
+            if(convertView != null) layout = (RelativeLayout) convertView;
+            else layout = (RelativeLayout) View.inflate(PantallaElegirOponentes.this, R.layout.pantalla_elegir_oponentes_item, null);
+
+            ImageView mIcono = (ImageView) layout.findViewById(R.id.elegir_oponentes_icon_placeholder);
+            Picasso.with(PantallaElegirOponentes.this)
+                    .load(persona.getImage())
+                    .into(mIcono);
+
+            TextView nombre = (TextView) layout.findViewById(R.id.elegir_oponentes_text_nombre);
+            nombre.setText(persona.getNombre());
+
+            return layout;
         }
 
     }

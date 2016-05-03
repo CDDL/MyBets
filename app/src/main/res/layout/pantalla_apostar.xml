@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="project.catalin.mybets.vistas.pantallaApostar1x2.pantallaApostar1x2">
+    tools:context=".vistas.pantallaApostar.PantallaApostar">
 
     <TextView
         android:id="@+id/apostar1x2_barra_titulo"

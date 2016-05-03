@@ -8,5 +8,5 @@ import project.catalin.mybets.datos.objetosData.Partida;
  * Created by Trabajo on 27/04/2016.
  */
 public interface ControllerPartidasPopulares {
-    List<Partida> getPartidasPopulares();
+    void getPartidasPopulares();
 }

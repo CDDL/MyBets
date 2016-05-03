@@ -9,7 +9,7 @@ import project.catalin.mybets.controladores.utils.comunicación.eventos.GestorEv
 import project.catalin.mybets.controladores.utils.comunicación.eventos.INotificable;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.TipoEvento;
 import project.catalin.mybets.controladores.pantallaPrincipal.comunicaciónDatos.DataContacts;
-import project.catalin.mybets.controladores.pantallaPrincipal.comunicaciónVista.MisAmigosView;
+import project.catalin.mybets.controladores.pantallaPrincipal.comunicaciónVista.ViewListaAmigos;
 import project.catalin.mybets.datos.GestorDataWebServices;
 import project.catalin.mybets.datos.excepciones.ErrorInternoException;
 import project.catalin.mybets.datos.excepciones.ErrorServerException;
@@ -22,12 +22,12 @@ import project.catalin.mybets.vistas.pantallaPrincipal.comunicaciónControlador.
  */
 public class ControladorMisAmigos implements INotificable, ControllerMisAmigos {
     private DataContacts mDataContactos;
-    private MisAmigosView mListaAmigosView;
+    private ViewListaAmigos mListaAmigosView;
     private int[] eventosSuscritos = {
             TipoEvento.AMIGO_NUEVO,
             TipoEvento.AMIGO_BORRADO};
 
-    public ControladorMisAmigos(MisAmigosView listaAmigos) {
+    public ControladorMisAmigos(ViewListaAmigos listaAmigos) {
         mListaAmigosView = listaAmigos;
         mDataContactos = new GestorDataWebServices();
 

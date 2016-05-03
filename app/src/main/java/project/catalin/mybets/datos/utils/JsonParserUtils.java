@@ -101,7 +101,7 @@ public class JsonParserUtils {
                     jsonData.getInt("numpersonas"),
                     jsonData.getString("urlicono"));
 
-            partida.setColorIcono(Integer.parseInt(jsonData.getString("coloricono").substring(1)));
+            partida.setColorIcono(jsonData.getString("coloricono"));
             partida.setTipoPartida(jsonData.getInt("tipopartida"));
 
             partidas.add(partida);
