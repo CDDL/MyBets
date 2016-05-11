@@ -18,6 +18,7 @@ public class SharedPreferencesUtils {
     private static final String SHARED_PREFS_DB = "MyBestPrefs";
     private static final String SHARED_PREFS_KEY_JSON_LOGIN = "JsonLogin";
     private static final String SHARED_PREFS_KEY_LOGGED = "Logged";
+    private static final String SHARED_PREFS_KEY_ID = "MiId";
 
     private static SharedPreferences prefs;
 
@@ -25,6 +26,8 @@ public class SharedPreferencesUtils {
         Context context = ContextCreator.getAppContext();
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
+
+    private static int mId = 0;
 
     public static void saveLogin(JSONObject loginData) {
         SharedPreferences.Editor editor = prefs.edit();
@@ -36,7 +39,12 @@ public class SharedPreferencesUtils {
 
     public static JSONObject getLoginJsonCopy() throws JSONException {
 
-        return new JSONObject(prefs.getString(SHARED_PREFS_KEY_JSON_LOGIN, ""));
+        return new JSONObject(prefs.getString(SHARED_PREFS_KEY_JSON_LOGIN, "{\n" +
+                "  \"request\": {\n" +
+                "    \"email\": \"EMAIL\",\n" +
+                "    \"password\": \"ENCRYPTED_PASSWORD\"\n" +
+                "  }\n" +
+                "}"));
     }
 
     public static boolean isLogged() {
@@ -49,5 +57,9 @@ public class SharedPreferencesUtils {
         editor.putString(SHARED_PREFS_KEY_JSON_LOGIN, "");
         editor.apply();
 
+    }
+
+    public static int getMiId() {
+        return mId;
     }
 }

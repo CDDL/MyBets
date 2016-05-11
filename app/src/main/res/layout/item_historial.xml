@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="65dp"
+    android:minHeight="65dp"
+    android:background="@color/gris_claro"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/historial_text_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Balón de Oro"
+        android:textColor="@color/gris"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/historial_text_estadofinal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/historial_text_titulo"
+        android:layout_marginLeft="40dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Ganados"
+        android:textSize="14sp"
+        android:textColor="@color/gris"/>
+
+    <TextView
+        android:id="@+id/historial_text_puntos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/historial_text_titulo"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@id/historial_text_estadofinal"
+        android:fontFamily="sans-serif-medium"
+        android:text="+200 puntos"
+        android:textColor="@color/gris" />
+
+    <TextView
+        android:id="@+id/historial_text_fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp"
+        android:text="10/10/2016"
+        android:textColor="@color/gris_medio"
+        android:textSize="12sp"
+        android:textStyle="bold|italic" />
+</RelativeLayout>

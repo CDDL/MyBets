@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="15dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/perfil_usuario_fondo"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:contentDescription="@string/mi_perfil_fondo_desc"
+        android:background="@drawable/mybets_fondo_perfil" >
+
+        <ImageView
+            android:id="@+id/perfil_usuario_boton_cerrar"
+            android:layout_margin="10dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/mi_perfil_icon_cerrar_desc"
+            android:src="@drawable/mybets_icon_cerrar" />
+
+    </RelativeLayout>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/perfil_usuario_icon_foto_placeholder"
+        android:layout_width="112dp"
+        android:layout_height="112dp"
+        android:layout_alignBottom="@id/perfil_usuario_fondo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-30dp"
+        android:src="@drawable/mybets_icon_juega_ya_dialog_placeholder" />
+
+    <ImageView
+        android:id="@+id/perfil_usuario_boton_editar"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_above="@id/perfil_usuario_icon_foto_placeholder"
+        android:layout_marginBottom="-15dp"
+        android:layout_marginLeft="-15dp"
+        android:layout_toRightOf="@id/perfil_usuario_icon_foto_placeholder"
+        android:contentDescription="@string/mi_perfil_icon_editar_desc"
+        android:src="@drawable/mybets_icon_editar" />
+
+    <TextView
+        android:id="@+id/perfil_usuario_text_nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/perfil_usuario_icon_foto_placeholder"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Abbey Christensen"
+        android:textColor="@android:color/white"
+        android:textSize="26sp" />
+
+    <TextView
+        android:id="@+id/perfil_usuario_text_puntos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12.000 puntos"
+        android:textColor="@color/mybets_color_juega_ya"
+        android:textSize="29sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/perfil_usuario_icon_foto_placeholder"
+        android:layout_marginTop="60dp"/>
+
+    <ListView
+        android:id="@+id/perfil_usuario_lista_historial"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/perfil_usuario_text_puntos"
+        android:divider="@color/gris_medio"
+        android:dividerHeight="1dp"
+        android:layout_marginTop="15dp"/>
+</RelativeLayout>

@@ -47,4 +47,23 @@
     <string name="dialog_juega_ya_text_buscar_oponente">Buscar\noponente</string>
     <string name="dialog_juega_ya_icon_desc">Icono del tipo de partida</string>
     <string name="dialog_juega_ya_bote_format">Bote: {0} puntos</string>
+    <string name="mi_perfil_fondo_desc">Fondo mi perfil</string>
+    <string name="mi_perfil_icon_editar_desc">Icono editar</string>
+    <string name="mi_perfil_icon_cerrar_desc">Icono cerrar</string>
+    <string name="editar_perfil_text_titulo">Editar perfil</string>
+    <string name="action_title_configuracion">Configuración</string>
+    <string name="action_text_perfil">Perfil</string>
+    <string name="action_text_cerrar_sesion">Cerrar sesión</string>
+    <string name="mi_perfil_formato_puntos">{0} puntos</string>
+    <string name="apostar1x2_icon_equipo1_desc">Icono del equpo local</string>
+    <string name="mi_perfil_formato_puntos_historial_ganados">+{0} puntos</string>
+    <string name="mi_perfil_formato_puntos_historial_perdidos">{0} puntos</string>
+    <string name="mi_perfil_text_label_puntos_ganados">"Ganados "</string>
+    <string name="mi_perfil_text_label_puntos_perdidos">"Perdidos "</string>
+    <string name="mi_perfil_formato_fecha_entrada_historial">dd/MM/yyyy</string>
+    <string name="perfil_format_puntos">{0} puntos</string>
+    <string name="editar_perfil_boton_cerrar_ventana_desc">Boton cerrar la ventana</string>
+    <string name="title_tab_mis_apuestas">MIS APUESTAS</string>
+    <string name="partida_item_text_fin_apuesta">Fin de la apuesta</string>
+    <string name="partida_item_format_puntos_ganados">Ganas {0} puntos</string>
 </resources>

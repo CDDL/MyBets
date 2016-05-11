@@ -9,4 +9,32 @@
         </attr>
         <attr name="mostrarBotonAcciones" format="boolean" />
     </declare-styleable>
+
+    <attr name="nombre_equipo_local" format="string"/>
+    <attr name="icono_equipo_local" format="reference" />
+    <attr name="nombre_equipo_visitante" format="string" />
+    <attr name="icono_equipo_visitante" format="reference" />
+
+    <declare-styleable name="Apuesta1x2View">
+        <attr name="apuesta" format="enum" >
+            <enum name="ninguna" value="-1" />
+            <enum name="empate" value="0"/>
+            <enum name="local" value="1"/>
+            <enum name="visitante" value="2"/>
+        </attr>
+        <attr name="nombre_equipo_local"/>
+        <attr name="icono_equipo_local" />
+        <attr name="nombre_equipo_visitante" />
+        <attr name="icono_equipo_visitante" />
+
+    </declare-styleable>
+
+    <declare-styleable name="ApuestaExactaView" >
+        <attr name="nombre_equipo_local"/>
+        <attr name="icono_equipo_local" />
+        <attr name="nombre_equipo_visitante" />
+        <attr name="icono_equipo_visitante" />
+        <attr name="apuesta_equipo_local" format="integer" />
+        <attr name="apuesta_equipo_visitante" format="integer" />
+    </declare-styleable>
 </resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".vistas.pantallas.apostar.PantallaApostar">
+
+    <RelativeLayout
+        android:id="@+id/apostar_toolbar_background"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/apostar_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/mybets_color_categoria_azul_oscuro" />
+
+        <TextView
+            android:id="@+id/apostar_boton_enviar"
+            style="@style/MyBetsBotonTextoAmarillo.redondo"
+            android:layout_width="61dp"
+            android:layout_height="28dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:text="OK"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/apostar_text_titulo"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_below="@id/apostar_toolbar_background"
+        android:background="@color/colorTextoAzul"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="FIFA"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/apostar_barra_apuestas"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorTextoAzul"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+
+        <EditText
+            android:id="@+id/apostar_text_puntuacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="Puntuación"
+            android:inputType="number"
+            android:maxLength="4"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/apostar_list_formulario_apuestas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/apostar_barra_apuestas"
+        android:layout_below="@id/apostar_text_titulo"
+        android:layout_margin="15dp"
+        android:dividerHeight="10dp">
+
+    </ListView>
+
+</RelativeLayout>

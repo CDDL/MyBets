@@ -2,14 +2,11 @@ package project.catalin.mybets.datos;
 
 
 import org.json.JSONException;
-import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.modules.junit4.rule.PowerMockRule;
 
 import java.io.IOException;
 import java.util.List;
@@ -23,8 +20,7 @@ import project.catalin.mybets.datos.excepciones.NombreVacioException;
 import project.catalin.mybets.datos.excepciones.TelefonoMalFormadoException;
 import project.catalin.mybets.datos.excepciones.UsuarioNoIdentificadoException;
 import project.catalin.mybets.datos.excepciones.UsuarioRepetidoException;
-import project.catalin.mybets.datos.objetosData.LoginData;
-import project.catalin.mybets.datos.objetosData.Persona;
+import project.catalin.mybets.datos.dataObjects.Persona;
 import project.catalin.mybets.datos.utils.JsonWebServiceUtils;
 import project.catalin.mybets.datos.utils.SharedPreferencesUtils;
 

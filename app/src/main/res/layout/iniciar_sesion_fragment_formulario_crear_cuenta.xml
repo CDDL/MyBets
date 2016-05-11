@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".vistas.iniciarSesion.fragments.IniciarSesionFragmentFormularioRegistrarse">
+        tools:context=".vistas.pantallas.iniciarSesion.fragments.IniciarSesionFragmentFormularioRegistrarse">
 
         <EditText
             android:id="@+id/input_email"

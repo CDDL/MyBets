@@ -19,7 +19,7 @@ import project.catalin.mybets.datos.excepciones.TelefonoMalFormadoException;
 import project.catalin.mybets.datos.excepciones.UsuarioRepetidoException;
 import project.catalin.mybets.datos.jsons.JsonCreatorUtils;
 import project.catalin.mybets.datos.jsons.JsonObjectComparator;
-import project.catalin.mybets.datos.objetosData.Persona;
+import project.catalin.mybets.datos.dataObjects.Persona;
 import project.catalin.mybets.datos.utils.JsonWebServiceUtils;
 
 import static org.junit.Assert.assertTrue;
@@ -54,7 +54,7 @@ public class HU20_RegistrarUsuario {
         //Estado inicial
 
         //Acción
-        int idUsuario = mGestorData.registrarUsuario(new Persona("datos@validos.com", "test","test123","+123456789"), "123456");
+        int idUsuario = mGestorData.registrarUsuario(new Persona(), "123456");
 
 
         //Estado esperado
@@ -68,7 +68,7 @@ public class HU20_RegistrarUsuario {
 
         //Acción
         try {
-            mGestorData.registrarUsuario(new Persona("emailnovalido.com", "test","test123","+123456789"), "123456");
+            mGestorData.registrarUsuario(new Persona(), "123456");
             fail("Se ha registrado un usuario con un email mal formateado.");
 
         //Estado esperado
@@ -78,11 +78,11 @@ public class HU20_RegistrarUsuario {
     @Test
     public void sistemaConUnUsuario_registrarUsuarioEmailYaExistente_UsuarioRepetidoException() throws EmailMalFormadoException, UsuarioRepetidoException, TelefonoMalFormadoException, NombreVacioException, EmailVacioException, ErrorInternoException, ErrorServerException {
         //Estado inicial
-        mGestorData.registrarUsuario(new Persona("datos@validos.com", "test","test123","+123456789"), "123456");
+        mGestorData.registrarUsuario(new Persona(), "123456");
 
         //Acción
         try {
-            mGestorData.registrarUsuario(new Persona("datos@validos.com", "test","test123","+123456789"), "123456");
+            mGestorData.registrarUsuario(new Persona(), "123456");
             fail("Se ha registrado un usuario repetido.");
 
         //Estado esperado
@@ -95,7 +95,7 @@ public class HU20_RegistrarUsuario {
 
         //Acción
         try {
-            mGestorData.registrarUsuario(new Persona("", "test","test123","+123456789"), "123456");
+            mGestorData.registrarUsuario(new Persona(), "123456");
             fail("Se ha registrado un usuario con el email vacío.");
 
         //Estado esperado

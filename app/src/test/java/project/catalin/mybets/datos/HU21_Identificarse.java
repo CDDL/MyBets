@@ -18,8 +18,8 @@ import project.catalin.mybets.datos.excepciones.NombreVacioException;
 import project.catalin.mybets.datos.excepciones.TelefonoMalFormadoException;
 import project.catalin.mybets.datos.excepciones.UsuarioRepetidoException;
 import project.catalin.mybets.datos.excepciones.UsuarioVacioException;
-import project.catalin.mybets.datos.objetosData.LoginData;
-import project.catalin.mybets.datos.objetosData.Persona;
+import project.catalin.mybets.datos.dataObjects.LoginData;
+import project.catalin.mybets.datos.dataObjects.Persona;
 import project.catalin.mybets.datos.utils.JsonWebServiceUtils;
 import project.catalin.mybets.datos.utils.SharedPreferencesUtils;
 

@@ -2,7 +2,7 @@ package project.catalin.mybets.datos;
 
 import java.util.List;
 
-import project.catalin.mybets.controladores.iniciarSesion.comunicaciónDatos.DataIdentificación;
+import project.catalin.mybets.controladores.comunicaciónDatos.DataIdentificación;
 import project.catalin.mybets.datos.excepciones.ContraseñaVaciaException;
 import project.catalin.mybets.datos.excepciones.EmailMalFormadoException;
 import project.catalin.mybets.datos.excepciones.EmailVacioException;
@@ -12,8 +12,8 @@ import project.catalin.mybets.datos.excepciones.NombreVacioException;
 import project.catalin.mybets.datos.excepciones.TelefonoMalFormadoException;
 import project.catalin.mybets.datos.excepciones.UsuarioNoIdentificadoException;
 import project.catalin.mybets.datos.excepciones.UsuarioRepetidoException;
-import project.catalin.mybets.datos.objetosData.LoginData;
-import project.catalin.mybets.datos.objetosData.Persona;
+import project.catalin.mybets.datos.dataObjects.LoginData;
+import project.catalin.mybets.datos.dataObjects.Persona;
 
 /**
  * Created by Demils on 22/03/2016.

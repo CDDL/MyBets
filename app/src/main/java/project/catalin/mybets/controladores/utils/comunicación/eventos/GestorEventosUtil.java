@@ -1,7 +1,5 @@
 package project.catalin.mybets.controladores.utils.comunicación.eventos;
 
-import android.os.AsyncTask;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -20,50 +18,33 @@ public class GestorEventosUtil {
     }
 
     public static void notificarEvento(final int idEvento, final Object info) {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... params) {
 
-                List<INotificable> listaANotificar = mapaEventos.get(idEvento);
-                if(listaANotificar == null ) return null;
-                for (INotificable interesado:listaANotificar) interesado.notificar(idEvento, info);
-                return null;
-            }
-        }.execute();
+        List<INotificable> listaANotificar = mapaEventos.get(idEvento);
+        if (listaANotificar == null) return;
+        for (INotificable interesado : listaANotificar) interesado.notificar(idEvento, info);
     }
 
     public static void suscribirseAEvento(final INotificable listener, final int idEvento) {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... params) {
-                List<INotificable> listaParaNotificar = mapaEventos.get(idEvento);
-                if(listaParaNotificar == null) {
-                    listaParaNotificar = Collections.synchronizedList(new CopyOnWriteArrayList<INotificable>());
-                    mapaEventos.put(idEvento, listaParaNotificar);
-                }
-                listaParaNotificar.add(listener);
-                return null;
-            }
-        }.execute();
+        List<INotificable> listaParaNotificar = mapaEventos.get(idEvento);
+        if (listaParaNotificar == null) {
+            listaParaNotificar = Collections.synchronizedList(new CopyOnWriteArrayList<INotificable>());
+            mapaEventos.put(idEvento, listaParaNotificar);
+        }
+        listaParaNotificar.add(listener);
     }
 
+
     public static void desuscribirseDeEvento(final INotificable listener, final int idEvento) {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... params) {
-                List<INotificable> listaParaNotificar = mapaEventos.get(idEvento);
-                if(listaParaNotificar == null) return null;
-                listaParaNotificar.remove(listener);
-                return null;
-            }
-        }.execute();
+        List<INotificable> listaParaNotificar = mapaEventos.get(idEvento);
+        if (listaParaNotificar == null) return;
+        listaParaNotificar.remove(listener);
     }
 
     public static void suscribirseAEventos(INotificable notificable, int[] eventos) {
-        for(int evento:eventos) suscribirseAEvento(notificable, evento);
+        for (int evento : eventos) suscribirseAEvento(notificable, evento);
     }
 
     public static void desuscribirseDeEventos(INotificable notificable, int[] eventos) {
-        for(int evento:eventos) desuscribirseDeEvento(notificable, evento);
+        for (int evento : eventos) desuscribirseDeEvento(notificable, evento);
     }
 }

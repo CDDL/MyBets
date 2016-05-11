@@ -10,8 +10,8 @@ import org.robolectric.annotation.Config;
 import java.util.List;
 
 import project.catalin.mybets.BuildConfig;
-import project.catalin.mybets.datos.objetosData.LoginData;
-import project.catalin.mybets.datos.objetosData.Persona;
+import project.catalin.mybets.datos.dataObjects.LoginData;
+import project.catalin.mybets.datos.dataObjects.Persona;
 import project.catalin.mybets.datos.shadows.ShadowSharedPreferences;
 
 import static org.junit.Assert.assertTrue;
@@ -49,7 +49,7 @@ public class JsonParserUtilsTest {
 
     @Test
     public void registerToJsonTest() throws JSONException {
-        JSONObject jsonRegisterData = JsonParserUtils.registerToJson(new Persona("email@valido.com", "test", "test123", "+123456789"), EncryptionUtils.toMD5("123456"));
+        JSONObject jsonRegisterData = JsonParserUtils.registerToJson(new Persona(), EncryptionUtils.toMD5("123456"));
 
         JSONObject requestData = jsonRegisterData.getJSONObject("request");
         assertTrue(requestData.getString("email").equals("email@valido.com"));
@@ -68,6 +68,6 @@ public class JsonParserUtilsTest {
         assertTrue(personaUno.getNombre().equals("test2"));
         assertTrue(personaUno.getUsername().equals("test321"));
         assertTrue(personaUno.getTelefono().equals("+123456799"));
-        assertTrue(personaUno.getImage().equals("http://imagenes.com/img.png"));
+        assertTrue(personaUno.getImagen().equals("http://imagenes.com/img.png"));
     }
 }

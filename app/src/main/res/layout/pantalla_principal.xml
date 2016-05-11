@@ -5,48 +5,52 @@
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vistas.pantallaPrincipal.PantallaPrincipal">
+    tools:context=".vistas.pantallas.principal.PantallaPrincipal">
 
     <RelativeLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/appbar_padding_top"
-        android:background="@color/colorPrimaryMorado">
+        android:background="@color/colorPrimaryMorado"
+        android:paddingTop="@dimen/appbar_padding_top">
 
-        <android.support.v7.widget.Toolbar android:id="@+id/pantalla_principal_toolbar"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/pantalla_principal_toolbar"
+            style="@android:style/Widget.ActionButton.Overflow"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            style="@android:style/Widget.ActionButton.Overflow">
+            android:layout_height="?attr/actionBarSize">
+
             <ImageView
                 android:layout_width="31dp"
                 android:layout_height="26dp"
-                android:src="@drawable/mybets_icon_dados"/>
+                android:src="@drawable/mybets_icon_dados" />
 
             <TextView
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text_placeholder_puntos"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-medium"
-                android:textSize="18sp"
+                android:text="@string/text_placeholder_puntos"
                 android:textColor="@android:color/white"
-                android:textStyle="italic|bold"/>
+                android:textSize="18sp"
+                android:textStyle="italic|bold" />
 
         </android.support.v7.widget.Toolbar>
 
-        <android.support.design.widget.TabLayout android:layout_below="@id/pantalla_principal_toolbar"
+        <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pantalla_principal_toolbar" />
 
     </RelativeLayout>
 
-    <android.support.v4.view.ViewPager android:layout_below="@id/appbar"
+    <android.support.v4.view.ViewPager
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/appbar"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 

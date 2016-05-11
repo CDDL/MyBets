@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".vistas.pantallas.elegirOponentes.PantallaElegirOponentes">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/elegir_oponentes_toolbar"
+        style="@android:style/Widget.ActionButton.Overflow"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorTextoAzul" />
+
+    <TextView
+        android:id="@+id/elegir_oponentes_boton_juega_ya"
+        style="@style/MyBetsBotonTextoAmarillo.redondo"
+        android:layout_width="184dp"
+        android:layout_height="46dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:paddingBottom="10dp"
+        android:text="¡Juega ya!"
+        android:textSize="22sp" />
+
+    <ListView
+        android:id="@+id/elegir_oponentes_search_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/elegir_oponentes_boton_juega_ya"
+        android:layout_below="@id/elegir_oponentes_toolbar"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="15dp" />
+
+
+</RelativeLayout>

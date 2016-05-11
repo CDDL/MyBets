@@ -3,6 +3,7 @@
     package="project.catalin.mybets">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".vistas.ContextCreator"
@@ -11,12 +12,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
         <activity
-            android:name=".vistas.pantallaElegirOponentes.PantallaElegirOponentes"
+            android:name=".vistas.pantallas.elegirOponentes.PantallaElegirOponentes"
             android:screenOrientation="portrait"
             android:theme="@style/MyBetsThemeMorado" />
-
         <activity
-            android:name=".vistas.iniciarSesion.IniciarSesionPantallaPrincipal"
+            android:name=".vistas.pantallas.iniciarSesion.IniciarSesionPantallaPrincipal"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -27,14 +27,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".vistas.pantallaPrincipal.PantallaPrincipal"
+            android:name=".vistas.pantallas.principal.PantallaPrincipal"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/MyBetsThemeMorado" />
         <activity
-            android:name=".vistas.pantallaApostar.PantallaApostar"
+            android:name=".vistas.pantallas.apostar.PantallaApostar"
             android:theme="@style/MyBetsThemeMorado" />
-
+        <activity
+            android:name=".vistas.pantallas.perfil.PerfilUsuario"
+            android:theme="@style/MyBetsThemeMorado" />
+        <activity android:name=".vistas.pantallas.perfil.EditarPerfil"
+            android:theme="@style/MyBetsThemeMorado"/>
     </application>
 
 </manifest>

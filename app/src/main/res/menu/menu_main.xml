@@ -1,11 +1,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".vistas.pantallaPrincipal.PantallaPrincipal">
+    tools:context=".vistas.pantallas.principal.PantallaPrincipal">
     <item
-        android:id="@+id/action_search"
-        android:orderInCategory="100"
-        android:icon="@android:drawable/ic_menu_search"
-        android:title="@string/action_settings"
+        android:id="@+id/mybets_action_configuracion"
+        android:title="@string/action_title_configuracion"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/mybets_action_perfil"
+        android:title="@string/action_text_perfil"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/mybets_action_cerrar_sesion"
+        android:title="@string/action_text_cerrar_sesion"
+        app:showAsAction="never" />
+
 </menu>

@@ -17,4 +17,6 @@ public abstract class TipoEvento{
     public static final int BOTON_LOGIN_EMAIL_PULSADO = 13;
     public static final int BOTON_REGISTER_TEXT_PULSADO = 14;
     public static final int USUARIO_IDENTIFICADO = 15;
+    public static final int PARTIDA_CREADA = 16;
+    public static final int DATOS_PROPIOS_ACTUALIZADOS = 17;
 }

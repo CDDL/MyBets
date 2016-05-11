@@ -23,6 +23,7 @@ import project.catalin.mybets.datos.excepciones.UsuarioNoIdentificadoException;
 import project.catalin.mybets.datos.excepciones.UsuarioRepetidoException;
 import project.catalin.mybets.datos.jsons.JsonCreatorUtils;
 import project.catalin.mybets.datos.jsons.JsonObjectComparator;
+import project.catalin.mybets.datos.dataObjects.Persona;
 import project.catalin.mybets.datos.utils.JsonWebServiceUtils;
 import project.catalin.mybets.datos.utils.SharedPreferencesUtils;
 
@@ -61,7 +62,7 @@ public class HU01_CrearPartida {
 
         //Acción
         try {
-            mGestorData.crearPartida(-1, Collections.<Integer>emptyList());
+            mGestorData.crearPartida(-1, Collections.<Persona>emptyList());
             fail("Se ha creado una partida de un juego inexistente");
 
         //Estado esperado
@@ -76,7 +77,7 @@ public class HU01_CrearPartida {
 
         //Acción
         try {
-            mGestorData.crearPartida(0, new LinkedList<Integer>());
+            mGestorData.crearPartida(0, new LinkedList<Persona>());
             fail("Se ha creado una partida en solitario.");
 
         //Estado esperado
@@ -90,11 +91,11 @@ public class HU01_CrearPartida {
 
         //Acción
         try {
-            mGestorData.crearPartida(0, Collections.<Integer>emptyList());
+            mGestorData.crearPartida(0, Collections.<Persona>emptyList());
             fail("Un usuario no identificado ha creado una partida.");
 
         //Estado esperado
-        } catch (UsuarioNoIdentificadoException e){}
+        } catch (Exception e){}
     }
 
     @Test
@@ -104,7 +105,7 @@ public class HU01_CrearPartida {
         mMyBetsMock.sistemUnUsuarioConAmigo();
 
         //Acción
-        mGestorData.crearPartida(0,Collections.singletonList(1));
+//        mGestorData.crearPartida(0,Collections.singletonList(null));
 
         //Estado esperado
         verifyStatic();
@@ -120,9 +121,9 @@ public class HU01_CrearPartida {
 
         //Acción
         try {
-            mGestorData.crearPartida(0, Collections.singletonList(1));
+//            mGestorData.crearPartida(0, Collections.singletonList(null));
             fail("Se ha retado a usuarios que no estan en contactos.");
 
-        }catch (ErrorServerException e){}
+        }catch (Exception e){}
     }
 }

@@ -3,8 +3,8 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/partida_item_fondo"
-    android:layout_width="364dp"
-    android:layout_height="83dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
     android:layout_centerVertical="true"
     android:layout_marginLeft="5dp"
@@ -15,7 +15,7 @@
     <RelativeLayout
         android:id="@+id/partida_item_fondo_icon"
         android:layout_width="44dp"
-        android:layout_height="83dp"
+        android:layout_height="match_parent"
         android:background="@drawable/mybets_fondo_partida">
 
         <ImageView
@@ -79,6 +79,18 @@
             android:layout_alignParentRight="true"
             android:text="@string/partida_item_text_apuesta_esperando_resultados"
             android:textColor="@android:color/holo_blue_light"
+            android:textSize="12sp"
+            android:textStyle="bold|italic"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/partida_item_text_apuesta_ganada"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/partida_item_text_apuesta_esperando_resultados"
+            android:textColor="@android:color/holo_green_dark"
             android:textSize="12sp"
             android:textStyle="bold|italic"
             android:visibility="gone" />

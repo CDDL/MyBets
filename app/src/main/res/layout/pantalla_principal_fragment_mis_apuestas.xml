@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:background="@color/mybets_color_apuestas_fondo"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/mis_apuestas_text_pendientes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Pendientes"
+        android:textColor="@color/gris_azul"
+        android:textSize="14sp" />
+
+    <ListView
+        android:id="@+id/mis_apuestas_list_pendientes"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_below="@id/mis_apuestas_text_pendientes"
+        android:layout_marginTop="5dp"
+        android:dividerHeight="10dp" />
+
+    <TextView
+        android:id="@+id/mis_apuestas_text_pasadas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mis_apuestas_list_pendientes"
+        android:fontFamily="sans-serif-medium"
+        android:text="Pasadas"
+        android:textColor="@color/gris_azul"
+        android:textSize="14sp" />
+
+    <ListView
+        android:id="@+id/mis_apuestas_list_pasadas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/mis_apuestas_text_pasadas"
+        android:layout_marginBottom="18dp"
+        android:layout_marginTop="10dp"
+        android:dividerHeight="10dp" />
+
+
+</RelativeLayout>

@@ -1,6 +1,8 @@
 package project.catalin.mybets.datos.utils;
 
 
+import android.support.annotation.NonNull;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,21 +22,30 @@ import java.net.URLConnection;
 public class JsonWebServiceUtils {
 
     public static JSONObject petición(String url, JSONObject datosPetición) throws IOException, JSONException {
-        URLConnection connection = getConnectionDeUrl(url);
+        URLConnection mConexion = getConnectionDeUrl(url);
+        escribirDatos(datosPetición, mConexion);
+        StringBuilder sb = leerRespuesta(mConexion);
 
-        OutputStream os = connection.getOutputStream();
-        os.write(datosPetición.toString().getBytes());
-        os.flush();
+        return new JSONObject(sb.toString());
+    }
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+    @NonNull
+    private static StringBuilder leerRespuesta(URLConnection mConexion) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(mConexion.getInputStream()));
         StringBuilder sb = new StringBuilder();
         String linea = "";
-        while(linea != null) {
+
+        while (linea != null) {
             linea = br.readLine();
             sb.append(linea);
         }
+        return sb;
+    }
 
-        return new JSONObject(sb.toString());
+    private static void escribirDatos(JSONObject datosPetición, URLConnection connection) throws IOException {
+        OutputStream os = connection.getOutputStream();
+        os.write(datosPetición.toString().getBytes());
+        os.flush();
     }
 
     private static HttpURLConnection getConnectionDeUrl(String url) throws IOException {
