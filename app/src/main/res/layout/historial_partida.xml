@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/historial_jornada_fondo_cabecera"
+        android:layout_width="match_parent"
+        android:layout_height="167dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/mybets_fondo_historial_jornada">
+
+        <View
+            android:id="@+id/historial_jornada_separador"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/historial_jornada_foto_placeholder"
+            android:layout_width="77dp"
+            android:layout_height="77dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="34dp"
+            android:src="@drawable/mybets_icon_juega_ya_dialog_placeholder" />
+
+        <TextView
+            android:id="@+id/historial_jornada_text_nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/historial_jornada_foto_placeholder"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif"
+            android:text="Aaron Bennett"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/historial_jornada_boton_cerrar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="11dp"
+            android:src="@drawable/mybets_icon_cerrar"
+            android:contentDescription="@string/historial_jornada_icon_cerrar_desc" />
+
+        <ImageView
+            android:id="@+id/historial_jornada_icon_cabecera"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/icon_balon"
+            android:contentDescription="@string/historial_jornada_icon_cabecera_desc" />
+
+        <TextView
+            android:id="@+id/historial_jornada_label_fecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_toLeftOf="@id/historial_jornada_separador"
+            android:gravity="center"
+            android:text="@string/historial_jornada_label_fecha"
+            android:textColor="@color/mybets_color_blanco_transparente"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"/>
+
+        <TextView
+            android:id="@+id/historial_jornada_text_fecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/historial_jornada_label_fecha"
+            android:layout_toLeftOf="@id/historial_jornada_separador"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="01/02/2010"
+            android:textColor="@color/mybets_color_blanco_transparente"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/historial_jornada_label_bote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@id/historial_jornada_separador"
+            android:gravity="center"
+            android:text="@string/historial_jornada_label_bote"
+            android:textColor="@color/mybets_color_blanco_transparente"
+            android:textSize="14sp"
+            android:fontFamily="sans-serif"/>
+
+        <TextView
+            android:id="@+id/historial_jornada_text_bote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/historial_jornada_label_bote"
+            android:layout_toRightOf="@id/historial_jornada_separador"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="800 puntos"
+            android:textColor="@color/mybets_color_blanco_transparente"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+    <com.viewpagerindicator.IconPageIndicator
+        android:id="@+id/historial_jornada_viewpagerindicator"
+        app:paddingStart="10dp"
+        app:paddingEnd="10dp"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/historial_jornada_viewpager_apuestas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/historial_jornada_fondo_cabecera"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"/>
+
+</RelativeLayout>

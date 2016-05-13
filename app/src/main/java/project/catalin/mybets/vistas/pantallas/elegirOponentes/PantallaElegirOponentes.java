@@ -30,7 +30,7 @@ import project.catalin.mybets.controladores.controladoresPantallas.ControladorEl
 import project.catalin.mybets.datos.dataObjects.Persona;
 import project.catalin.mybets.vistas.comunicaciónControlador.ControllerElegirOponentesBotones;
 import project.catalin.mybets.vistas.comunicaciónControlador.ControllerListaAmigos;
-import project.catalin.mybets.vistas.utils.customAndroidComponents.AdapterRecargable;
+import project.catalin.mybets.vistas.utils.AdapterRecargable;
 import project.catalin.mybets.vistas.pantallas.apostar.PantallaApostar;
 
 public class PantallaElegirOponentes extends AppCompatActivity implements ViewListaAmigos, ViewOponentes {

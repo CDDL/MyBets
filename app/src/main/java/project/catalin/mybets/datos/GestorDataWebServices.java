@@ -56,6 +56,7 @@ public class GestorDataWebServices implements DataIdentificación, DataRegister,
     public static final String URL_PETICIÓN_MODIFICAR_DATOS_PROPIOS = "http://mybetstest.cuatroochenta.com/services/response_consultar_datos_usuario_ok.json";
     public static final String URL_PETICIÓN_GET_PARTIDAS_PENDIENDES = "http://mybetstest.cuatroochenta.com/services/response_partidas_pendientes_ok.json";
     public static final String URL_PETICIÓN_GET_PARTIDAS_PASADAS = "http://mybetstest.cuatroochenta.com/services/response_partidas_pasadas_ok.json";
+    public static final String URL_PETICIÓN_HISTORIAL_PARTIDA = "http://mybetstest.cuatroochenta.com/services/response_historial.json";
 
     @Override
     public int registrarUsuario(Persona dataUsuario, String password) throws EmailMalFormadoException, UsuarioRepetidoException, TelefonoMalFormadoException, EmailVacioException, NombreVacioException, ErrorInternoException, ErrorServerException {

@@ -24,7 +24,7 @@ import project.catalin.mybets.vistas.comunicaciónControlador.ControllerPartidas
 import project.catalin.mybets.vistas.comunicaciónControlador.ControllerPartidasPendientes;
 import project.catalin.mybets.vistas.pantallas.apostar.PantallaApostar;
 import project.catalin.mybets.vistas.pantallas.historialJornada.PantallaHistorialJornada;
-import project.catalin.mybets.vistas.utils.customAndroidComponents.AdapterRecargable;
+import project.catalin.mybets.vistas.utils.AdapterRecargable;
 import project.catalin.mybets.vistas.utils.customAndroidComponents.PartidaView;
 
 /**

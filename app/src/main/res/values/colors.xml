@@ -57,6 +57,9 @@
     <color name="gris_claro_peronotanto">#E0E0E0</color>
     <color name="azul_claro">#03A9F4</color>
     <color name="gris_azul">#455A64</color>
+    <color name="gris_mas_claro">#F2F2F2</color>
+    <color name="gris_claro_oscurito">#999999</color>
+    <color name="mybets_color_blanco_transparente" >#CCF2F2F2</color>
 
 
 </resources>

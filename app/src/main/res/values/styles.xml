@@ -103,7 +103,7 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="MyBetsBotonTextoAmarillo.redondo" parent="MyBetsBotonTextoAmarillo" >
+    <style name="MyBetsBotonTextoAmarillo.redondo" parent="MyBetsBotonTextoAmarillo">
         <item name="android:background">@drawable/mybets_boton_jugar_amarillo_redondo</item>
     </style>
 
@@ -121,6 +121,18 @@
         <item name="colorAccent">@color/mybets_color_checkbox</item>
         <item name="android:textColorSecondary">@color/mybets_color_checkbox</item>
 
+    </style>
+
+    <style name="mybets_item_apuesta_pasada_boton_apuesta">
+        <item name="android:paddingLeft">1dp</item>
+        <item name="android:paddingBottom">1dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:enabled">false</item>
+        <item name="android:layout_width">19dp</item>
+        <item name="android:layout_height">19dp</item>
+        <item name="android:background">@drawable/mybets_icon_circulo_gris</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/mybets_color_text_botones_1x2</item>
     </style>
 
 

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp">
+
+    <TextView
+        android:id="@+id/item_apuesta_pasada_icon2"
+        style="@style/mybets_item_apuesta_pasada_boton_apuesta"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="10dp"
+        android:text="2" />
+
+    <TextView
+        android:id="@+id/item_apuesta_pasada_iconX"
+        style="@style/mybets_item_apuesta_pasada_boton_apuesta"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="9dp"
+        android:layout_toLeftOf="@id/item_apuesta_pasada_icon2"
+        android:text="X" />
+
+    <TextView
+        android:id="@+id/item_apuesta_pasada_icon1"
+        style="@style/mybets_item_apuesta_pasada_boton_apuesta"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/item_apuesta_pasada_iconX"
+        android:text="1" />
+
+    <ImageView
+        android:id="@+id/item_apuesta_pasada_icon_equipo_local"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/mybets_icono_equipo_placeholder" />
+
+    <TextView
+        android:id="@+id/item_apuesta_pasada_text_equipo_local"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/item_apuesta_pasada_icon_equipo_local"
+        android:text="Barcelona"
+        android:textColor="@color/gris_claro_oscurito"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/item_apuesta_pasada_separador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/item_apuesta_pasada_text_equipo_local"
+        android:text="―"
+        android:textColor="@color/gris_claro_oscurito"
+        android:textSize="12sp" />
+
+
+    <ImageView
+        android:id="@+id/item_apuesta_pasada_icon_equipo_visitante"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="13dp"
+        android:layout_toRightOf="@id/item_apuesta_pasada_separador"
+        android:src="@drawable/mybets_icono_equipo_placeholder" />
+
+    <TextView
+        android:id="@+id/item_apuesta_pasada_text_equipo_visitante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@id/item_apuesta_pasada_icon1"
+        android:layout_toRightOf="@id/item_apuesta_pasada_icon_equipo_visitante"
+        android:text="Ath. Bilbao"
+        android:textColor="@color/gris_claro_oscurito"
+        android:textSize="13sp" />
+
+
+</RelativeLayout>

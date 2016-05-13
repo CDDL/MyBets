@@ -6,13 +6,15 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import project.catalin.mybets.datos.dataObjects.Apuesta;
 import project.catalin.mybets.datos.dataObjects.EntradaHistorial;
 import project.catalin.mybets.datos.dataObjects.Equipo;
+import project.catalin.mybets.datos.dataObjects.FichaHistorial;
 import project.catalin.mybets.datos.dataObjects.LoginData;
 import project.catalin.mybets.datos.dataObjects.Partida;
 import project.catalin.mybets.datos.dataObjects.Partido;
@@ -165,6 +167,40 @@ public class JsonParserUtils {
     }
 
 
+    public static List<FichaHistorial> jsonToDataHistorialPartidasPasadas(JSONObject resultData) throws ParseException {
+        JsonWrapper jsonWrapper = new JsonWrapper(resultData);
+        JsonWrapper partidaWrapper = jsonWrapper.getObject("partida", null);
+        List<FichaHistorial> historiales = new LinkedList<>();
+
+
+        List<JsonWrapper> dataVectorWrapper = jsonWrapper.getArray("data", Collections.<JsonWrapper>emptyList());
+        for (JsonWrapper dataWrapper : dataVectorWrapper) {
+            FichaHistorial historialApuestas = new FichaHistorial();
+
+            Persona persona = new Persona();
+            persona.setImagen(dataWrapper.getString("urlperfil", ""));
+            persona.setId(dataWrapper.getInt("idusuario", -1));
+
+            historialApuestas.setPersona(persona);
+            historialApuestas.setBote(partidaWrapper.getInt("bote", -1));
+            historialApuestas.setColorFondo(partidaWrapper.getString("colorfondo", "#FFFFFF"));
+            historialApuestas.setUrlIcono(partidaWrapper.getString("urlicono", ""));
+            historialApuestas.setFecha(new DateUtils().from(partidaWrapper.getString("fecha", "11/11/1111 11:11")).toDate("dd/MM/yyyy HH:mm"));
+
+            List<JsonWrapper> apuestasVectorWrapper = dataWrapper.getArray("apuestas", Collections.<JsonWrapper>emptyList());
+            for(JsonWrapper apuestaWrapper: apuestasVectorWrapper){
+                Apuesta apuesta = new Apuesta();
+                apuesta.setNombreLocal(apuestaWrapper.getString("nombrelocal", ""));
+                apuesta.setUrlImagenLocal(apuestaWrapper.getString("urllocal", ""));
+                apuesta.setNombreVisitante(apuestaWrapper.getString("nombrevisitante", ""));
+                apuesta.setUrlImagenVisitante(apuestaWrapper.getString("urlvisitante", ""));
+                apuesta.setApuesta(apuestaWrapper.getInt("apuesta", -1));
+                historialApuestas.addApuesta(apuesta);
+            }
+            historiales.add(historialApuestas);
+        }
+        return historiales;
+    }
 }
 
 

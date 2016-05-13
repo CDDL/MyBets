@@ -23,7 +23,7 @@ import project.catalin.mybets.controladores.comunicaciónVista.ViewListaAmigos;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorAmigos;
 import project.catalin.mybets.datos.dataObjects.Persona;
 import project.catalin.mybets.vistas.comunicaciónControlador.ControllerListaAmigos;
-import project.catalin.mybets.vistas.utils.customAndroidComponents.AdapterRecargable;
+import project.catalin.mybets.vistas.utils.AdapterRecargable;
 
 /**
  * A simple {@link Fragment} subclass.

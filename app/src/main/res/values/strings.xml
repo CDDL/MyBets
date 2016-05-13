@@ -66,4 +66,10 @@
     <string name="title_tab_mis_apuestas">MIS APUESTAS</string>
     <string name="partida_item_text_fin_apuesta">Fin de la apuesta</string>
     <string name="partida_item_format_puntos_ganados">Ganas {0} puntos</string>
+    <string name="pantalla_historial_jornada_format_fecha">dd/MM/yyyy</string>
+    <string name="pantalla_historial_jornada_format_puntos">{0} puntos</string>
+    <string name="historial_jornada_label_fecha">Fecha</string>
+    <string name="historial_jornada_label_bote">Puntos en el bote</string>
+    <string name="historial_jornada_icon_cerrar_desc">Icono cerra ventana</string>
+    <string name="historial_jornada_icon_cabecera_desc">Icono tipo de juego</string>
 </resources>

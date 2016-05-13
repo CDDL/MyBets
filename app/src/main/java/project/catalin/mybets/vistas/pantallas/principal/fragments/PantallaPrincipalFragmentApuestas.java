@@ -18,7 +18,7 @@ import project.catalin.mybets.controladores.controladoresPantallas.ControladorAp
 import project.catalin.mybets.datos.dataObjects.Partida;
 import project.catalin.mybets.vistas.comunicaciónControlador.ControllerPartidasPopulares;
 import project.catalin.mybets.vistas.pantallas.apostar.PantallaApostar;
-import project.catalin.mybets.vistas.utils.customAndroidComponents.AdapterRecargable;
+import project.catalin.mybets.vistas.utils.AdapterRecargable;
 import project.catalin.mybets.vistas.utils.customAndroidComponents.PartidaView;
 
 /**

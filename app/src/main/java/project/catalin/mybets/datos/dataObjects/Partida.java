@@ -7,8 +7,8 @@ import java.util.Date;
  */
 public class Partida {
     public static final int ESTADO_JUEGA_YA = 10;
-    public static int TIPO_PARTIDA_1x2 = 0;
-    public static int TIPO_PARTIDA_RESULT_EXACT = 1;
+    public static final int TIPO_PARTIDA_1x2 = 0;
+    public static final int TIPO_PARTIDA_RESULT_EXACT = 1;
 
 
     private int mIdPartida;

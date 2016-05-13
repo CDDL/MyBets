@@ -30,7 +30,7 @@ import project.catalin.mybets.datos.dataObjects.Persona;
 import project.catalin.mybets.datos.utils.SharedPreferencesUtils;
 import project.catalin.mybets.vistas.comunicaciónControlador.ControllerDatosUsuario;
 import project.catalin.mybets.vistas.comunicaciónControlador.ControllerHistorial;
-import project.catalin.mybets.vistas.utils.customAndroidComponents.AdapterRecargable;
+import project.catalin.mybets.vistas.utils.AdapterRecargable;
 
 public class PerfilUsuario extends AppCompatActivity implements ViewHistorial, ViewDatosUsuario {
 

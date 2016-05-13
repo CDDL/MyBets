@@ -45,4 +45,12 @@ public class JsonWrapper {
             return defaultValue;
         }
     }
+
+    public JsonWrapper getObject(String partida, JsonWrapper defaultValue) {
+        try {
+            return new JsonWrapper(mJsonObject.getJSONObject("partida"));
+        } catch (JSONException e) {
+            return defaultValue;
+        }
+    }
 }

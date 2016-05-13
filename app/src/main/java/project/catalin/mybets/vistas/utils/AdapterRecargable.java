@@ -1,4 +1,4 @@
-package project.catalin.mybets.vistas.utils.customAndroidComponents;
+package project.catalin.mybets.vistas.utils;
 
 import android.view.View;
 import android.view.ViewGroup;

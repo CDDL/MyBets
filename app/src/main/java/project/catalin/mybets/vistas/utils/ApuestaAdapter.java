@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import project.catalin.mybets.datos.dataObjects.Partido;
-import project.catalin.mybets.vistas.utils.customAndroidComponents.AdapterRecargable;
 
 /**
  * Created by Trabajo on 04/05/2016.

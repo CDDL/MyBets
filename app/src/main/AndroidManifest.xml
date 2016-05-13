@@ -33,12 +33,24 @@
             android:theme="@style/MyBetsThemeMorado" />
         <activity
             android:name=".vistas.pantallas.apostar.PantallaApostar"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
             android:theme="@style/MyBetsThemeMorado" />
         <activity
             android:name=".vistas.pantallas.perfil.PerfilUsuario"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
             android:theme="@style/MyBetsThemeMorado" />
-        <activity android:name=".vistas.pantallas.perfil.EditarPerfil"
-            android:theme="@style/MyBetsThemeMorado"/>
+        <activity
+            android:name=".vistas.pantallas.perfil.EditarPerfil"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyBetsThemeMorado" />
+        <activity
+            android:name=".vistas.pantallas.historialJornada.PantallaHistorialJornada"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyBetsThemeMorado" />
     </application>
 
 </manifest>
