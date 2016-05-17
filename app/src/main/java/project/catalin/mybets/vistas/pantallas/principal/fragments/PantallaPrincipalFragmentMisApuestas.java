@@ -1,13 +1,19 @@
 package project.catalin.mybets.vistas.pantallas.principal.fragments;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,13 +21,13 @@ import android.widget.Toast;
 import java.util.List;
 
 import project.catalin.mybets.R;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewListaPartidasPasadas;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewListaPartidasPendientes;
+import project.catalin.mybets.controladores.comunicacionVista.ViewListaPartidasPasadas;
+import project.catalin.mybets.controladores.comunicacionVista.ViewListaPartidasPendientes;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorApuestasPasadas;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorApuestasPendientes;
 import project.catalin.mybets.datos.dataObjects.Partida;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerPartidasPasadas;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerPartidasPendientes;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerPartidasPasadas;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerPartidasPendientes;
 import project.catalin.mybets.vistas.pantallas.apostar.PantallaApostar;
 import project.catalin.mybets.vistas.pantallas.historialJornada.PantallaHistorialJornada;
 import project.catalin.mybets.vistas.utils.AdapterRecargable;
@@ -42,6 +48,8 @@ public class PantallaPrincipalFragmentMisApuestas extends FragmentConTitulo impl
     private ControllerPartidasPasadas mControladorPartidasPasadas;
     private ProgressDialog mDialogLoadingPartidasPendientes;
     private ProgressDialog mDialogLoadingPartidasPasadas;
+    private int mEdicionPartidaId;
+    private String mEdicionPartidaTitulo;
 
     public PantallaPrincipalFragmentMisApuestas() {
         super();
@@ -118,6 +126,21 @@ public class PantallaPrincipalFragmentMisApuestas extends FragmentConTitulo impl
         mAdapterApuestasPendientes.recargarDatos(partidas);
     }
 
+    @Override
+    public int getIdPartidaRechazar() {
+        return mEdicionPartidaId;
+    }
+
+    @Override
+    public int getIdPartidaActualizar() {
+        return mEdicionPartidaId;
+    }
+
+    @Override
+    public String getNuevoNombrePartida() {
+        return mEdicionPartidaTitulo;
+    }
+
 
     private class AdapterApuestasPendientes extends AdapterRecargable<Partida>{
         @Override
@@ -135,10 +158,28 @@ public class PantallaPrincipalFragmentMisApuestas extends FragmentConTitulo impl
             partidaView.setBoteNum(partida.getBote());
             partidaView.setColorFondoIcono(partida.getColorIcono());
             partidaView.setUrlImagenIcono(partida.getUrlIcono());
-            partidaView.setNumPersonas(partida.getNumPersonas()+"/"+partida.getMaxNumPersonas());
+            partidaView.setNumPersonas(partida.getNumPersonas());
             partidaView.setEstadoPartida(partida.getEstadoPartida());
             partidaView.setColorFecha(R.color.gris_medio);
-            if(partida.getEstadoPartida() == Partida.ESTADO_JUEGA_YA) partidaView.setMostrarBotonAcciones(true);
+            if(partida.getEstadoPartida() == Partida.ESTADO_JUEGA_YA) {
+                partidaView.setMostrarBotonAcciones(true);
+                partidaView.setAccionesItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.mybets_action_editar_nombre_partida:
+                                startDialogEditarNombre(partida.getIdPartida());
+                                break;
+                            case R.id.mybets_action_rechazar_partida:
+                                mEdicionPartidaId = partida.getIdPartida();
+                                mControladorPartidasPendientes.botonRechazarPartidaPulsado();
+                                break;
+                        }
+                        return true;
+                    }
+
+                });
+            }
             partidaView.setBotonJuegaYaClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -146,8 +187,41 @@ public class PantallaPrincipalFragmentMisApuestas extends FragmentConTitulo impl
                 }
             });
 
+            if(partida.getEstadoPartida() == Partida.ESTADO_ESPERANDO_RESULTADOS) partidaView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startHistorialActivity(partida.getIdPartida(), partida.getTipoPartida());
+                }
+            });
+
             return partidaView;
         }
+    }
+
+    private void startDialogEditarNombre(final int idPartida) {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getContext());
+        alertBuilder.setTitle("Editar titulo de la partida");
+        final EditText nuevoNombre = new EditText(getContext());
+        nuevoNombre.setInputType(InputType.TYPE_CLASS_TEXT);
+        alertBuilder.setView(nuevoNombre);
+
+        alertBuilder.setPositiveButton("Editar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mEdicionPartidaId = idPartida;
+                mEdicionPartidaTitulo = nuevoNombre.getText().toString();
+                mControladorPartidasPendientes.botonActualizarNombrePulsado();
+            }
+        });
+        alertBuilder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        alertBuilder.show();
+
     }
 
     private void startJuegaActivity(int idPartida, int tipoPartida, String nombrePartida) {
@@ -177,12 +251,14 @@ public class PantallaPrincipalFragmentMisApuestas extends FragmentConTitulo impl
             partidaView.setColorFondoIcono(partida.getColorIcono());
             partidaView.setUrlImagenIcono(partida.getUrlIcono());
             partidaView.setColorFecha(R.color.gris_medio);
-            partidaView.setBodyOnClickListener(new View.OnClickListener() {
+            partidaView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     startHistorialActivity(partida.getIdPartida(), partida.getTipoPartida());
                 }
             });
+
+
 
             return partidaView;
         }

@@ -7,17 +7,17 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
-import project.catalin.mybets.controladores.comunicaciónDatos.DataDatosPropios;
-import project.catalin.mybets.controladores.comunicaciónDatos.DataGestionPartidas;
-import project.catalin.mybets.controladores.comunicaciónDatos.DataHistorialUsuario;
-import project.catalin.mybets.controladores.comunicaciónDatos.DataIdentificación;
-import project.catalin.mybets.controladores.comunicaciónDatos.DataJornada;
-import project.catalin.mybets.controladores.comunicaciónDatos.DataPartidasPasadas;
-import project.catalin.mybets.controladores.comunicaciónDatos.DataPartidasPendientes;
-import project.catalin.mybets.controladores.comunicaciónDatos.DataRegister;
-import project.catalin.mybets.controladores.comunicaciónDatos.DataContacts;
-import project.catalin.mybets.controladores.comunicaciónDatos.DataPartidasPopulares;
-import project.catalin.mybets.controladores.comunicaciónDatos.DataUsuario;
+import project.catalin.mybets.controladores.comunicacionDatos.DataDatosPropios;
+import project.catalin.mybets.controladores.comunicacionDatos.DataGestionPartidas;
+import project.catalin.mybets.controladores.comunicacionDatos.DataHistorialUsuario;
+import project.catalin.mybets.controladores.comunicacionDatos.DataIdentificación;
+import project.catalin.mybets.controladores.comunicacionDatos.DataJornada;
+import project.catalin.mybets.controladores.comunicacionDatos.DataPartidasPasadas;
+import project.catalin.mybets.controladores.comunicacionDatos.DataPartidasPendientes;
+import project.catalin.mybets.controladores.comunicacionDatos.DataRegister;
+import project.catalin.mybets.controladores.comunicacionDatos.DataContacts;
+import project.catalin.mybets.controladores.comunicacionDatos.DataPartidasPopulares;
+import project.catalin.mybets.controladores.comunicacionDatos.DataUsuario;
 import project.catalin.mybets.controladores.utils.comunicación.Constantes;
 import project.catalin.mybets.datos.excepciones.ContraseñaVaciaException;
 import project.catalin.mybets.datos.excepciones.EmailMalFormadoException;
@@ -57,6 +57,10 @@ public class GestorDataWebServices implements DataIdentificación, DataRegister,
     public static final String URL_PETICIÓN_GET_PARTIDAS_PENDIENDES = "http://mybetstest.cuatroochenta.com/services/response_partidas_pendientes_ok.json";
     public static final String URL_PETICIÓN_GET_PARTIDAS_PASADAS = "http://mybetstest.cuatroochenta.com/services/response_partidas_pasadas_ok.json";
     public static final String URL_PETICIÓN_HISTORIAL_PARTIDA = "http://mybetstest.cuatroochenta.com/services/response_historial.json";
+    public static final String URL_PETICIÓN_ACTUALIZAR_NOMBRE_PARTIDA = "";
+    public static final String URL_PETICIÓN_RECHAZAR_PARTIDA = "";
+    public static final String URL_PETICIÓN_GET_CLASIFICACION_PARTIDA = "http://mybetstest.cuatroochenta.com/services/response_consultar_clasificacion.json";
+    public static final String URL_PETICIÓN_GET_LISTA_CATEGORIAS = "http://mybetstest.cuatroochenta.com/services/response_list_categorias.json";
 
     @Override
     public int registrarUsuario(Persona dataUsuario, String password) throws EmailMalFormadoException, UsuarioRepetidoException, TelefonoMalFormadoException, EmailVacioException, NombreVacioException, ErrorInternoException, ErrorServerException {
@@ -146,6 +150,16 @@ public class GestorDataWebServices implements DataIdentificación, DataRegister,
         } catch (ParseException | IOException | JSONException e) {
             throw new ErrorInternoException();
         }
+    }
+
+    @Override
+    public void actualizarNombrePartida(int idPartida, String nuevoNombre) throws ErrorInternoException, ErrorServerException {
+
+    }
+
+    @Override
+    public void rechazarPartida(int mIdPartida) throws ErrorInternoException, ErrorServerException {
+
     }
 
     @Override

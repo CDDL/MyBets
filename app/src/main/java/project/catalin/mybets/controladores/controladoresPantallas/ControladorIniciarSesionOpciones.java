@@ -2,7 +2,7 @@ package project.catalin.mybets.controladores.controladoresPantallas;
 
 import project.catalin.mybets.controladores.utils.comunicación.eventos.GestorEventosUtil;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.TipoEvento;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerOpcionesLogin;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerOpcionesLogin;
 
 /**
  * Created by Trabajo on 18/04/2016.

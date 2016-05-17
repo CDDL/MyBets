@@ -72,4 +72,14 @@
     <string name="historial_jornada_label_bote">Puntos en el bote</string>
     <string name="historial_jornada_icon_cerrar_desc">Icono cerra ventana</string>
     <string name="historial_jornada_icon_cabecera_desc">Icono tipo de juego</string>
+    <string name="partida_text_action_editar_nombre">Editar nombre</string>
+    <string name="partida_text_action_rechazar_partida">Rechazar</string>
+    <string name="clasificacion_en_partida_label_fecha">Fecha</string>
+    <string name="clasificacion_en_partida_label_bote">Puntos bote</string>
+    <string name="clasificacion_en_partida_icon_cerrar_desc">Boton cerrar ventana</string>
+    <string name="clasificacion_en_partida_icon_cabecera_desc">Icono tipo partida</string>
+    <string name="entrada_clasificacion_format_puntos">{0} puntos</string>
+    <string name="ficha_clasificacion_format_bote">{0} puntos</string>
+    <string name="item_categoria_icon_desc">Icono categoria</string>
+    <string name="pantalla_categorias_text_titulo">Categorías</string>
 </resources>

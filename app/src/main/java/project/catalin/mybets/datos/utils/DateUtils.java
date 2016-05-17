@@ -31,4 +31,10 @@ public class DateUtils {
         SimpleDateFormat formatter = new SimpleDateFormat(format, Locale.US);
         return formatter.parse(mStringDate);
     }
+
+
+    public Date toDate() throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.US);
+        return formatter.parse(mStringDate);
+    }
 }

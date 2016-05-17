@@ -124,7 +124,6 @@
     </style>
 
     <style name="mybets_item_apuesta_pasada_boton_apuesta">
-        <item name="android:paddingLeft">1dp</item>
         <item name="android:paddingBottom">1dp</item>
         <item name="android:textSize">12sp</item>
         <item name="android:enabled">false</item>
@@ -134,6 +133,7 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/mybets_color_text_botones_1x2</item>
     </style>
+
 
 
 </resources>

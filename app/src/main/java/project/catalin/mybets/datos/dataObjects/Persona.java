@@ -9,15 +9,15 @@ public class Persona {
     private String mUsername;
     private String mTelefono;
     private String mImage;
-    private long mId;
+    private int mId;
     private int mPuntos;
 
 
-    public long getId() {
+    public int getId() {
         return mId;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         mId = id;
     }
 

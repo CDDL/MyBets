@@ -11,7 +11,7 @@
         android:layout_height="167dp"
         android:layout_marginLeft="9dp"
         android:layout_marginRight="9dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/mybets_fondo_historial_jornada">
 
         <View
@@ -25,7 +25,7 @@
             android:layout_width="77dp"
             android:layout_height="77dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="34dp"
+            android:layout_marginTop="30dp"
             android:src="@drawable/mybets_icon_juega_ya_dialog_placeholder" />
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_height="20dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="12dp"
             android:layout_marginRight="11dp"
             android:src="@drawable/mybets_icon_cerrar"
             android:contentDescription="@string/historial_jornada_icon_cerrar_desc" />

@@ -13,10 +13,10 @@ import android.widget.Toast;
 import java.util.List;
 
 import project.catalin.mybets.R;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewListaPartidas;
+import project.catalin.mybets.controladores.comunicacionVista.ViewListaPartidas;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorApuestas;
 import project.catalin.mybets.datos.dataObjects.Partida;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerPartidasPopulares;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerPartidasPopulares;
 import project.catalin.mybets.vistas.pantallas.apostar.PantallaApostar;
 import project.catalin.mybets.vistas.utils.AdapterRecargable;
 import project.catalin.mybets.vistas.utils.customAndroidComponents.PartidaView;

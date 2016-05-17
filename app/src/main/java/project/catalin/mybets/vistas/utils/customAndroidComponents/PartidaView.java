@@ -9,6 +9,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -22,15 +23,16 @@ import java.util.Date;
 import java.util.Locale;
 
 import project.catalin.mybets.R;
+import project.catalin.mybets.datos.dataObjects.Partida;
 
 /**
  * Created by Trabajo on 28/04/2016.
  */
 public class PartidaView extends RelativeLayout {
-    public static final int PARTIDA_JUGABLE = 0;
-    public static final int PARTIDA_ESPERNANDO_RESLTADOS = 1;
-    public static final int PARTIDA_RECHAZADA = 2;
-    public static final int PARTIDA_GANADA = 3;
+    public static final int PARTIDA_JUGABLE = Partida.ESTADO_JUEGA_YA;
+    public static final int PARTIDA_ESPERNANDO_RESLTADOS = Partida.ESTADO_ESPERANDO_RESULTADOS;
+    public static final int PARTIDA_RECHAZADA = Partida.ESTADO_PARTIDA_RECHAZADA;
+    public static final int PARTIDA_GANADA = Partida.ESTADO_PARTIDA_GANADA;
 
     private final TextView mTitulo;
     private final TextView mBote;
@@ -44,11 +46,14 @@ public class PartidaView extends RelativeLayout {
     private final TextView mTextEsperandoResultados;
     private final TextView mTextFechaFin;
     private final ImageView mBotonAcciones;
+    private final View mPopUpBox;
 
     private boolean mMostrarCountDown;
     private int mEstadoPartida;
     private CountDownTimer mTimer;
     private TextView mTextPuntosGanados;
+    private PopupMenu mPopUp;
+    private PopupMenu.OnMenuItemClickListener mPopUpListener;
 
     public PartidaView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -69,6 +74,9 @@ public class PartidaView extends RelativeLayout {
         mTextEsperandoResultados = (TextView) findViewById(R.id.partida_item_text_apuesta_esperando_resultados);
         mBotonAcciones = (ImageView) findViewById(R.id.partida_item_boton_acciones);
         mTextPuntosGanados = (TextView) findViewById(R.id.partida_item_text_apuesta_ganada);
+        mPopUpBox = findViewById(R.id.partida_item_popup_box);
+        mPopUp = new PopupMenu(getContext(), mPopUpBox);
+        mPopUp.getMenuInflater().inflate(R.menu.menu_acciones_partida, mPopUp.getMenu());
 
         initParams(attrs);
     }
@@ -78,8 +86,18 @@ public class PartidaView extends RelativeLayout {
         setEstadoPartida(ta.getInt(R.styleable.PartidaView_estadoPartida, -1));
         setMostrarCountDown(ta.getBoolean(R.styleable.PartidaView_mostrarCountdown, false));
         setMostrarBotonAcciones(ta.getBoolean(R.styleable.PartidaView_mostrarBotonAcciones, false));
+        initBotonAcciones();
 
         ta.recycle();
+    }
+
+    private void initBotonAcciones() {
+        mBotonAcciones.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPopUp.show();
+            }
+        });
     }
 
     public void setMostrarBotonAcciones(boolean mostrar) {
@@ -200,13 +218,14 @@ public class PartidaView extends RelativeLayout {
 
     public void setPuntosGanados(int puntosGanados) {
         mTextPuntosGanados.setText(MessageFormat.format(getContext().getString(R.string.partida_item_format_puntos_ganados), puntosGanados));
-    }
-
-    public void setBodyOnClickListener(OnClickListener onClickListener) {
-        setOnClickListener(onClickListener);
+        setEstadoPartida(PARTIDA_GANADA);
     }
 
     public void setColorFecha(int color) {
         mTextFechaFin.setTextColor(getResources().getColor(color));
+    }
+
+    public void setAccionesItemClickListener(PopupMenu.OnMenuItemClickListener menuItemClickListener) {
+        mPopUp.setOnMenuItemClickListener(menuItemClickListener);
     }
 }

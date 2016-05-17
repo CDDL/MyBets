@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-import project.catalin.mybets.controladores.comunicaciónDatos.DataHistorialPartidasPasadas;
+import project.catalin.mybets.controladores.comunicacionDatos.DataHistorialPartidasPasadas;
 import project.catalin.mybets.datos.GestorDataWebServices;
 import project.catalin.mybets.datos.dataObjects.FichaHistorial;
 import project.catalin.mybets.datos.excepciones.ErrorInternoException;

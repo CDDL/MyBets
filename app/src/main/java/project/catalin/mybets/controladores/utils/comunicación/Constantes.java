@@ -5,7 +5,7 @@ package project.catalin.mybets.controladores.utils.comunicación;
  */
 public abstract class Constantes {
 
-    public static final int RESPUESTA_WEBSERV_OK = 0;
+    public static final int RESPUESTA_WEBSERV_OK = 1;
     public static final int RESPUESTA_WEBSERV_ERROR = 1;
     public static final int TIEMPO_HORA_MS = 86400000;
     public static final int REQUEST_PERMISSION_CODE_FOTO_PICKER = 1;

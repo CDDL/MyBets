@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import project.catalin.mybets.R;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewRegisterForm;
+import project.catalin.mybets.controladores.comunicacionVista.ViewRegisterForm;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorFormRegister;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerRegister;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerRegister;
 
 /**
  * A simple {@link Fragment} subclass.

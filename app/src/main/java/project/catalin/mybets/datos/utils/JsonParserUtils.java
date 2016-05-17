@@ -12,8 +12,11 @@ import java.util.List;
 import java.util.Locale;
 
 import project.catalin.mybets.datos.dataObjects.Apuesta;
+import project.catalin.mybets.datos.dataObjects.Categoria;
+import project.catalin.mybets.datos.dataObjects.EntradaClasificacion;
 import project.catalin.mybets.datos.dataObjects.EntradaHistorial;
 import project.catalin.mybets.datos.dataObjects.Equipo;
+import project.catalin.mybets.datos.dataObjects.FichaClasificacion;
 import project.catalin.mybets.datos.dataObjects.FichaHistorial;
 import project.catalin.mybets.datos.dataObjects.LoginData;
 import project.catalin.mybets.datos.dataObjects.Partida;
@@ -95,14 +98,15 @@ public class JsonParserUtils {
 
         for (JsonWrapper jsonDataObject:jsonArray) {
             Partida partida = new Partida();
-            partida.setId(jsonDataObject.getInt("idpartida", 0));
+            partida.setId(jsonDataObject.getInt("idpartida", -1));
             partida.setNombrePartida(jsonDataObject.getString("nombrepartida", "Sin nombre"));
             partida.setFecha(new SimpleDateFormat("dd/MM/yy HH:mm", Locale.US).parse(jsonDataObject.getString("fecha", "11/11/00 11:11")));
-            partida.setBote(jsonDataObject.getInt("bote", 0));
-            partida.setNumPersonas(jsonDataObject.getInt("numpersonas", 0));
+            partida.setBote(jsonDataObject.getInt("bote", -1));
+            partida.setNumPersonas(jsonDataObject.getInt("numpersonas", -1));
             partida.setUrlIcono(jsonDataObject.getString("urlicono", ""));
             partida.setColorIcono(jsonDataObject.getString("coloricono", "#3F51B5"));
             partida.setTipoPartida(jsonDataObject.getInt("tipopartida", -1));
+            partida.setEstadoPartida(jsonDataObject.getInt("estadoapuesta", -1));
 
             partidas.add(partida);
         }
@@ -200,6 +204,52 @@ public class JsonParserUtils {
             historiales.add(historialApuestas);
         }
         return historiales;
+    }
+
+    public static FichaClasificacion jsonToFichaClasificacion(JSONObject response) throws ParseException {
+        JsonWrapper wrapper = new JsonWrapper(response);
+        JsonWrapper jsonPartida = wrapper.getObject("partida", null);
+
+        FichaClasificacion fichaClasificacion = new FichaClasificacion();
+        fichaClasificacion.setNombrePartida(jsonPartida.getString("nombre", ""));
+        fichaClasificacion.setFechaPartida(new DateUtils().from(jsonPartida.getString("fecha", "11/11/2011 11:11")).toDate());
+        fichaClasificacion.setBotePartida(jsonPartida.getInt("bote", 0));
+        fichaClasificacion.setUrlIcono(jsonPartida.getString("urlicono", ""));
+        fichaClasificacion.setColorFondo(jsonPartida.getString("colorfondo", "#000000"));
+
+        List<EntradaClasificacion> entradaClasificacionList = new LinkedList<>();
+        for (JsonWrapper dataEntrada : wrapper.getArray("data", Collections.<JsonWrapper>emptyList())) {
+            Persona persona = new Persona();
+            persona.setNombre(dataEntrada.getString("nombre", ""));
+            persona.setImagen(dataEntrada.getString("urlicono", ""));
+
+            EntradaClasificacion entradaClasificacion = new EntradaClasificacion();
+            entradaClasificacion.setPersona(persona);
+            entradaClasificacion.setPuntos(dataEntrada.getInt("puntos", 0));
+            entradaClasificacion.setPosicion(dataEntrada.getInt("posicion", 0));
+
+            entradaClasificacionList.add(entradaClasificacion);
+        }
+
+        fichaClasificacion.setEntradasList(entradaClasificacionList);
+        return fichaClasificacion;
+    }
+
+    public static List<Categoria> jsonToCategoriaList(JSONObject response) {
+        JsonWrapper wrapper = new JsonWrapper(response);
+        List<JsonWrapper> jsonVectorCategorias = wrapper.getArray("data", null);
+
+        List<Categoria> categoriaList = new LinkedList<>();
+        for (JsonWrapper jsonCategoria : jsonVectorCategorias) {
+            Categoria categoria = new Categoria();
+            categoria.setUrlIcono(jsonCategoria.getString("icon", ""));
+            categoria.setId(jsonCategoria.getInt("id", 0));
+            categoria.setNombre(jsonCategoria.getString("name", ""));
+
+            categoriaList.add(categoria);
+        }
+
+        return categoriaList;
     }
 }
 

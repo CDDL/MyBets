@@ -6,9 +6,12 @@ import java.util.Date;
  * Created by Trabajo on 19/04/2016.
  */
 public class Partida {
-    public static final int ESTADO_JUEGA_YA = 10;
     public static final int TIPO_PARTIDA_1x2 = 0;
     public static final int TIPO_PARTIDA_RESULT_EXACT = 1;
+    public static final int ESTADO_JUEGA_YA = 2;
+    public static final int ESTADO_PARTIDA_RECHAZADA = 0;
+    public static final int ESTADO_ESPERANDO_RESULTADOS = 1;
+    public static final int ESTADO_PARTIDA_GANADA = 3;
 
 
     private int mIdPartida;
@@ -98,5 +101,9 @@ public class Partida {
 
     public void setUrlIcono(String urlIcono) {
         mUrlIcono = urlIcono;
+    }
+
+    public void setEstadoPartida(int estadoPartida) {
+        mEstadoPartida = estadoPartida;
     }
 }

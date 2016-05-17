@@ -9,7 +9,7 @@
 
     <color name="textEditColor">#BDBDBD</color>
     <color name="colorSeparadorMorado">#7E57C2</color>
-    <color name="colorPrimaryMorado">#7E57C2</color>
+    <color name="colorPrimaryMorado">#7e57c2</color>
     <color name="colorPrimaryMoradoDark">#512DA8</color>
     <color name="colorAccentMorado">#FFFFFF</color>
     <color name="colorTextoAzul">#7986CB</color>
@@ -60,6 +60,7 @@
     <color name="gris_mas_claro">#F2F2F2</color>
     <color name="gris_claro_oscurito">#999999</color>
     <color name="mybets_color_blanco_transparente" >#CCF2F2F2</color>
+    <color name="gris_gris">#808080</color>
 
 
 </resources>

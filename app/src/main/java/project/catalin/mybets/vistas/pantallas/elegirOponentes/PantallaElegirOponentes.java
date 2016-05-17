@@ -23,13 +23,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 import project.catalin.mybets.R;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewListaAmigos;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewOponentes;
+import project.catalin.mybets.controladores.comunicacionVista.ViewListaAmigos;
+import project.catalin.mybets.controladores.comunicacionVista.ViewOponentes;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorAmigos;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorElegirOponentesBotones;
 import project.catalin.mybets.datos.dataObjects.Persona;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerElegirOponentesBotones;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerListaAmigos;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerElegirOponentesBotones;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerListaAmigos;
 import project.catalin.mybets.vistas.utils.AdapterRecargable;
 import project.catalin.mybets.vistas.pantallas.apostar.PantallaApostar;
 

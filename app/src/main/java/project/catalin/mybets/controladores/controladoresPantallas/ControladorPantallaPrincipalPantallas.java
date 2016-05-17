@@ -1,13 +1,10 @@
 package project.catalin.mybets.controladores.controladoresPantallas;
 
-import java.util.List;
-
-import project.catalin.mybets.controladores.comunicaciónVista.ViewPantallaPrincipalPantallas;
+import project.catalin.mybets.controladores.comunicacionVista.ViewPantallaPrincipalPantallas;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.GestorEventosUtil;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.INotificable;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.TipoEvento;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerPantallaPrinciaplPantallas;
-import project.catalin.mybets.vistas.pantallas.principal.PantallaPrincipal;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerPantallaPrinciaplPantallas;
 
 /**
  * Created by Trabajo on 03/05/2016.

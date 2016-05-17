@@ -3,8 +3,8 @@ package project.catalin.mybets.controladores.controladoresPantallas;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.GestorEventosUtil;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.INotificable;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.TipoEvento;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewLoginBase;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerDestructible;
+import project.catalin.mybets.controladores.comunicacionVista.ViewLoginBase;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerDestructible;
 
 /**
  * Created by Trabajo on 18/04/2016.

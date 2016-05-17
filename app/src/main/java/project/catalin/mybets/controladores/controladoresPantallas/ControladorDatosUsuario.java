@@ -1,14 +1,14 @@
 package project.catalin.mybets.controladores.controladoresPantallas;
 
-import project.catalin.mybets.controladores.comunicaciónDatos.DataUsuario;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewDatosUsuario;
+import project.catalin.mybets.controladores.comunicacionDatos.DataUsuario;
+import project.catalin.mybets.controladores.comunicacionVista.ViewDatosUsuario;
 import project.catalin.mybets.controladores.utils.ExceptionHandlingAsyncTask;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.GestorEventosUtil;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.INotificable;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.TipoEvento;
 import project.catalin.mybets.datos.GestorDataWebServices;
 import project.catalin.mybets.datos.dataObjects.Persona;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerDatosUsuario;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerDatosUsuario;
 
 /**
  * Created by Trabajo on 03/05/2016.

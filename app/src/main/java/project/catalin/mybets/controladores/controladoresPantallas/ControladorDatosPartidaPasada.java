@@ -2,12 +2,12 @@ package project.catalin.mybets.controladores.controladoresPantallas;
 
 import java.util.List;
 
-import project.catalin.mybets.controladores.comunicaciónDatos.DataHistorialPartidasPasadas;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewHistorialJornada;
+import project.catalin.mybets.controladores.comunicacionDatos.DataHistorialPartidasPasadas;
+import project.catalin.mybets.controladores.comunicacionVista.ViewHistorialJornada;
 import project.catalin.mybets.controladores.utils.ExceptionHandlingAsyncTask;
 import project.catalin.mybets.datos.dataObjects.FichaHistorial;
 import project.catalin.mybets.datos.datosWebService.DatosHistorialPartidasPasadas;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerDatosPartidaPasada;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerDatosPartidaPasada;
 
 /**
  * Created by CDD on 12/05/2016.

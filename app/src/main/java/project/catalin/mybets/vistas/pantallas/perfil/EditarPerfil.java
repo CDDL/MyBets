@@ -27,11 +27,11 @@ import java.io.InputStream;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import project.catalin.mybets.R;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewDatosPropios;
+import project.catalin.mybets.controladores.comunicacionVista.ViewDatosPropios;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorDatosPropios;
 import project.catalin.mybets.controladores.utils.comunicación.Constantes;
 import project.catalin.mybets.datos.dataObjects.Persona;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerDatosPropios;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerDatosPropios;
 
 public class EditarPerfil extends AppCompatActivity implements ViewDatosPropios {
 

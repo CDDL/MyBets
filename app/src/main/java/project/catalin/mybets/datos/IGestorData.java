@@ -2,7 +2,7 @@ package project.catalin.mybets.datos;
 
 import java.util.List;
 
-import project.catalin.mybets.controladores.comunicaciónDatos.DataIdentificación;
+import project.catalin.mybets.controladores.comunicacionDatos.DataIdentificación;
 import project.catalin.mybets.datos.excepciones.ContraseñaVaciaException;
 import project.catalin.mybets.datos.excepciones.EmailMalFormadoException;
 import project.catalin.mybets.datos.excepciones.EmailVacioException;

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/clasificacion_en_partida_fondo_cabecera"
+        android:layout_width="match_parent"
+        android:layout_height="167dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/mybets_fondo_historial_jornada">
+
+        <View
+            android:id="@+id/clasificacion_en_partida_separador"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/clasificacion_en_partida_text_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="59dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="Balón de oro 2016"
+            android:textColor="@android:color/white"
+            android:textSize="26sp" />
+
+
+        <ImageView
+            android:id="@+id/clasificacion_enPartida_boton_cerrar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="11dp"
+            android:layout_marginTop="12dp"
+            android:contentDescription="@string/clasificacion_en_partida_icon_cerrar_desc"
+            android:src="@drawable/mybets_icon_cerrar" />
+
+        <ImageView
+            android:id="@+id/clasificacion_en_partida_icon_cabecera"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/clasificacion_en_partida_icon_cabecera_desc"
+            android:src="@drawable/icon_balon"
+            android:scaleType="fitEnd"/>
+
+        <TextView
+            android:id="@+id/clasificacion_en_partida_label_fecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_toLeftOf="@id/clasificacion_en_partida_separador"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="@string/clasificacion_en_partida_label_fecha"
+            android:textColor="@color/mybets_color_blanco_transparente"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/clasificacion_en_partida_text_fecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/clasificacion_en_partida_label_fecha"
+            android:layout_toLeftOf="@id/clasificacion_en_partida_separador"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="01/02/2010"
+            android:textColor="@color/mybets_color_blanco_transparente"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/clasificacion_en_partida_label_bote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@id/clasificacion_en_partida_separador"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="@string/clasificacion_en_partida_label_bote"
+            android:textColor="@color/mybets_color_blanco_transparente"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/clasificacion_en_partida_text_bote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/clasificacion_en_partida_label_bote"
+            android:layout_toRightOf="@id/clasificacion_en_partida_separador"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="800 puntos"
+            android:textColor="@color/mybets_color_blanco_transparente"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/clasificacion_en_partida_text_clasificacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/clasificacion_en_partida_fondo_cabecera"
+        android:layout_marginTop="19dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Clasificacion"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="26sp" />
+
+    <View
+        android:id="@+id/clasificacion_en_partida_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/clasificacion_en_partida_text_clasificacion"
+        android:layout_marginTop="8dp"
+        android:background="@color/gris_claro_peronotanto" />
+
+    <ListView
+        android:id="@+id/clasificacion_en_partida_list_clasificaciones"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/clasificacion_en_partida_divider"
+        android:layout_marginBottom="23dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="16dp"
+        android:dividerHeight="26dp" />
+
+
+</RelativeLayout>

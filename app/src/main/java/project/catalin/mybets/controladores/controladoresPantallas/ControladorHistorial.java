@@ -2,12 +2,12 @@ package project.catalin.mybets.controladores.controladoresPantallas;
 
 import java.util.List;
 
-import project.catalin.mybets.controladores.comunicaciónDatos.DataHistorialUsuario;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewHistorial;
+import project.catalin.mybets.controladores.comunicacionDatos.DataHistorialUsuario;
+import project.catalin.mybets.controladores.comunicacionVista.ViewHistorial;
 import project.catalin.mybets.controladores.utils.ExceptionHandlingAsyncTask;
 import project.catalin.mybets.datos.GestorDataWebServices;
 import project.catalin.mybets.datos.dataObjects.EntradaHistorial;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerHistorial;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerHistorial;
 
 /**
  * Created by Trabajo on 03/05/2016.

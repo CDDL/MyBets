@@ -1,7 +1,7 @@
 package project.catalin.mybets.controladores.controladoresPantallas;
 
-import project.catalin.mybets.controladores.comunicaciónDatos.DataRegister;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewRegisterForm;
+import project.catalin.mybets.controladores.comunicacionDatos.DataRegister;
+import project.catalin.mybets.controladores.comunicacionVista.ViewRegisterForm;
 import project.catalin.mybets.datos.GestorDataWebServices;
 import project.catalin.mybets.datos.excepciones.EmailMalFormadoException;
 import project.catalin.mybets.datos.excepciones.EmailVacioException;
@@ -11,7 +11,7 @@ import project.catalin.mybets.datos.excepciones.NombreVacioException;
 import project.catalin.mybets.datos.excepciones.TelefonoMalFormadoException;
 import project.catalin.mybets.datos.excepciones.UsuarioRepetidoException;
 import project.catalin.mybets.datos.dataObjects.Persona;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerRegister;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerRegister;
 
 /**
  * Created by Trabajo on 18/04/2016.

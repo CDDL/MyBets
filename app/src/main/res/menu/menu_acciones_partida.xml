@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/mybets_action_editar_nombre_partida"
+        android:title="@string/partida_text_action_editar_nombre" />
+    <item android:id="@+id/mybets_action_rechazar_partida"
+        android:title="@string/partida_text_action_rechazar_partida" />
+</menu>

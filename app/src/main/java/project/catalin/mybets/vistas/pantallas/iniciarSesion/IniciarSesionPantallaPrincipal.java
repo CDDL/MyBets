@@ -7,8 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import project.catalin.mybets.R;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorIniciarSesionPantallas;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewLoginBase;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerDestructible;
+import project.catalin.mybets.controladores.comunicacionVista.ViewLoginBase;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerDestructible;
 import project.catalin.mybets.vistas.pantallas.iniciarSesion.fragments.IniciarSesionFragmentFormularioLogin;
 import project.catalin.mybets.vistas.pantallas.iniciarSesion.fragments.IniciarSesionFragmentOpcionesLogin;
 import project.catalin.mybets.vistas.pantallas.iniciarSesion.fragments.IniciarSesionFragmentFormularioRegistrarse;

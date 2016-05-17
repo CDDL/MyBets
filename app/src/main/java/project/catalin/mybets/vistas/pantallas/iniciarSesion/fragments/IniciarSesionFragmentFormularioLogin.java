@@ -9,9 +9,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import project.catalin.mybets.R;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewLoginForm;
+import project.catalin.mybets.controladores.comunicacionVista.ViewLoginForm;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorFormLogin;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerFormLogin;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerFormLogin;
 
 public class IniciarSesionFragmentFormularioLogin extends Fragment implements ViewLoginForm {
     private ControllerFormLogin mControllerLoginForm;

@@ -8,11 +8,11 @@ import java.util.List;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.GestorEventosUtil;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.INotificable;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.TipoEvento;
-import project.catalin.mybets.controladores.comunicaciónDatos.DataContacts;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewListaAmigos;
+import project.catalin.mybets.controladores.comunicacionDatos.DataContacts;
+import project.catalin.mybets.controladores.comunicacionVista.ViewListaAmigos;
 import project.catalin.mybets.datos.GestorDataWebServices;
 import project.catalin.mybets.datos.dataObjects.Persona;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerListaAmigos;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerListaAmigos;
 
 /**
  * Created by Catalin on 05/04/2016.

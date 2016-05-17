@@ -19,10 +19,10 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import project.catalin.mybets.R;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewListaAmigos;
+import project.catalin.mybets.controladores.comunicacionVista.ViewListaAmigos;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorAmigos;
 import project.catalin.mybets.datos.dataObjects.Persona;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerListaAmigos;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerListaAmigos;
 import project.catalin.mybets.vistas.utils.AdapterRecargable;
 
 /**

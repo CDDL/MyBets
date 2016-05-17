@@ -3,9 +3,9 @@
     <declare-styleable name="PartidaView">
         <attr name="mostrarCountdown" format="boolean"/>
         <attr name="estadoPartida">
-            <enum name="jugable" value="0" />
+            <enum name="jugable" value="2" />
             <enum name="esperando_resultados" value="1" />
-            <enum name="rechazada" value="2" />
+            <enum name="rechazada" value="0" />
         </attr>
         <attr name="mostrarBotonAcciones" format="boolean" />
     </declare-styleable>

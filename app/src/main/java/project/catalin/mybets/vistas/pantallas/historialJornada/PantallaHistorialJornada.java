@@ -1,6 +1,7 @@
 package project.catalin.mybets.vistas.pantallas.historialJornada;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
@@ -23,15 +24,16 @@ import java.text.MessageFormat;
 import java.util.List;
 
 import project.catalin.mybets.R;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewHistorialJornada;
+import project.catalin.mybets.controladores.comunicacionVista.ViewHistorialJornada;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorDatosPartidaPasada;
 import project.catalin.mybets.datos.dataObjects.Apuesta;
 import project.catalin.mybets.datos.dataObjects.FichaHistorial;
 import project.catalin.mybets.datos.dataObjects.Partida;
 import project.catalin.mybets.datos.utils.DateUtils;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerDatosPartidaPasada;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerDatosPartidaPasada;
+import project.catalin.mybets.vistas.pantallas.perfil.PantallaPerfilUsuario;
 import project.catalin.mybets.vistas.utils.AdapterRecargable;
-import project.catalin.mybets.vistas.utils.PageAdapterPuntosRecargable;
+import project.catalin.mybets.vistas.utils.CustomPager;
 
 /**
  * Created by CDD on 10/05/2016.
@@ -51,7 +53,7 @@ public class PantallaHistorialJornada extends AppCompatActivity implements ViewH
     private ControllerDatosPartidaPasada mControlador;
     private IconPageIndicator mTitlePager;
     private ProgressDialog mDialogLoadingPartidasPasadas;
-    private PageAdapterPuntosRecargable<FichaHistorial> mPagerAdapter;
+    private CustomPager<FichaHistorial> mPagerAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -179,7 +181,7 @@ public class PantallaHistorialJornada extends AppCompatActivity implements ViewH
         }
     }
 
-    private class DotPageAdapter extends PageAdapterPuntosRecargable<FichaHistorial> {
+    private class DotPageAdapter extends CustomPager<FichaHistorial> {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             ListView listView = (ListView) LayoutInflater.from(PantallaHistorialJornada.this).inflate(R.layout.itempager_lista, container, false);
@@ -204,14 +206,32 @@ public class PantallaHistorialJornada extends AppCompatActivity implements ViewH
         }
 
         @Override
+        public int getIconResId(int index) {
+            return R.drawable.mybets_icon_punto_selector;
+        }
+
+
+        @Override
         public void onPageSelected(int position) {
-            FichaHistorial fichaHistorial = getItemPosition(position);
+            final FichaHistorial fichaHistorial = getItemPosition(position);
             Picasso.with(PantallaHistorialJornada.this).load(fichaHistorial.getUrlImagen()).into(mFotoPerfil);
             Picasso.with(PantallaHistorialJornada.this).load(fichaHistorial.getUrlIcono()).into(mIconCabecera);
             mTextFecha.setText(new DateUtils().from(fichaHistorial.getData()).to(getString(R.string.pantalla_historial_jornada_format_fecha)));
             mPuntosBote.setText(MessageFormat.format(getString(R.string.pantalla_historial_jornada_format_puntos), fichaHistorial.getBote()));
             GradientDrawable fondoCabecera = (GradientDrawable) mFondoCabecera.getBackground();
             fondoCabecera.setColor(Color.parseColor(fichaHistorial.getColorCabecera()));
+            mFotoPerfil.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    abrirVentanaVerPerfil(fichaHistorial.getIdUsuario());
+                }
+            });
         }
+    }
+
+    private void abrirVentanaVerPerfil(int idUsuario) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(PantallaPerfilUsuario.TAG_ID_USUARIO, idUsuario);
+        startActivity(new Intent(this, PantallaPerfilUsuario.class).putExtras(bundle));
     }
 }

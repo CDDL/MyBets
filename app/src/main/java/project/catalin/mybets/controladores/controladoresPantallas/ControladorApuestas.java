@@ -5,11 +5,11 @@ import android.os.AsyncTask;
 import java.util.Collections;
 import java.util.List;
 
-import project.catalin.mybets.controladores.comunicaciónDatos.DataPartidasPopulares;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewListaPartidas;
+import project.catalin.mybets.controladores.comunicacionDatos.DataPartidasPopulares;
+import project.catalin.mybets.controladores.comunicacionVista.ViewListaPartidas;
 import project.catalin.mybets.datos.GestorDataWebServices;
 import project.catalin.mybets.datos.dataObjects.Partida;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerPartidasPopulares;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerPartidasPopulares;
 
 /**
  * Created by Trabajo on 27/04/2016.

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/mybets_fondo_categoria"
+    android:gravity="center_vertical"
+    android:minHeight="40dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/item_categoria_icon_categoria"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginLeft="12dp"
+        android:src="@drawable/icon_balon"
+        android:contentDescription="@string/item_categoria_icon_desc" />
+
+    <TextView
+        android:id="@+id/item_categoria_text_nombre_categoria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Deportes"
+        android:textColor="@color/gris_gris"
+        android:textSize="16sp"/>
+
+</LinearLayout>

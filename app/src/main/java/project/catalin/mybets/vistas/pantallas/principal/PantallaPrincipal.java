@@ -16,11 +16,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import project.catalin.mybets.R;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewPantallaPrincipalPantallas;
+import project.catalin.mybets.controladores.comunicacionVista.ViewPantallaPrincipalPantallas;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorPantallaPrincipalPantallas;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerPantallaPrinciaplPantallas;
 import project.catalin.mybets.vistas.pantallas.iniciarSesion.IniciarSesionPantallaPrincipal;
-import project.catalin.mybets.vistas.pantallas.perfil.PerfilUsuario;
+import project.catalin.mybets.vistas.pantallas.perfil.PantallaPerfilUsuario;
 import project.catalin.mybets.vistas.pantallas.principal.fragments.FragmentConTitulo;
 import project.catalin.mybets.vistas.pantallas.principal.fragments.PantallaPrincipalFragmentApuestas;
 import project.catalin.mybets.vistas.pantallas.principal.fragments.PantallaPrincipalFragmentListaAmigos;
@@ -81,7 +80,7 @@ public class PantallaPrincipal extends AppCompatActivity implements ViewPantalla
             case R.id.mybets_action_configuracion:
                 break;
             case R.id.mybets_action_perfil:
-                startActivity(new Intent(this, PerfilUsuario.class));
+                startActivity(new Intent(this, PantallaPerfilUsuario.class));
                 break;
             case R.id.mybets_action_cerrar_sesion:
                 startActivity(new Intent(this, IniciarSesionPantallaPrincipal.class));

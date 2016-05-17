@@ -37,7 +37,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/MyBetsThemeMorado" />
         <activity
-            android:name=".vistas.pantallas.perfil.PerfilUsuario"
+            android:name=".vistas.pantallas.perfil.PantallaPerfilUsuario"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/MyBetsThemeMorado" />
@@ -48,6 +48,21 @@
             android:theme="@style/MyBetsThemeMorado" />
         <activity
             android:name=".vistas.pantallas.historialJornada.PantallaHistorialJornada"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyBetsThemeMorado" />
+        <activity
+            android:name=".vistas.pantallas.clasificacion.PantallaClasificacion"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyBetsThemeMorado" />
+        <activity
+            android:name=".vistas.pantallas.categorias.PantallaCategorias"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyBetsThemeMorado" />
+        <activity
+            android:name=".vistas.pantallas.categorias.PantallaSubCategoria"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/MyBetsThemeMorado" />

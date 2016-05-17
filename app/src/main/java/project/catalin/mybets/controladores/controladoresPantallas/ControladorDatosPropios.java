@@ -2,14 +2,14 @@ package project.catalin.mybets.controladores.controladoresPantallas;
 
 import android.util.Base64;
 
-import project.catalin.mybets.controladores.comunicaciónDatos.DataDatosPropios;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewDatosPropios;
+import project.catalin.mybets.controladores.comunicacionDatos.DataDatosPropios;
+import project.catalin.mybets.controladores.comunicacionVista.ViewDatosPropios;
 import project.catalin.mybets.controladores.utils.ExceptionHandlingAsyncTask;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.GestorEventosUtil;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.TipoEvento;
 import project.catalin.mybets.datos.GestorDataWebServices;
 import project.catalin.mybets.datos.dataObjects.Persona;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerDatosPropios;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerDatosPropios;
 
 /**
  * Created by Trabajo on 09/05/2016.

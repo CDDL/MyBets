@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import project.catalin.mybets.R;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorIniciarSesionOpciones;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerOpcionesLogin;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerOpcionesLogin;
 
 public class IniciarSesionFragmentOpcionesLogin extends Fragment {
 

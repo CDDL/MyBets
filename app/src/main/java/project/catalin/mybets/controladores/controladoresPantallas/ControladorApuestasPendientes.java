@@ -2,8 +2,8 @@ package project.catalin.mybets.controladores.controladoresPantallas;
 
 import java.util.List;
 
-import project.catalin.mybets.controladores.comunicaciónDatos.DataPartidasPendientes;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewListaPartidasPendientes;
+import project.catalin.mybets.controladores.comunicacionDatos.DataPartidasPendientes;
+import project.catalin.mybets.controladores.comunicacionVista.ViewListaPartidasPendientes;
 import project.catalin.mybets.controladores.utils.ExceptionHandlingAsyncTask;
 import project.catalin.mybets.datos.datosWebService.DatosPartidasPendientes;
 import project.catalin.mybets.datos.dataObjects.Partida;
@@ -11,7 +11,7 @@ import project.catalin.mybets.datos.dataObjects.Partida;
 /**
  * Created by Trabajo on 10/05/2016.
  */
-public class ControladorApuestasPendientes implements project.catalin.mybets.vistas.comunicaciónControlador.ControllerPartidasPendientes {
+public class ControladorApuestasPendientes implements project.catalin.mybets.vistas.comunicacionControlador.ControllerPartidasPendientes {
 
     private final ViewListaPartidasPendientes mViewListaPartidas;
     private final DataPartidasPendientes mDatosPartidasPandientes;
@@ -24,6 +24,19 @@ public class ControladorApuestasPendientes implements project.catalin.mybets.vis
     @Override
     public void inicializarVista() {
         new TascaInicializarVista().execute();
+    }
+
+    @Override
+    public void botonActualizarNombrePulsado() {
+        int idPartida = mViewListaPartidas.getIdPartidaActualizar();
+        String nuevoNombre = mViewListaPartidas.getNuevoNombrePartida();
+        new TascaActualizarNombrePartida(idPartida, nuevoNombre).execute();
+    }
+
+    @Override
+    public void botonRechazarPartidaPulsado() {
+        int idPartida = mViewListaPartidas.getIdPartidaRechazar();
+        new TascaRechazarPartida(idPartida).execute();
     }
 
     private class TascaInicializarVista extends ExceptionHandlingAsyncTask<Void, Void, List<Partida>> {
@@ -48,6 +61,56 @@ public class ControladorApuestasPendientes implements project.catalin.mybets.vis
         protected void onTaskSuccess(List<Partida> partidas) {
             mViewListaPartidas.setListaPartidasPendientes(partidas);
             mViewListaPartidas.dismissLoadingPartidasPendientes();
+        }
+    }
+
+    private class TascaActualizarNombrePartida extends ExceptionHandlingAsyncTask<String, Void, Void> {
+        private final int mIdPartida;
+        private final String mNuevoNombre;
+
+        public TascaActualizarNombrePartida(int idPartida, String nuevoNombre) {
+            mIdPartida = idPartida;
+            mNuevoNombre = nuevoNombre;
+        }
+
+        @Override
+        protected Void executeTask(String... params) throws Exception {
+            mDatosPartidasPandientes.actualizarNombrePartida(mIdPartida, mNuevoNombre);
+            return null;
+        }
+
+        @Override
+        protected void onTaskFailture(Exception e) {
+            mViewListaPartidas.alert(e.getMessage());
+        }
+
+        @Override
+        protected void onTaskSuccess(Void aVoid) {
+            new TascaInicializarVista().execute();
+        }
+    }
+
+    private class TascaRechazarPartida extends ExceptionHandlingAsyncTask<Void, Void, Void> {
+        private final int mIdPartida;
+
+        public TascaRechazarPartida(int idPartida) {
+            mIdPartida = idPartida;
+        }
+
+        @Override
+        protected Void executeTask(Void... params) throws Exception {
+            mDatosPartidasPandientes.rechazarPartida(mIdPartida);
+            return null;
+        }
+
+        @Override
+        protected void onTaskFailture(Exception e) {
+            mViewListaPartidas.alert(e.getMessage());
+        }
+
+        @Override
+        protected void onTaskSuccess(Void aVoid) {
+            new TascaInicializarVista().execute();
         }
     }
 }

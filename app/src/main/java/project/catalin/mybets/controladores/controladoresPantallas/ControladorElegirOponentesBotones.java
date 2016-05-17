@@ -2,12 +2,12 @@ package project.catalin.mybets.controladores.controladoresPantallas;
 
 import android.os.AsyncTask;
 
-import project.catalin.mybets.controladores.comunicaciónDatos.DataGestionPartidas;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewOponentes;
+import project.catalin.mybets.controladores.comunicacionDatos.DataGestionPartidas;
+import project.catalin.mybets.controladores.comunicacionVista.ViewOponentes;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.GestorEventosUtil;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.TipoEvento;
 import project.catalin.mybets.datos.GestorDataWebServices;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerElegirOponentesBotones;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerElegirOponentesBotones;
 
 /**
  * Created by Trabajo on 03/05/2016.

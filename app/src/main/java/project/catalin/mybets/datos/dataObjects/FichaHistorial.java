@@ -67,4 +67,8 @@ public class FichaHistorial {
     public String getColorCabecera() {
         return mColorFondo;
     }
+
+    public int getIdUsuario() {
+        return mPersona.getId();
+    }
 }

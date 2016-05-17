@@ -2,8 +2,8 @@ package project.catalin.mybets.controladores.controladoresPantallas;
 
 import android.os.AsyncTask;
 
-import project.catalin.mybets.controladores.comunicaciónDatos.DataIdentificación;
-import project.catalin.mybets.controladores.comunicaciónVista.ViewLoginForm;
+import project.catalin.mybets.controladores.comunicacionDatos.DataIdentificación;
+import project.catalin.mybets.controladores.comunicacionVista.ViewLoginForm;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.GestorEventosUtil;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.TipoEvento;
 import project.catalin.mybets.datos.GestorDataWebServices;
@@ -13,7 +13,7 @@ import project.catalin.mybets.datos.excepciones.EmailVacioException;
 import project.catalin.mybets.datos.excepciones.ErrorInternoException;
 import project.catalin.mybets.datos.excepciones.ErrorServerException;
 import project.catalin.mybets.datos.dataObjects.LoginData;
-import project.catalin.mybets.vistas.comunicaciónControlador.ControllerFormLogin;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerFormLogin;
 
 /**
  * Created by Catalin on 31/03/2016.
