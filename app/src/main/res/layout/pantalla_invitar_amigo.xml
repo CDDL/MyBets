@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="project.catalin.mybets.vistas.pantallas.invitarAmigo.PantallaInvitarAmigo">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/pantalla_invitar_amigo_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryMorado" />
+
+    <RelativeLayout
+        android:id="@+id/pantalla_invitar_amigo_boton_conectarme_facebook"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_below="@id/pantalla_invitar_amigo_toolbar"
+        android:background="@color/mybets_color_categoria_azul_oscuro">
+
+        <ImageView
+            android:id="@+id/pantalla_invitar_amigo_icon_facebook"
+            android:layout_width="12dp"
+            android:layout_height="27dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="27dp"
+            android:src="@drawable/mybets_icon_facebook" />
+
+        <View
+            android:id="@+id/pantalla_invitar_amigo_separador_facebook"
+            android:layout_width="2dp"
+            android:layout_height="37dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="19dp"
+            android:layout_toRightOf="@id/pantalla_invitar_amigo_icon_facebook"
+            android:background="@android:color/white" />
+
+        <TextView
+            android:id="@+id/pantalla_invitar_amigo_text_conectarse_facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="21dp"
+            android:layout_toRightOf="@id/pantalla_invitar_amigo_separador_facebook"
+            android:fontFamily="sans-serif"
+            android:text="@string/pantalla_invitar_amigo_text_contexctarse_facebook"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/pantalla_invitar_amigo_text_header"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pantalla_invitar_amigo_boton_conectarme_facebook"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="47dp"
+        android:text="A"
+        android:textColor="@color/mybets_color_juega_ya"
+        android:textSize="24sp" />
+
+
+    <TextView
+        android:id="@+id/pantalla_invitar_amigo_boton_aceptar"
+        style="@style/MyBetsBotonTextoAmarillo.redondo"
+        android:layout_width="184dp"
+        android:layout_height="46dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:text="@string/pantalla_invitar_amigo_text_boton_aceptar"
+        android:textSize="22sp"
+        android:textStyle="bold|italic"
+        android:visibility="gone"/>
+
+
+    <com.andraskindler.quickscroll.QuickScroll
+        android:id="@+id/pantalla_invitar_amigo_quickscroll"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_above="@id/pantalla_invitar_amigo_boton_aceptar"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/pantalla_invitar_amigo_boton_conectarme_facebook"
+        android:layout_marginBottom="31dp"
+        android:layout_marginTop="36dp" />
+
+    <ListView
+        android:id="@+id/pantalla_invitar_amigo_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/pantalla_invitar_amigo_boton_aceptar"
+        android:layout_below="@id/pantalla_invitar_amigo_boton_conectarme_facebook"
+        android:layout_marginBottom="31dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="36dp"
+        android:dividerHeight="16dp"
+        android:layout_toLeftOf="@id/pantalla_invitar_amigo_quickscroll"
+        android:layout_toRightOf="@id/pantalla_invitar_amigo_text_header" />
+</RelativeLayout>

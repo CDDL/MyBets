@@ -37,4 +37,5 @@
         <attr name="apuesta_equipo_local" format="integer" />
         <attr name="apuesta_equipo_visitante" format="integer" />
     </declare-styleable>
+
 </resources>

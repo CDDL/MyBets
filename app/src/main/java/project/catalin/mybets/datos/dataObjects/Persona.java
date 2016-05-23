@@ -11,7 +11,11 @@ public class Persona {
     private String mImage;
     private int mId;
     private int mPuntos;
+    private boolean mEstaEnSistema;
 
+    public Persona() {
+        mEstaEnSistema = true;
+    }
 
     public int getId() {
         return mId;
@@ -63,5 +67,17 @@ public class Persona {
 
     public void setPuntos(int puntos) {
         mPuntos = puntos;
+    }
+
+    public void setTelefono(String telefono) {
+        mTelefono = telefono;
+    }
+
+    public void setEstaEnSistema(boolean estaEnSistema) {
+        mEstaEnSistema = estaEnSistema;
+    }
+
+    public boolean estaEnElsistema() {
+        return mEstaEnSistema;
     }
 }

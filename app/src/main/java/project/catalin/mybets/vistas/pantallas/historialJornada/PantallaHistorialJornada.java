@@ -33,7 +33,7 @@ import project.catalin.mybets.datos.utils.DateUtils;
 import project.catalin.mybets.vistas.comunicacionControlador.ControllerDatosPartidaPasada;
 import project.catalin.mybets.vistas.pantallas.perfil.PantallaPerfilUsuario;
 import project.catalin.mybets.vistas.utils.AdapterRecargable;
-import project.catalin.mybets.vistas.utils.CustomPager;
+import project.catalin.mybets.vistas.utils.CustomPagerRecargable;
 
 /**
  * Created by CDD on 10/05/2016.
@@ -53,7 +53,7 @@ public class PantallaHistorialJornada extends AppCompatActivity implements ViewH
     private ControllerDatosPartidaPasada mControlador;
     private IconPageIndicator mTitlePager;
     private ProgressDialog mDialogLoadingPartidasPasadas;
-    private CustomPager<FichaHistorial> mPagerAdapter;
+    private CustomPagerRecargable<FichaHistorial> mPagerAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -181,10 +181,10 @@ public class PantallaHistorialJornada extends AppCompatActivity implements ViewH
         }
     }
 
-    private class DotPageAdapter extends CustomPager<FichaHistorial> {
+    private class DotPageAdapter extends CustomPagerRecargable<FichaHistorial> {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            ListView listView = (ListView) LayoutInflater.from(PantallaHistorialJornada.this).inflate(R.layout.itempager_lista, container, false);
+            ListView listView = (ListView) LayoutInflater.from(PantallaHistorialJornada.this).inflate(R.layout.itempager_lista_partidos, container, false);
             FichaHistorial fichaHistorial = getItemPosition(position);
             AdapterRecargable<Apuesta> mListAdapter;
             switch (mTipoPartida) {

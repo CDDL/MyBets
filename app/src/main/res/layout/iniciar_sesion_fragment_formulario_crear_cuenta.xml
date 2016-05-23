@@ -1,8 +1,8 @@
-<ScrollView android:id="@+id/fragment_formulario_registrarse"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:id="@+id/fragment_formulario_registrarse"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -11,46 +11,46 @@
 
         <EditText
             android:id="@+id/input_email"
-            android:layout_margin="5dp"
             style="@style/MyBetsEditText"
+            android:layout_margin="5dp"
             android:hint="@string/edittext_email_hint"
             android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/input_password"
-            android:layout_margin="5dp"
-            android:layout_below="@id/input_email"
             style="@style/MyBetsEditText"
+            android:layout_below="@id/input_email"
+            android:layout_margin="5dp"
             android:hint="@string/edittext_password_hint"
             android:inputType="textPassword" />
 
         <EditText
             android:id="@+id/input_nombre"
-            android:layout_margin="5dp"
-            android:layout_below="@id/input_password"
             style="@style/MyBetsEditText"
-            android:hint="Nombre y apellidos"/>
+            android:layout_below="@id/input_password"
+            android:layout_margin="5dp"
+            android:hint="Nombre y apellidos" />
 
         <EditText
             android:id="@+id/input_username"
-            android:layout_margin="5dp"
-            android:layout_below="@id/input_nombre"
             style="@style/MyBetsEditText"
-            android:hint="Alias"/>
+            android:layout_below="@id/input_nombre"
+            android:layout_margin="5dp"
+            android:hint="Alias" />
 
         <EditText
             android:id="@+id/input_telefono"
-            android:layout_margin="5dp"
-            android:layout_below="@id/input_username"
             style="@style/MyBetsEditText"
-            android:hint="Telefono"/>
+            android:layout_below="@id/input_username"
+            android:layout_margin="5dp"
+            android:hint="Telefono" />
 
         <Button
             android:id="@+id/boton_registro_enviar"
-            android:layout_below="@id/input_telefono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enviar"/>
+            android:layout_below="@id/input_telefono"
+            android:text="Enviar" />
 
     </RelativeLayout>
 </ScrollView>

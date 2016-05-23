@@ -1,19 +1,21 @@
-<RelativeLayout android:id="@+id/fragment_formulario_login"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_formulario_login"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".vistas.pantallas.iniciarSesion.fragments.IniciarSesionFragmentFormularioLogin">
 
-    <EditText android:id="@+id/input_email"
+    <EditText
+        android:id="@+id/input_email"
         style="@style/MyBetsEditText"
-        android:layout_marginTop="20dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:hint="@string/edittext_email_hint"
         android:inputType="textEmailAddress" />
 
-    <EditText android:id="@+id/input_password"
+    <EditText
+        android:id="@+id/input_password"
         style="@style/MyBetsEditText"
         android:layout_below="@id/input_email"
         android:layout_centerHorizontal="true"
@@ -21,18 +23,12 @@
         android:hint="@string/edittext_password_hint"
         android:inputType="textPassword" />
 
-    <Button android:id="@+id/boton_login"
+    <Button
+        android:id="@+id/boton_login"
+        style="@style/pantalla_identificacion_boton"
         android:layout_below="@id/input_password"
-        android:layout_width="@dimen/edittext_anchura"
-        android:layout_height="@dimen/edittext_altura"
-        android:background="@drawable/mybets_boton_login_transparente"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="log in"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textSize="19sp"
-        android:fontFamily="sans-serif"
-        android:onClick="clickButtonLogin"/>
+        android:text="@string/fragment_formulario_login_text_boton_log_in" />
 
 </RelativeLayout>

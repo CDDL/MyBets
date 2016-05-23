@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="project.catalin.mybets.vistas.pantallas.categorias.PantallaSubCategoria">
+    tools:context=".vistas.pantallas.categorias.PantallaSubCategorias"
+    android:background="@color/gris_claro">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/pantalla_subcategoria_toolbar"
@@ -11,12 +12,12 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/mybets_color_categoria_azul_oscuro" />
 
-    <com.viewpagerindicator.IconPageIndicator
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/pantalla_subcategoria_pageindicator"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
+        android:layout_height="30dp"
         android:layout_below="@id/pantalla_subcategoria_toolbar"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="11dp"
         android:layout_marginLeft="9dp"
         android:layout_marginTop="17dp" />
 
@@ -24,6 +25,8 @@
         android:id="@+id/pantalla_subcategoria_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/pantalla_subcategoria_pageindicator" />
+        android:layout_below="@id/pantalla_subcategoria_pageindicator"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp" />
 
 </RelativeLayout>

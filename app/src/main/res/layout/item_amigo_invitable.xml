@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/item_amigo_invitable_icon_imagen_placeholder"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/mybets_icon_personas" />
+
+    <TextView
+        android:id="@+id/item_amigo_invitable_text_nombre"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="12dp"
+        android:layout_toRightOf="@id/item_amigo_invitable_icon_imagen_placeholder"
+        android:text="Aaron Bennett"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/item_amigo_invitable_boton_mandar_mensaje_amigo"
+        android:layout_width="57dp"
+        android:layout_height="28dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="21dp"
+        android:src="@drawable/mybets_boton_mandar_mensaje_amigo"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/item_amigo_invitable_boton_añadir_amigo"
+        android:layout_width="57dp"
+        android:layout_height="28dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="21dp"
+        android:src="@drawable/mybets_boton_anadir_amigo"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

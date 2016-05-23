@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="project.catalin.mybets.vistas.pantallas.categorias.PantallaCategorias"
+    android:background="@color/gris_claro">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/pantalla_categoria_sin_subcategorias_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/holo_blue_dark"/>
+
+    <ListView
+        android:id="@+id/pantalla_categoria_sin_subcategorias_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/pantalla_categoria_sin_subcategorias_toolbar"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="15dp"
+        android:dividerHeight="8dp"/>
+</RelativeLayout>

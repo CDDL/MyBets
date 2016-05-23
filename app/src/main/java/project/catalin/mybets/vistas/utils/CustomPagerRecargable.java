@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.viewpagerindicator.IconPagerAdapter;
+import com.viewpagerindicator.PageIndicator;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -15,10 +16,10 @@ import project.catalin.mybets.R;
 /**
  * Created by CDD on 12/05/2016.
  */
-public abstract class CustomPager<Tipo> extends PagerAdapter implements IconPagerAdapter, ViewPager.OnPageChangeListener {
+public abstract class CustomPagerRecargable<Tipo> extends PagerAdapter implements IconPagerAdapter, ViewPager.OnPageChangeListener{
     List<Tipo> mListElementos;
 
-    public CustomPager() {
+    public CustomPagerRecargable() {
         mListElementos = new LinkedList<>();
     }
 

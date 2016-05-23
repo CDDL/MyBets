@@ -62,6 +62,7 @@ public class PantallaPerfilUsuario extends AppCompatActivity implements ViewHist
 
     private void inicializarArgs() {
         mIdUsuario = getIntent().getIntExtra(TAG_ID_USUARIO, SharedPreferencesUtils.getMiId());
+        if(mIdUsuario != SharedPreferencesUtils.getMiId()) mBotonEditar.setVisibility(View.GONE);
     }
 
     private void inicializarBotones() {

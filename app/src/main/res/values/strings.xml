@@ -82,4 +82,13 @@
     <string name="ficha_clasificacion_format_bote">{0} puntos</string>
     <string name="item_categoria_icon_desc">Icono categoria</string>
     <string name="pantalla_categorias_text_titulo">Categorías</string>
+    <string name="pantalla_categoria_populares_titulo">Populares</string>
+    <string name="pantalla_partidas_hoy_text_titulo">Hoy</string>
+    <string name="fragment_muro_formato_text_1">{0} acaba de conseguir</string>
+    <string name="fragment_muro_format_text_2">"+{0} puntos en "</string>
+    <string name="fragment_muro_titulo">MURO</string>
+    <string name="pantalla_invitar_amigo_text_contexctarse_facebook">Conectarme a Facebook</string>
+    <string name="pantalla_invitar_amigo_text_boton_aceptar">Aceptar</string>
+    <string name="pantalla_configuracion_title">Configuración</string>
+    <string name="fragment_formulario_login_text_boton_log_in">Log in</string>
 </resources>

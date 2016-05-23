@@ -24,6 +24,7 @@ import project.catalin.mybets.vistas.pantallas.principal.fragments.FragmentConTi
 import project.catalin.mybets.vistas.pantallas.principal.fragments.PantallaPrincipalFragmentApuestas;
 import project.catalin.mybets.vistas.pantallas.principal.fragments.PantallaPrincipalFragmentListaAmigos;
 import project.catalin.mybets.vistas.pantallas.principal.fragments.PantallaPrincipalFragmentMisApuestas;
+import project.catalin.mybets.vistas.pantallas.principal.fragments.PantallaPrincipalFragmentMuro;
 
 public class PantallaPrincipal extends AppCompatActivity implements ViewPantallaPrincipalPantallas {
 
@@ -104,6 +105,7 @@ public class PantallaPrincipal extends AppCompatActivity implements ViewPantalla
             listaFragmentos = new LinkedList<>();
             listaFragmentos.add(new PantallaPrincipalFragmentApuestas());
             listaFragmentos.add(new PantallaPrincipalFragmentMisApuestas());
+            listaFragmentos.add(new PantallaPrincipalFragmentMuro());
             listaFragmentos.add(new PantallaPrincipalFragmentListaAmigos());
 
         }

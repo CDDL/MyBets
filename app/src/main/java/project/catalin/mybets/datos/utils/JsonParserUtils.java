@@ -15,6 +15,7 @@ import project.catalin.mybets.datos.dataObjects.Apuesta;
 import project.catalin.mybets.datos.dataObjects.Categoria;
 import project.catalin.mybets.datos.dataObjects.EntradaClasificacion;
 import project.catalin.mybets.datos.dataObjects.EntradaHistorial;
+import project.catalin.mybets.datos.dataObjects.EntradaMuro;
 import project.catalin.mybets.datos.dataObjects.Equipo;
 import project.catalin.mybets.datos.dataObjects.FichaClasificacion;
 import project.catalin.mybets.datos.dataObjects.FichaHistorial;
@@ -22,6 +23,7 @@ import project.catalin.mybets.datos.dataObjects.LoginData;
 import project.catalin.mybets.datos.dataObjects.Partida;
 import project.catalin.mybets.datos.dataObjects.Partido;
 import project.catalin.mybets.datos.dataObjects.Persona;
+import project.catalin.mybets.datos.dataObjects.Subcategoria;
 
 /**
  * Created by Demils on 23/03/2016.
@@ -32,11 +34,18 @@ public class JsonParserUtils {
         JSONObject jsonData = jsonResult.getJSONObject("data");
         Persona persona = new Persona();
 
-        try {persona.setId(jsonData.getInt("id"));} catch (Exception ignored) {}
+        try {
+            persona.setId(jsonData.getInt("id"));
+        } catch (Exception ignored) {
+        }
         persona.setNombre(jsonData.getString("name"));
         persona.setEmail(jsonData.getString("email"));
         persona.setUsername(jsonData.getString("username"));
-        try {persona.setImagen(jsonData.getString("imagen"));} catch (Exception ignored) {ignored.printStackTrace();}
+        try {
+            persona.setImagen(jsonData.getString("imagen"));
+        } catch (Exception ignored) {
+            ignored.printStackTrace();
+        }
 
         return persona;
     }
@@ -69,17 +78,18 @@ public class JsonParserUtils {
     public static List<Persona> jsonToPersonaList(JSONObject jsonObject) throws JSONException {
         List<Persona> listaPersonas = new LinkedList<>();
 
-        JSONArray listaPersonasJson = jsonObject.getJSONArray("data");
-        for (int i = 0; i < listaPersonasJson.length(); i++) {
-            JSONObject personaJson = listaPersonasJson.getJSONObject(i);
-
+        List<JsonWrapper> jsonListaPersonas = new JsonWrapper(jsonObject).getArray("data", null);
+        for (JsonWrapper jsonPersona:jsonListaPersonas) {
             Persona persona = new Persona();
-            persona.setId(personaJson.getInt("id"));
-            persona.setImagen(personaJson.getString("imagen"));
+            persona.setId(jsonPersona.getInt("id", jsonPersona.getInt("idusuario", -1)));
+            persona.setImagen(jsonPersona.getString("imagen", jsonPersona.getString("urlicono", "")));
+            persona.setUsername(jsonPersona.getString("username", ""));
+            persona.setNombre(jsonPersona.getString("name", jsonPersona.getString("nombre", "")));
+            persona.setTelefono(jsonPersona.getString("phone", jsonPersona.getString("telefono", "")));
+            persona.setEmail(jsonPersona.getString("email", ""));
 
             listaPersonas.add(persona);
         }
-
 
         return listaPersonas;
     }
@@ -96,7 +106,7 @@ public class JsonParserUtils {
         List<JsonWrapper> jsonArray = jsonWrapper.getArray("data", null);
         List<Partida> partidas = new LinkedList<>();
 
-        for (JsonWrapper jsonDataObject:jsonArray) {
+        for (JsonWrapper jsonDataObject : jsonArray) {
             Partida partida = new Partida();
             partida.setId(jsonDataObject.getInt("idpartida", -1));
             partida.setNombrePartida(jsonDataObject.getString("nombrepartida", "Sin nombre"));
@@ -104,9 +114,9 @@ public class JsonParserUtils {
             partida.setBote(jsonDataObject.getInt("bote", -1));
             partida.setNumPersonas(jsonDataObject.getInt("numpersonas", -1));
             partida.setUrlIcono(jsonDataObject.getString("urlicono", ""));
-            partida.setColorIcono(jsonDataObject.getString("coloricono", "#3F51B5"));
+            partida.setColorIcono(jsonDataObject.getString("coloricono", jsonWrapper.getString("color", "#111111")));
             partida.setTipoPartida(jsonDataObject.getInt("tipopartida", -1));
-            partida.setEstadoPartida(jsonDataObject.getInt("estadoapuesta", -1));
+            partida.setEstadoPartida(jsonDataObject.getInt("estadoapuesta", Partida.ESTADO_JUEGA_YA));
 
             partidas.add(partida);
         }
@@ -192,7 +202,7 @@ public class JsonParserUtils {
             historialApuestas.setFecha(new DateUtils().from(partidaWrapper.getString("fecha", "11/11/1111 11:11")).toDate("dd/MM/yyyy HH:mm"));
 
             List<JsonWrapper> apuestasVectorWrapper = dataWrapper.getArray("apuestas", Collections.<JsonWrapper>emptyList());
-            for(JsonWrapper apuestaWrapper: apuestasVectorWrapper){
+            for (JsonWrapper apuestaWrapper : apuestasVectorWrapper) {
                 Apuesta apuesta = new Apuesta();
                 apuesta.setNombreLocal(apuestaWrapper.getString("nombrelocal", ""));
                 apuesta.setUrlImagenLocal(apuestaWrapper.getString("urllocal", ""));
@@ -250,6 +260,68 @@ public class JsonParserUtils {
         }
 
         return categoriaList;
+    }
+
+    public static List<Subcategoria> jsonToCategoriasList(JSONObject response) {
+        JsonWrapper wrapper = new JsonWrapper(response);
+        List<JsonWrapper> jsonListSubcategorias = wrapper.getArray("subcategorias", null);
+        List<Subcategoria> listaSubcategorias = new LinkedList<>();
+        for (JsonWrapper jsonCategoria : jsonListSubcategorias) {
+            Subcategoria subcategoria = new Subcategoria();
+            subcategoria.setId(jsonCategoria.getInt("idsubcategoria", 0));
+            subcategoria.setNombreSubcategoria(jsonCategoria.getString("nombresubcategoria", ""));
+
+            listaSubcategorias.add(subcategoria);
+        }
+
+        return listaSubcategorias;
+    }
+
+    public static Subcategoria jsonToCategoria(JSONObject response) throws ParseException {
+        JsonWrapper wrapper = new JsonWrapper(response);
+        List<JsonWrapper> jsonListaPartidas = wrapper.getArray("data", null);
+
+        Subcategoria subcategoria = new Subcategoria();
+
+        List<Partida> listaPartidas = new LinkedList<>();
+        for (JsonWrapper jsonPartida : jsonListaPartidas) {
+            Partida partida = new Partida();
+            partida.setId(jsonPartida.getInt("idpartida", 0));
+            partida.setNombrePartida(jsonPartida.getString("nombrepartida", ""));
+            partida.setFecha(new DateUtils().from(jsonPartida.getString("fecha", "11/11/2011 11/11")).toDate());
+            partida.setBote(jsonPartida.getInt("bote", 0));
+            partida.setNumPersonas(jsonPartida.getInt("numpersonas", 0));
+            partida.setUrlIcono(jsonPartida.getString("urlicono", ""));
+            partida.setColorIcono(jsonPartida.getString("coloricono", wrapper.getString("color", "")));
+            partida.setTipoPartida(jsonPartida.getInt("tipopartida", Partida.TIPO_PARTIDA_1x2));
+
+            listaPartidas.add(partida);
+        }
+        subcategoria.setListPartidas(listaPartidas);
+
+        return subcategoria;
+    }
+
+    public static List<EntradaMuro> jsonToEntradasMuroList(JSONObject response) throws ParseException {
+        JsonWrapper wrapper = new JsonWrapper(response);
+        List<EntradaMuro> listaEntradasMuro = new LinkedList<>();
+        List<JsonWrapper> jsonListEntradasMuro = wrapper.getArray("data", null);
+
+        for (JsonWrapper jsonEntradaMuro : jsonListEntradasMuro) {
+            EntradaMuro entrada = new EntradaMuro();
+            entrada.setPuntosGanados(jsonEntradaMuro.getInt("puntosganados", 0));
+            entrada.setNombreJuego(jsonEntradaMuro.getString("nombrejuego", ""));
+            entrada.setFecha(new DateUtils().from(jsonEntradaMuro.getString("fecha", "11/11/2011 11:11")).toDate());
+
+            Persona persona = new Persona();
+            persona.setNombre(jsonEntradaMuro.getString("nombreamigo", ""));
+            persona.setImagen(jsonEntradaMuro.getString("urlfoto", ""));
+
+            entrada.setPersona(persona);
+            listaEntradasMuro.add(entrada);
+        }
+
+        return listaEntradasMuro;
     }
 }
 

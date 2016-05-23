@@ -61,6 +61,11 @@ public class GestorDataWebServices implements DataIdentificación, DataRegister,
     public static final String URL_PETICIÓN_RECHAZAR_PARTIDA = "";
     public static final String URL_PETICIÓN_GET_CLASIFICACION_PARTIDA = "http://mybetstest.cuatroochenta.com/services/response_consultar_clasificacion.json";
     public static final String URL_PETICIÓN_GET_LISTA_CATEGORIAS = "http://mybetstest.cuatroochenta.com/services/response_list_categorias.json";
+    public static final String URL_PETICIÓN_GET_DATOS_SUBCATEGORIA = "http://mybetstest.cuatroochenta.com/services/response_get_data_subcategoria.json";
+    public static final String URL_PETICIÓN_GET_LISTA_SUBCATEGORIAS = "http://mybetstest.cuatroochenta.com/services/response_consultar_partidas_categoria.json";
+    public static final String URL_PETICIÓN_GET_PARTIDAS_HOY = URL_PETICIÓN_GET_PARTIDAS_POPULARES;
+    public static final String URL_PETICIÓN_GET_DATOS_MURO = "http://mybetstest.cuatroochenta.com/services/response_consultar_muro.json";
+    public static final String URL_PETICIÓN_GET_AMIGOS_INVITABLES = "http://mybetstest.cuatroochenta.com/services/response_amigos_invitables.json";
 
     @Override
     public int registrarUsuario(Persona dataUsuario, String password) throws EmailMalFormadoException, UsuarioRepetidoException, TelefonoMalFormadoException, EmailVacioException, NombreVacioException, ErrorInternoException, ErrorServerException {

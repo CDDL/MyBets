@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_below="@id/item_list_header_fecha"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="11dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/item_muro_entrada_icon_foto_placeholder"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/mybets_icon_personas" />
+
+        <TextView
+            android:id="@+id/item_muro_entrada_text_nombre_usuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="29dp"
+            android:layout_toRightOf="@id/item_muro_entrada_icon_foto_placeholder"
+            android:fontFamily="sans-serif"
+            android:text="Aaron"
+            android:textColor="@color/gris"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/item_muro_entrada_text_puntos_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_muro_entrada_text_nombre_usuario"
+            android:layout_marginLeft="29dp"
+            android:layout_marginTop="12dp"
+            android:layout_toRightOf="@id/item_muro_entrada_icon_foto_placeholder"
+            android:fontFamily="sans-serif-light"
+            android:text="Aaron acaba de conseguir"
+            android:textColor="@color/gris"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/item_muro_entrada_text_puntos_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_muro_entrada_text_puntos_1"
+            android:layout_marginLeft="29dp"
+            android:layout_toRightOf="@id/item_muro_entrada_icon_foto_placeholder"
+            android:fontFamily="sans-serif-light"
+            android:text="+2 puntos en"
+            android:textColor="@color/gris"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/item_muro_entrada_text_nombre_partida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_muro_entrada_text_puntos_1"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/item_muro_entrada_text_puntos_2"
+            android:text="Barcelona/Ath.Bilbao"
+            android:textColor="@color/gris"
+            android:textSize="14sp"/>
+
+    </RelativeLayout>
+</RelativeLayout>

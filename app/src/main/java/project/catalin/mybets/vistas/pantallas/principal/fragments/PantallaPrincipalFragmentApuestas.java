@@ -27,7 +27,7 @@ import project.catalin.mybets.vistas.utils.customAndroidComponents.PartidaView;
 public class PantallaPrincipalFragmentApuestas extends FragmentConTitulo implements ViewListaPartidas {
 
 
-    private AdaptadorEntradasLista mAdaptadorContactos;
+    private AdapterPartidas mAdaptadorContactos;
     private ControllerPartidasPopulares mController;
     private ProgressDialog mDialogLoadingPartidas;
 
@@ -42,9 +42,9 @@ public class PantallaPrincipalFragmentApuestas extends FragmentConTitulo impleme
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.pantalla_principal_fragment_apuestas, container, false);
 
-        mAdaptadorContactos = new AdaptadorEntradasLista();
+        mAdaptadorContactos = new AdapterPartidas();
         mController = new ControladorApuestas(this);
-        mController.getPartidasPopulares();
+        mController.inicializarVista();
 
         ListView mListaElementos = (ListView) layout.findViewById(R.id.lista_apuestas);
         mListaElementos.setAdapter(mAdaptadorContactos);
@@ -73,7 +73,7 @@ public class PantallaPrincipalFragmentApuestas extends FragmentConTitulo impleme
         mAdaptadorContactos.recargarDatos(partidas);
     }
 
-    public class AdaptadorEntradasLista extends AdapterRecargable<Partida> {
+    public class AdapterPartidas extends AdapterRecargable<Partida> {
 
         @Override
         public long getItemId(int position) {

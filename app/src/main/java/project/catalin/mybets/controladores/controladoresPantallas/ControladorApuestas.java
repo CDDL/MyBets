@@ -25,7 +25,7 @@ public class ControladorApuestas implements ControllerPartidasPopulares {
     }
 
     @Override
-    public void getPartidasPopulares() {
+    public void inicializarVista() {
         new TascaGetPartidas().execute();
     }
 

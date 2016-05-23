@@ -1,8 +1,6 @@
 package project.catalin.mybets.vistas.pantallas.categorias;
 
 import android.app.ProgressDialog;
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -40,7 +38,7 @@ public class PantallaCategorias extends AppCompatActivity implements ViewCategor
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pantalla_categorias);
+        setContentView(R.layout.pantalla_categorias_lista);
 
         inicializarComponentes();
         inicializarToolbar();

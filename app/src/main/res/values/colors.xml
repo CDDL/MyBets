@@ -14,7 +14,7 @@
     <color name="colorAccentMorado">#FFFFFF</color>
     <color name="colorTextoAzul">#7986CB</color>
     <color name="gris">#757575</color>
-    <color name="blanco_transparente">#FFFFFF33</color>
+    <color name="blanco_transparente">#ffff33</color>
     <color name="colorFondoTextoClickable">#44FFFFFF</color>
     <color name="colorFondoTextoClickableGris">#11000000</color>
 
@@ -55,12 +55,14 @@
     <color name="mybets_color_checkbox">#F9AB25</color>
     <color name="gris_claro">#EEEEEE</color>
     <color name="gris_claro_peronotanto">#E0E0E0</color>
-    <color name="azul_claro">#03A9F4</color>
+    <color name="azul_claro">#03a9f4</color>
     <color name="gris_azul">#455A64</color>
     <color name="gris_mas_claro">#F2F2F2</color>
     <color name="gris_claro_oscurito">#999999</color>
     <color name="mybets_color_blanco_transparente" >#CCF2F2F2</color>
     <color name="gris_gris">#808080</color>
+    <color name="gris_mas_claro_peronotanto">#F5F5F5</color>
+    <color name="gris_oscuro_pasta">#B3B3B3</color>
 
 
 </resources>
