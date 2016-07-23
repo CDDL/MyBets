@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_below="@id/pantalla_invitar_amigo_toolbar"
-        android:background="@color/mybets_color_categoria_azul_oscuro">
+        android:background="@color/azul_oscuro">
 
         <ImageView
             android:id="@+id/pantalla_invitar_amigo_icon_facebook"

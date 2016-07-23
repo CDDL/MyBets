@@ -8,9 +8,9 @@ public interface ViewLoginForm {
 
     String getPassword();
 
-    void campoContraseñaErroneo(String s);
+    void setEmailError(String s);
 
-    void campoEmailErroneo(String s);
+    void alert(String message);
 
-    void mensaje(String message);
+    void abrirPantallaPrincipal();
 }

@@ -3,7 +3,9 @@ package project.catalin.mybets.vistas.pantallas.principal.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,7 @@ import project.catalin.mybets.controladores.comunicacionVista.ViewListaAmigos;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorAmigos;
 import project.catalin.mybets.datos.dataObjects.Persona;
 import project.catalin.mybets.vistas.comunicacionControlador.ControllerListaAmigos;
+import project.catalin.mybets.vistas.pantallas.invitarAmigo.PantallaInvitarAmigo;
 import project.catalin.mybets.vistas.utils.AdapterRecargable;
 
 /**
@@ -34,6 +37,7 @@ public class PantallaPrincipalFragmentListaAmigos extends FragmentConTitulo impl
     private ControllerListaAmigos mControladorMisAmigos;
     private ListView mListaElementos;
     private ProgressDialog mDialogLoadingPartidas;
+    private FloatingActionButton mBotonNuevoAmigo;
 
     public PantallaPrincipalFragmentListaAmigos() {
         super();
@@ -45,14 +49,36 @@ public class PantallaPrincipalFragmentListaAmigos extends FragmentConTitulo impl
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.pantalla_principal_fragment_mis_amigos, container, false);
 
-        mControladorMisAmigos = new ControladorAmigos(this);
-        mAdaptadorContactos = new AdaptadorPersonas();
-        mControladorMisAmigos.getContactos();
-
-        mListaElementos = (ListView) layout.findViewById(R.id.lista_contactos);
-        mListaElementos.setAdapter(mAdaptadorContactos);
+        inicializarComponentes(layout);
+        inicializarAdapter();
+        inicializarBotones();
+        inicializarControlador();
 
         return layout;
+    }
+
+    private void inicializarBotones() {
+        mBotonNuevoAmigo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), PantallaInvitarAmigo.class));
+            }
+        });
+    }
+
+    private void inicializarControlador() {
+        mControladorMisAmigos = new ControladorAmigos(this);
+        mControladorMisAmigos.inicializarVista();
+    }
+
+    private void inicializarAdapter() {
+        mAdaptadorContactos = new AdaptadorPersonas();
+        mListaElementos.setAdapter(mAdaptadorContactos);
+    }
+
+    private void inicializarComponentes(View layout) {
+        mListaElementos = (ListView) layout.findViewById(R.id.lista_contactos);
+        mBotonNuevoAmigo = (FloatingActionButton) layout.findViewById(R.id.fab);
     }
 
     @Override

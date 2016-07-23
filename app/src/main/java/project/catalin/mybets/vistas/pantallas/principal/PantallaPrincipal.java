@@ -12,12 +12,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.json.JSONException;
+
 import java.util.LinkedList;
 import java.util.List;
 
 import project.catalin.mybets.R;
 import project.catalin.mybets.controladores.comunicacionVista.ViewPantallaPrincipalPantallas;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorPantallaPrincipalPantallas;
+import project.catalin.mybets.datos.utils.SharedPreferencesUtils;
 import project.catalin.mybets.vistas.pantallas.iniciarSesion.IniciarSesionPantallaPrincipal;
 import project.catalin.mybets.vistas.pantallas.perfil.PantallaPerfilUsuario;
 import project.catalin.mybets.vistas.pantallas.principal.fragments.FragmentConTitulo;
@@ -46,7 +49,7 @@ public class PantallaPrincipal extends AppCompatActivity implements ViewPantalla
         inicializarControladores();
     }
 
-    private void inicializarControladores() {
+    private void inicializarControladores()  {
         mControllerPantallas = new ControladorPantallaPrincipalPantallas(this);
     }
 
@@ -81,10 +84,13 @@ public class PantallaPrincipal extends AppCompatActivity implements ViewPantalla
             case R.id.mybets_action_configuracion:
                 break;
             case R.id.mybets_action_perfil:
-                startActivity(new Intent(this, PantallaPerfilUsuario.class));
+                Bundle args = new Bundle();
+                args.putInt(PantallaPerfilUsuario.TAG_ID_USUARIO, SharedPreferencesUtils.getMiId());
+                startActivity(new Intent(this, PantallaPerfilUsuario.class).putExtras(args));
                 break;
             case R.id.mybets_action_cerrar_sesion:
                 startActivity(new Intent(this, IniciarSesionPantallaPrincipal.class));
+                SharedPreferencesUtils.logOut();
                 finish();
                 break;
         }

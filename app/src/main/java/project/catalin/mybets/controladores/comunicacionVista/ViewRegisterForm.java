@@ -13,4 +13,18 @@ public interface ViewRegisterForm {
     String getNombre();
 
     String getEmail();
+
+    void errorEmail(String mensaje);
+
+    void errorPassword(String mensaje);
+
+    void errorComprobacionPassword(String mensaje);
+
+    String getComprobacionPassword();
+
+    void errorTelefono(String mensaje);
+
+    void alert(String message);
+
+    void abrirPantallaPrincipal();
 }

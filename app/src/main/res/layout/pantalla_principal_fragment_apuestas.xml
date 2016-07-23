@@ -5,78 +5,73 @@
     android:background="@color/mybets_color_apuestas_fondo"
     tools:context=".vistas.pantallas.principal.fragments.PantallaPrincipalFragmentApuestas">
 
-    <RadioGroup
-        android:id="@+id/apuesta_botones_navegación"
+    <LinearLayout
+        android:id="@+id/pantalla_principal_fragment_apuestas_botones_navegación"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:checkedButton="@+id/apuesta_boton_futbol"
         android:gravity="center"
         android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/apuesta_boton_categoria"
-            style="@style/MyBetsBotonCategoriaToggle"
+        <Button
+            android:id="@+id/pantalla_principal_fragment_apuestas_boton_categoria"
+            style="@style/MyBetsBotonCategoria.azul_claro"
             android:text="@string/boton_categorias_text" />
 
-        <RadioButton
-            android:id="@+id/apuesta_boton_populares"
-            style="@style/MyBetsBotonCategoriaToggle"
+        <Button
+            android:id="@+id/pantalla_principal_fragment_apuestas_boton_populares"
+            style="@style/MyBetsBotonCategoria.azul_claro"
             android:layout_marginLeft="20dp"
             android:text="@string/boton_populares_text" />
 
-        <RadioButton
-            android:id="@+id/apuesta_boton_futbol"
-            style="@style/MyBetsBotonCategoriaToggle"
+        <Button
+            android:id="@+id/pantalla_principal_fragment_apuestas_boton_futbol"
+            style="@style/MyBetsBotonCategoria.azul_oscuro"
             android:layout_marginLeft="20dp"
             android:text="@string/boton_futbol_text" />
 
-    </RadioGroup>
+    </LinearLayout>
 
 
     <ImageView
-        android:id="@+id/apuesta_imagen_liga"
+        android:id="@+id/pantalla_principal_fragment_apuestas_icon_imagen_liga"
         android:layout_width="match_parent"
         android:layout_height="142dp"
-        android:layout_below="@id/apuesta_botones_navegación"
+        android:layout_below="@id/pantalla_principal_fragment_apuestas_botones_navegación"
+        android:contentDescription="@string/pantalla_principal_fragment_apuestas_icon_cabecera_desc"
         android:scaleType="centerCrop"
         android:src="@drawable/mybets_imagen_laliga" />
 
-    <RelativeLayout
+
+    <TextView
+        android:id="@+id/pantalla_principal_fragment_apuestas_text_hoy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/apuesta_imagen_liga">
+        android:layout_below="@id/pantalla_principal_fragment_apuestas_icon_imagen_liga"
+        android:layout_margin="15dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/text_apuestas_hoy"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/apuesta_text_hoy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/text_apuestas_hoy"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+    <TextView
+        android:id="@+id/pantalla_principal_fragment_apuestas_boton_mas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/pantalla_principal_fragment_apuestas_icon_imagen_liga"
+        android:layout_margin="15dp"
+        android:background="@drawable/mybets_fondo_texto_clickable"
+        android:fontFamily="sans-serif"
+        android:text="@string/text_apuestas_mas"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="14sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_margin="15dp"
-            android:background="@drawable/mybets_fondo_texto_clickable"
-            android:fontFamily="sans-serif"
-            android:text="@string/text_apuestas_mas"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textSize="14sp" />
-
-        <ListView
-            android:id="@+id/lista_apuestas"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/apuesta_text_hoy"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:dividerHeight="10dp" />
-
-    </RelativeLayout>
-
-
+    <ListView
+        android:id="@+id/pantalla_principal_fragment_apuestas_apuestas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/pantalla_principal_fragment_apuestas_text_hoy"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:dividerHeight="10dp" />
 </RelativeLayout>

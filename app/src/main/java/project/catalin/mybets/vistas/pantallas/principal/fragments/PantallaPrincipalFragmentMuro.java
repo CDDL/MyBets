@@ -26,7 +26,6 @@ import project.catalin.mybets.R;
 import project.catalin.mybets.controladores.comunicacionVista.ViewMuro;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorMuro;
 import project.catalin.mybets.datos.dataObjects.EntradaMuro;
-import project.catalin.mybets.datos.dataObjects.Partida;
 import project.catalin.mybets.datos.dataObjects.Persona;
 import project.catalin.mybets.vistas.comunicacionControlador.ControllerMuro;
 import project.catalin.mybets.vistas.utils.AdapterRecargable;
@@ -55,12 +54,12 @@ public class PantallaPrincipalFragmentMuro extends FragmentConTitulo implements 
 
         inicializarComponentes(layout);
         inicializarAdapter();
-        inicializarController();
+        inicializarControlador();
 
         return layout;
     }
 
-    private void inicializarController() {
+    private void inicializarControlador() {
         mControllerMuro = new ControladorMuro(this);
         mControllerMuro.inicializarVista();
     }

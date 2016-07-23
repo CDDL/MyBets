@@ -39,7 +39,9 @@ public class JsonParserUtilsTest {
     
     @Test
     public void loginToJsonTest() throws JSONException {
-        LoginData loginData = new LoginData("nombre","pass");
+        LoginData loginData = new LoginData();
+        loginData.setEmail("nombre");
+        loginData.setPassword("pass");
         JSONObject jsonLoginData = JsonParserUtils.loginToJson(loginData);
 
         JSONObject requestData = jsonLoginData.getJSONObject("request");

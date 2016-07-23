@@ -8,7 +8,7 @@ public class Categoria {
     private String mUrlIcono;
     private String mNombre;
 
-    public int getid() {
+    public int getId() {
         return mId;
     }
 

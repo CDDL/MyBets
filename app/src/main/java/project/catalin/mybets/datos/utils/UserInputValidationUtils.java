@@ -33,4 +33,12 @@ public class UserInputValidationUtils {
     public static void validarContraseña(String contraseña) throws ContraseñaVaciaException {
         if(contraseña == null || contraseña.isEmpty()) throw new ContraseñaVaciaException();
     }
+
+    public static boolean isEmailValido(String email) {
+        return Pattern.compile(EMAIL_PATTERN).matcher(email).matches();
+    }
+
+    public static boolean isTelefonoValido(String telefono) {
+        return Pattern.compile(PHONE_PATTERN).matcher(telefono).matches();
+    }
 }

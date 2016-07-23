@@ -7,12 +7,12 @@ import project.catalin.mybets.datos.dataObjects.Partida;
 /**
  * Created by CDD on 19/05/2016.
  */
-public interface ViewPantallaPartidasHoy {
+public interface ViewListaPartidasPopulares {
     void showLoadingPartidas();
 
     void dismissLoadingPartidas();
 
     void alert(String message);
 
-    void setData(List<Partida> partidas);
+    void setListaPartidasPopulares(List<Partida> partidas);
 }

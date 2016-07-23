@@ -3,22 +3,21 @@ package project.catalin.mybets.controladores.controladoresPantallas;
 import java.util.List;
 
 import project.catalin.mybets.controladores.comunicacionDatos.DataPartidasPopulares;
-import project.catalin.mybets.controladores.comunicacionVista.ViewPantallaPartidasPopulares;
+import project.catalin.mybets.controladores.comunicacionVista.ViewListaPartidasPopulares;
 import project.catalin.mybets.controladores.utils.ExceptionHandlingAsyncTask;
 import project.catalin.mybets.datos.dataObjects.Partida;
 import project.catalin.mybets.datos.datosWebService.DatosPartidasPopulares;
 import project.catalin.mybets.vistas.comunicacionControlador.ControllerPartidasPopulares;
-import project.catalin.mybets.vistas.pantallas.categorias.PantallaPopulares;
 
 /**
  * Created by CDD on 19/05/2016.
  */
 public class ControladorPartidasPopulares implements ControllerPartidasPopulares {
-    private final ViewPantallaPartidasPopulares mViewPantallaPartidasPopulares;
+    private final ViewListaPartidasPopulares mViewListaPartidasPopulares;
     private DataPartidasPopulares mDataPartidasPopulares;
 
-    public ControladorPartidasPopulares(ViewPantallaPartidasPopulares pantallaPopulares) {
-        mViewPantallaPartidasPopulares = pantallaPopulares;
+    public ControladorPartidasPopulares(ViewListaPartidasPopulares pantallaPopulares) {
+        mViewListaPartidasPopulares = pantallaPopulares;
         mDataPartidasPopulares = new DatosPartidasPopulares();
     }
 
@@ -30,7 +29,7 @@ public class ControladorPartidasPopulares implements ControllerPartidasPopulares
     private class TascaInicializarVistaPartidasPopulares extends ExceptionHandlingAsyncTask<Void, Void, List<Partida>>{
         @Override
         protected void onPreExecute() {
-            mViewPantallaPartidasPopulares.showLoadingPartidas();
+            mViewListaPartidasPopulares.showLoadingPartidas();
         }
 
         @Override
@@ -40,14 +39,14 @@ public class ControladorPartidasPopulares implements ControllerPartidasPopulares
 
         @Override
         protected void onTaskFailture(Exception e) {
-            mViewPantallaPartidasPopulares.dismissLoadingPartidas();
-            mViewPantallaPartidasPopulares.alert(e.getMessage());
+            mViewListaPartidasPopulares.dismissLoadingPartidas();
+            mViewListaPartidasPopulares.alert(e.getMessage());
         }
 
         @Override
         protected void onTaskSuccess(List<Partida> partidas) {
-            mViewPantallaPartidasPopulares.setData(partidas);
-            mViewPantallaPartidasPopulares.dismissLoadingPartidas();
+            mViewListaPartidasPopulares.setListaPartidasPopulares(partidas);
+            mViewListaPartidasPopulares.dismissLoadingPartidas();
         }
     }
 }

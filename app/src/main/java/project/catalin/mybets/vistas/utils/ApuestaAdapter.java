@@ -24,8 +24,8 @@ public abstract class ApuestaAdapter extends AdapterRecargable<Partido> {
     }
 
     public List<Integer> getApuestas() {
-        ArrayList<Integer> listaResult = new ArrayList<>(mApuestas.size());
-        Collections.fill(listaResult, null);
+        ArrayList<Integer> listaResult = new ArrayList<>();
+        for (int i = 0; i < mApuestas.size(); i++) listaResult.add(null);
 
         for (Map.Entry<Integer, Integer> apuesta : mApuestas.entrySet())
             listaResult.set(apuesta.getKey(), apuesta.getValue());

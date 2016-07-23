@@ -6,7 +6,7 @@
     tools:context=".vistas.pantallas.iniciarSesion.fragments.IniciarSesionFragmentFormularioLogin">
 
     <EditText
-        android:id="@+id/input_email"
+        android:id="@+id/iniciar_sesion_fragment_formulario_registrarse_input_email"
         style="@style/MyBetsEditText"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -15,9 +15,9 @@
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/input_password"
+        android:id="@+id/iniciar_sesion_fragment_formulario_registrarse_input_contrasena"
         style="@style/MyBetsEditText"
-        android:layout_below="@id/input_email"
+        android:layout_below="@id/iniciar_sesion_fragment_formulario_registrarse_input_email"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:hint="@string/edittext_password_hint"
@@ -26,7 +26,7 @@
     <Button
         android:id="@+id/boton_login"
         style="@style/pantalla_identificacion_boton"
-        android:layout_below="@id/input_password"
+        android:layout_below="@id/iniciar_sesion_fragment_formulario_registrarse_input_contrasena"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="@string/fragment_formulario_login_text_boton_log_in" />

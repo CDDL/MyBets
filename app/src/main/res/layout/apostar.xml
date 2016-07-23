@@ -14,7 +14,7 @@
             android:id="@+id/apostar_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/mybets_color_categoria_azul_oscuro" />
+            android:background="@color/azul_oscuro" />
 
         <TextView
             android:id="@+id/apostar_boton_enviar"
@@ -40,7 +40,7 @@
         android:textColor="@android:color/white"
         android:textSize="20sp" />
 
-    <LinearLayout
+    <project.catalin.mybets.vistas.utils.customAndroidComponents.TecladoView
         android:id="@+id/apostar_barra_apuestas"
         android:layout_width="match_parent"
         android:layout_height="62dp"
@@ -48,20 +48,7 @@
         android:background="@color/colorTextoAzul"
         android:gravity="center"
         android:orientation="horizontal"
-        android:visibility="gone">
-
-
-        <EditText
-            android:id="@+id/apostar_text_puntuacion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:hint="Puntuación"
-            android:inputType="number"
-            android:maxLength="4"
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
-    </LinearLayout>
+        android:visibility="gone"/>
 
     <ListView
         android:id="@+id/apostar_list_formulario_apuestas"

@@ -8,7 +8,6 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import project.catalin.mybets.R;
-import project.catalin.mybets.controladores.comunicacionVista.ViewPantallaPartidasPopulares;
+import project.catalin.mybets.controladores.comunicacionVista.ViewListaPartidasPopulares;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorPartidasPopulares;
 import project.catalin.mybets.datos.dataObjects.Partida;
 import project.catalin.mybets.vistas.comunicacionControlador.ControllerPartidasPopulares;
@@ -30,7 +29,7 @@ import project.catalin.mybets.vistas.utils.customAndroidComponents.PartidaView;
 /**
  * Created by CDD on 19/05/2016.
  */
-public class PantallaPopulares extends AppCompatActivity implements ViewPantallaPartidasPopulares {
+public class PantallaPopulares extends AppCompatActivity implements ViewListaPartidasPopulares {
 
     private Toolbar mToolbar;
     private ListView mListaPartidas;
@@ -119,7 +118,7 @@ public class PantallaPopulares extends AppCompatActivity implements ViewPantalla
     }
 
     @Override
-    public void setData(List<Partida> partidas) {
+    public void setListaPartidasPopulares(List<Partida> partidas) {
         mAdapterPartidas.recargarDatos(partidas);
     }
 
@@ -152,7 +151,6 @@ public class PantallaPopulares extends AppCompatActivity implements ViewPantalla
                     Bundle bundle = new Bundle();
                     bundle.putString(PantallaPrincipalFragmentDialogJuegaYa.TAG_COLOR, partida.getColorIcono());
                     bundle.putString(PantallaPrincipalFragmentDialogJuegaYa.TAG_TITULO, partida.getTitulo());
-                    bundle.putString(PantallaPrincipalFragmentDialogJuegaYa.TAG_ICON, partida.getUrlIcono());
                     bundle.putInt(PantallaPrincipalFragmentDialogJuegaYa.TAG_BOTE, partida.getBote());
                     bundle.putInt(PantallaApostar.TAG_TIPO_PARTIDA, partida.getTipoPartida());
                     bundle.putInt(PantallaApostar.TAG_ID_PARTIDA, partida.getIdPartida());

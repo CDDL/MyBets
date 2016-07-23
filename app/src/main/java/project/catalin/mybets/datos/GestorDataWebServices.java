@@ -19,6 +19,7 @@ import project.catalin.mybets.controladores.comunicacionDatos.DataContacts;
 import project.catalin.mybets.controladores.comunicacionDatos.DataPartidasPopulares;
 import project.catalin.mybets.controladores.comunicacionDatos.DataUsuario;
 import project.catalin.mybets.controladores.utils.comunicación.Constantes;
+import project.catalin.mybets.datos.dataObjects.FichaJornada;
 import project.catalin.mybets.datos.excepciones.ContraseñaVaciaException;
 import project.catalin.mybets.datos.excepciones.EmailMalFormadoException;
 import project.catalin.mybets.datos.excepciones.EmailVacioException;
@@ -44,28 +45,31 @@ import project.catalin.mybets.datos.utils.UserInputValidationUtils;
  */
 public class GestorDataWebServices implements DataIdentificación, DataRegister, DataContacts, DataPartidasPopulares, DataGestionPartidas, DataUsuario, DataJornada, DataHistorialUsuario, DataDatosPropios, DataPartidasPendientes, DataPartidasPasadas {
 
-    public static final String URL_PETICIÓN_REGISTER = "http://mybetstest.cuatroochenta.com/services/response_login_error.json";
-    public static final String URL_PETICIÓN_LOGIN = "http://www.mocky.io/v2/570f41e8250000661729c725";
+    private static final String URL_BASE = "http://mybetstest.cuatroochenta.com";
+    public static final String URL_PETICIÓN_REGISTER = URL_BASE + "/services/mybets_register";
+    public static final String URL_PETICIÓN_LOGIN = URL_BASE + "/services/mybets_login";
     public static final String URL_PETICIÓN_AÑADIR_AMIGO = "http://mybetstest.cuatroochenta.com/services/responsfasdfe_login_ok.json";
-    public static final String URL_PETICIÓN_GET_CONTACTOS = "http://mybetstest.cuatroochenta.com/services/response_amigos_ok.json";
-    public static final String URL_PETICIÓN_NUEVA_PARTIDA = "http://mybetstest.cuatroochenta.com/services/response_amigos_ok.json";
-    public static final String URL_PETICIÓN_GET_PARTIDAS_POPULARES = "http://mybetstest.cuatroochenta.com/services/response_partidas_populares.json";
-    public static final String URL_PETICIÓN_CONSLTAR_PERFIL_USUARIO = "http://mybetstest.cuatroochenta.com/services/response_consultar_perfil.json";
-    public static final String URL_PETICIÓN_GET_DATOS_JORNADA = "http://mybetstest.cuatroochenta.com/services/response_pedir_datos_jornada.json";
-    public static final String URL_PETICIÓN_CONSLTAR_DATOS_PROPIOS = "http://mybetstest.cuatroochenta.com/services/response_consultar_datos_usuario_ok.json";
-    public static final String URL_PETICIÓN_MODIFICAR_DATOS_PROPIOS = "http://mybetstest.cuatroochenta.com/services/response_consultar_datos_usuario_ok.json";
-    public static final String URL_PETICIÓN_GET_PARTIDAS_PENDIENDES = "http://mybetstest.cuatroochenta.com/services/response_partidas_pendientes_ok.json";
-    public static final String URL_PETICIÓN_GET_PARTIDAS_PASADAS = "http://mybetstest.cuatroochenta.com/services/response_partidas_pasadas_ok.json";
-    public static final String URL_PETICIÓN_HISTORIAL_PARTIDA = "http://mybetstest.cuatroochenta.com/services/response_historial.json";
-    public static final String URL_PETICIÓN_ACTUALIZAR_NOMBRE_PARTIDA = "";
-    public static final String URL_PETICIÓN_RECHAZAR_PARTIDA = "";
-    public static final String URL_PETICIÓN_GET_CLASIFICACION_PARTIDA = "http://mybetstest.cuatroochenta.com/services/response_consultar_clasificacion.json";
-    public static final String URL_PETICIÓN_GET_LISTA_CATEGORIAS = "http://mybetstest.cuatroochenta.com/services/response_list_categorias.json";
-    public static final String URL_PETICIÓN_GET_DATOS_SUBCATEGORIA = "http://mybetstest.cuatroochenta.com/services/response_get_data_subcategoria.json";
-    public static final String URL_PETICIÓN_GET_LISTA_SUBCATEGORIAS = "http://mybetstest.cuatroochenta.com/services/response_consultar_partidas_categoria.json";
+    public static final String URL_PETICIÓN_GET_CONTACTOS = URL_BASE + "/services/mybets_consult_contacts";
+    public static final String URL_PETICIÓN_NUEVA_PARTIDA = URL_BASE+ "/services/mybets_crear_partida";
+    public static final String URL_PETICIÓN_GET_PARTIDAS_POPULARES = URL_BASE + "/services/mybets_ultimas_partidas";
+    public static final String URL_PETICIÓN_CONSLTAR_PERFIL_USUARIO = URL_BASE + "/services/mybets_perfil_amigo";
+    public static final String URL_PETICIÓN_GET_DATOS_JORNADA = URL_BASE + "/services/mybets_pedir_datos_jornada";
+    public static final String URL_PETICIÓN_CONSLTAR_DATOS_PROPIOS = URL_BASE + "/services/mybets_consultar_datos_usuario";
+    public static final String URL_PETICIÓN_MODIFICAR_DATOS_PROPIOS = URL_BASE + "/services/mybets_modificar_datos_usuario";
+    public static final String URL_PETICIÓN_GET_PARTIDAS_PENDIENDES = URL_BASE + "/services/mybets_partidas_pendientes";
+    public static final String URL_PETICIÓN_GET_PARTIDAS_PASADAS = URL_BASE + "/services/mybets_partidas_pasadas";
+    public static final String URL_PETICIÓN_HISTORIAL_PARTIDA =  URL_BASE + "/services/mybets_apuestas_realizadas";
+    public static final String URL_PETICIÓN_ACTUALIZAR_NOMBRE_PARTIDA = URL_BASE+"/services/mybets_cambiar_nombre_partida";
+    public static final String URL_PETICIÓN_RECHAZAR_PARTIDA =URL_BASE + "/services/mybets_rechazar_partida";
+    public static final String URL_PETICIÓN_GET_CLASIFICACION_PARTIDA = URL_BASE + "/services/mybets_clasificacion";
+    public static final String URL_PETICIÓN_GET_LISTA_CATEGORIAS = URL_BASE + "/services/mybets_consult_categories";
+    public static final String URL_PETICIÓN_GET_DATOS_SUBCATEGORIA = URL_BASE + "/services/mybets_partidas_subcategoria";
+    public static final String URL_PETICIÓN_GET_LISTA_SUBCATEGORIAS = URL_BASE + "/services/mybets_partidas_categoria";
     public static final String URL_PETICIÓN_GET_PARTIDAS_HOY = URL_PETICIÓN_GET_PARTIDAS_POPULARES;
-    public static final String URL_PETICIÓN_GET_DATOS_MURO = "http://mybetstest.cuatroochenta.com/services/response_consultar_muro.json";
+    public static final String URL_PETICIÓN_GET_DATOS_MURO = URL_BASE + "/services/mybets_consultar_muro";
     public static final String URL_PETICIÓN_GET_AMIGOS_INVITABLES = "http://mybetstest.cuatroochenta.com/services/response_amigos_invitables.json";
+    public static final String URL_PETICIÓN_APOSTAR = URL_BASE + "/services/mybets_realizar_apuesta";
+    public static final String URL_PETICIÓN_ACEPTAR_PARTIDA = URL_BASE + "/services/mybets_aceptar_partida";
 
     @Override
     public int registrarUsuario(Persona dataUsuario, String password) throws EmailMalFormadoException, UsuarioRepetidoException, TelefonoMalFormadoException, EmailVacioException, NombreVacioException, ErrorInternoException, ErrorServerException {
@@ -87,9 +91,7 @@ public class GestorDataWebServices implements DataIdentificación, DataRegister,
     }
 
     @Override
-    public Persona validarIdentificación(LoginData dataLogin) throws EmailVacioException, EmailMalFormadoException, ContraseñaVaciaException, ErrorInternoException, ErrorServerException {
-        UserInputValidationUtils.validarEmail(dataLogin.getEmail());
-        UserInputValidationUtils.validarContraseña(dataLogin.getPassword());
+    public Persona validarIdentificación(LoginData dataLogin) throws ErrorInternoException, ErrorServerException {
 
 
         try {
@@ -97,7 +99,7 @@ public class GestorDataWebServices implements DataIdentificación, DataRegister,
             JSONObject dataRespuesta = JsonWebServiceUtils.petición(URL_PETICIÓN_LOGIN, dataRequest);
             if(dataRespuesta.getInt("code") == Constantes.RESPUESTA_WEBSERV_ERROR)
                 throw new ErrorServerException(dataRespuesta.getString("message"));
-            SharedPreferencesUtils.saveLogin(dataRequest);
+            SharedPreferencesUtils.guardarJsonLogin(dataRequest);
             return JsonParserUtils.jsonToPersona(dataRespuesta);
         } catch (JSONException | IOException e) {
             e.printStackTrace();
@@ -134,7 +136,7 @@ public class GestorDataWebServices implements DataIdentificación, DataRegister,
     public void crearPartida(int idJuego, List<Persona> contactos) throws ErrorServerException, ErrorInternoException {
         try{
             JSONObject requestData = SharedPreferencesUtils.getLoginJsonCopy();
-            requestData.getJSONObject("request").put("idjuego", idJuego);
+            requestData.getJSONObject("request").put("idpartida", idJuego);
             requestData.getJSONObject("request").put("idamigos", JsonParserUtils.contactsToJsonArray(contactos));
             JSONObject resultData = JsonWebServiceUtils.petición(URL_PETICIÓN_NUEVA_PARTIDA, requestData);
             if(resultData.getInt("code") == Constantes.RESPUESTA_WEBSERV_ERROR)
@@ -181,14 +183,14 @@ public class GestorDataWebServices implements DataIdentificación, DataRegister,
     }
 
     @Override
-    public List<Partido> getDatosJornada(int idPartida) throws ErrorServerException, ErrorInternoException {
+    public FichaJornada getDatosJornada(int idPartida) throws ErrorServerException, ErrorInternoException {
         try {
             JSONObject loginData = SharedPreferencesUtils.getLoginJsonCopy();
             loginData.getJSONObject("request").put("idpartida", idPartida);
             JSONObject resultData = JsonWebServiceUtils.petición(URL_PETICIÓN_GET_DATOS_JORNADA, loginData);
             if(resultData.getInt("code") == Constantes.RESPUESTA_WEBSERV_ERROR)
                 throw new ErrorServerException(resultData.getString("message"));
-            return JsonParserUtils.jsonToPartidosList(resultData);
+            return JsonParserUtils.jsonToFichaJornada(resultData);
         } catch (JSONException | IOException e) {
             throw new ErrorInternoException();
         }
@@ -242,7 +244,7 @@ public class GestorDataWebServices implements DataIdentificación, DataRegister,
             JSONObject loginData = SharedPreferencesUtils.getLoginJsonCopy();
             loginData.getJSONObject("request").put("username", persona.getUsername());
             loginData.getJSONObject("request").put("name", persona.getNombre());
-            loginData.getJSONObject("request").put("image", persona.getImagen());
+            if(!persona.getImagen().equals("")) loginData.getJSONObject("request").put("image", persona.getImagen());
             JSONObject resultData = JsonWebServiceUtils.petición(URL_PETICIÓN_MODIFICAR_DATOS_PROPIOS, loginData);
             if(resultData.getInt("code") == Constantes.RESPUESTA_WEBSERV_ERROR)
                 throw new ErrorServerException(resultData.getString("message"));

@@ -19,13 +19,13 @@ public abstract class JsonRequest<T> {
     public T sendRequest(String urlPeticion) throws ErrorServerException, ErrorInternoException {
         try {
             JSONObject response = JsonWebServiceUtils.petición(urlPeticion, CreateRequest());
-            //TODO debug
-//            if (response.getInt("code") != Constantes.RESPUESTA_WEBSERV_OK)
-//                throw new ErrorServerException(response.getString("message"));
+            if (response.getInt("code") != Constantes.RESPUESTA_WEBSERV_OK)
+                throw new ErrorServerException(response.getString("message"));
             return ParseResponse(response);
         } catch (ErrorServerException e) {
             throw e;
         } catch (Exception e) {
+            e.printStackTrace();
             throw new ErrorInternoException();
         }
     }

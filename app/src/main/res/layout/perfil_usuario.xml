@@ -32,8 +32,7 @@
         android:layout_height="112dp"
         android:layout_alignBottom="@id/perfil_usuario_fondo"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-30dp"
-        android:src="@drawable/mybets_icon_juega_ya_dialog_placeholder" />
+        android:layout_marginBottom="-30dp"/>
 
     <ImageView
         android:id="@+id/perfil_usuario_boton_editar"
@@ -54,7 +53,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
         android:fontFamily="sans-serif-medium"
-        android:text="Abbey Christensen"
         android:textColor="@android:color/white"
         android:textSize="26sp" />
 
@@ -62,7 +60,6 @@
         android:id="@+id/perfil_usuario_text_puntos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="12.000 puntos"
         android:textColor="@color/mybets_color_juega_ya"
         android:textSize="29sp"
         android:textStyle="bold"

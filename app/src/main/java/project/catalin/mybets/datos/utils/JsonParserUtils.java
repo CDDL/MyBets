@@ -19,6 +19,7 @@ import project.catalin.mybets.datos.dataObjects.EntradaMuro;
 import project.catalin.mybets.datos.dataObjects.Equipo;
 import project.catalin.mybets.datos.dataObjects.FichaClasificacion;
 import project.catalin.mybets.datos.dataObjects.FichaHistorial;
+import project.catalin.mybets.datos.dataObjects.FichaJornada;
 import project.catalin.mybets.datos.dataObjects.LoginData;
 import project.catalin.mybets.datos.dataObjects.Partida;
 import project.catalin.mybets.datos.dataObjects.Partido;
@@ -31,21 +32,16 @@ import project.catalin.mybets.datos.dataObjects.Subcategoria;
 public class JsonParserUtils {
 
     public static Persona jsonToPersona(JSONObject jsonResult) throws JSONException {
-        JSONObject jsonData = jsonResult.getJSONObject("data");
-        Persona persona = new Persona();
+        JsonWrapper wrapper = new JsonWrapper(jsonResult);
+        JsonWrapper jsonData = wrapper.getObject("data", null);
 
-        try {
-            persona.setId(jsonData.getInt("id"));
-        } catch (Exception ignored) {
-        }
-        persona.setNombre(jsonData.getString("name"));
-        persona.setEmail(jsonData.getString("email"));
-        persona.setUsername(jsonData.getString("username"));
-        try {
-            persona.setImagen(jsonData.getString("imagen"));
-        } catch (Exception ignored) {
-            ignored.printStackTrace();
-        }
+        Persona persona = new Persona();
+        persona.setId(jsonData.getInt("id", -1));
+        persona.setEmail(jsonData.getString("email", ""));
+        persona.setNombre(jsonData.getString("name", ""));
+        persona.setUsername(jsonData.getString("username", ""));
+        persona.setTelefono(jsonData.getString("phone", ""));
+        persona.setImagen(jsonData.getString("imagen", ""));
 
         return persona;
     }
@@ -68,6 +64,7 @@ public class JsonParserUtils {
         jsonData.put("name", dataUsuario.getNombre());
         jsonData.put("phone", dataUsuario.getTelefono());
         jsonData.put("username", dataUsuario.getUsername());
+        jsonData.put("image", dataUsuario.getImagen());
 
         JSONObject jsonResult = new JSONObject();
         jsonResult.put("request", jsonData);
@@ -109,7 +106,7 @@ public class JsonParserUtils {
         for (JsonWrapper jsonDataObject : jsonArray) {
             Partida partida = new Partida();
             partida.setId(jsonDataObject.getInt("idpartida", -1));
-            partida.setNombrePartida(jsonDataObject.getString("nombrepartida", "Sin nombre"));
+            partida.setNombrePartida(jsonDataObject.getString("nombrepartida", jsonDataObject.getString("nombrePartida" , "Sin nombre")));
             partida.setFecha(new SimpleDateFormat("dd/MM/yy HH:mm", Locale.US).parse(jsonDataObject.getString("fecha", "11/11/00 11:11")));
             partida.setBote(jsonDataObject.getInt("bote", -1));
             partida.setNumPersonas(jsonDataObject.getInt("numpersonas", -1));
@@ -287,13 +284,14 @@ public class JsonParserUtils {
         for (JsonWrapper jsonPartida : jsonListaPartidas) {
             Partida partida = new Partida();
             partida.setId(jsonPartida.getInt("idpartida", 0));
-            partida.setNombrePartida(jsonPartida.getString("nombrepartida", ""));
+            partida.setNombrePartida(jsonPartida.getString("nombrepartida", jsonPartida.getString("nombrePartida", "")));
             partida.setFecha(new DateUtils().from(jsonPartida.getString("fecha", "11/11/2011 11/11")).toDate());
             partida.setBote(jsonPartida.getInt("bote", 0));
             partida.setNumPersonas(jsonPartida.getInt("numpersonas", 0));
             partida.setUrlIcono(jsonPartida.getString("urlicono", ""));
             partida.setColorIcono(jsonPartida.getString("coloricono", wrapper.getString("color", "")));
             partida.setTipoPartida(jsonPartida.getInt("tipopartida", Partida.TIPO_PARTIDA_1x2));
+            partida.setEstadoPartida(Partida.ESTADO_JUEGA_YA);
 
             listaPartidas.add(partida);
         }
@@ -322,6 +320,13 @@ public class JsonParserUtils {
         }
 
         return listaEntradasMuro;
+    }
+
+    public static FichaJornada jsonToFichaJornada(JSONObject resultData) throws JSONException {
+        FichaJornada fichaJornada = new FichaJornada();
+        fichaJornada.setIdJornada(resultData.getJSONObject("data").getInt("idjornada"));
+        fichaJornada.setListPartidos(jsonToPartidosList(resultData));
+        return fichaJornada;
     }
 }
 

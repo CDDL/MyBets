@@ -1,18 +1,14 @@
 package project.catalin.mybets.controladores.controladoresPantallas;
 
-import android.os.AsyncTask;
-
 import project.catalin.mybets.controladores.comunicacionDatos.DataIdentificación;
 import project.catalin.mybets.controladores.comunicacionVista.ViewLoginForm;
-import project.catalin.mybets.controladores.utils.comunicación.eventos.GestorEventosUtil;
-import project.catalin.mybets.controladores.utils.comunicación.eventos.TipoEvento;
-import project.catalin.mybets.datos.GestorDataWebServices;
-import project.catalin.mybets.datos.excepciones.ContraseñaVaciaException;
-import project.catalin.mybets.datos.excepciones.EmailMalFormadoException;
-import project.catalin.mybets.datos.excepciones.EmailVacioException;
-import project.catalin.mybets.datos.excepciones.ErrorInternoException;
-import project.catalin.mybets.datos.excepciones.ErrorServerException;
+import project.catalin.mybets.controladores.utils.ExceptionHandlingAsyncTask;
 import project.catalin.mybets.datos.dataObjects.LoginData;
+import project.catalin.mybets.datos.dataObjects.Persona;
+import project.catalin.mybets.datos.datosWebService.DatosIdentificación;
+import project.catalin.mybets.datos.utils.JsonParserUtils;
+import project.catalin.mybets.datos.utils.SharedPreferencesUtils;
+import project.catalin.mybets.datos.utils.UserInputValidationUtils;
 import project.catalin.mybets.vistas.comunicacionControlador.ControllerFormLogin;
 
 /**
@@ -20,42 +16,54 @@ import project.catalin.mybets.vistas.comunicacionControlador.ControllerFormLogin
  */
 public class ControladorFormLogin implements ControllerFormLogin {
 
-    private DataIdentificación mGestorCredenciales;
-    private ViewLoginForm mLoginView;
+    private DataIdentificación mDatosCredenciales;
+    private ViewLoginForm mViewLogin;
 
     public ControladorFormLogin(ViewLoginForm loginView) {
-        mLoginView = loginView;
-        mGestorCredenciales = new GestorDataWebServices();
+        mViewLogin = loginView;
+        mDatosCredenciales = new DatosIdentificación();
     }
 
-    @Override
-    public void destroy() {}
 
     @Override
     public void botonLoginPulsado() {
-        new IdentificaciónTask().execute();
+        new TascaIdentificarUsuario().execute();
     }
 
-    private class IdentificaciónTask extends AsyncTask<Void, Void, Exception>{
-        @Override
-        protected void onPostExecute(Exception result) {
-            super.onPostExecute(result);
-            if(result == null) GestorEventosUtil.notificarEvento(TipoEvento.LOGIN_SUCCESS);
-            else if(result instanceof ContraseñaVaciaException) mLoginView.campoContraseñaErroneo("El campo contraseña no puede estar vacia.");
-            else if(result instanceof EmailVacioException) mLoginView.campoEmailErroneo("El campo del email no puede estar vacío.");
-            else if(result instanceof EmailMalFormadoException) mLoginView.campoEmailErroneo("El email introducido es erroneo.");
-            else if(result instanceof ErrorInternoException) GestorEventosUtil.notificarEvento(TipoEvento.ERROR_INTERNO);
-            else if(result instanceof ErrorServerException) mLoginView.mensaje(result.getMessage());
+    private class TascaIdentificarUsuario extends ExceptionHandlingAsyncTask<Void, Void, Persona>{
+        private final LoginData mLoginData;
+
+        public TascaIdentificarUsuario() {
+            mLoginData = new LoginData();
+            mLoginData.setEmail(mViewLogin.getEmail());
+            mLoginData.setPassword(mViewLogin.getPassword());
         }
 
         @Override
-        protected Exception doInBackground(Void... params) {
-            try {
-                mGestorCredenciales.validarIdentificación(new LoginData(mLoginView.getEmail(),mLoginView.getPassword()));
-                return null;
-            } catch (Exception result) {
-                return result;
+        protected void onPreExecute() {
+            if (!UserInputValidationUtils.isEmailValido(mLoginData.getEmail())) {
+                mViewLogin.setEmailError("El formato del email no es válido");
+                cancel(true);
             }
+        }
+
+        @Override
+        protected Persona executeTask(Void... params) throws Exception {
+            Persona result = mDatosCredenciales.validarIdentificación(mLoginData);
+            SharedPreferencesUtils.guardarJsonLogin(JsonParserUtils.loginToJson(mLoginData));
+            return result;
+        }
+
+        @Override
+        protected void onTaskFailture(Exception e) {
+            mViewLogin.alert(e.getMessage());
+
+        }
+
+        @Override
+        protected void onTaskSuccess(Persona datosUsuario) {
+            SharedPreferencesUtils.guardarIdUsuario(datosUsuario.getId());
+            mViewLogin.abrirPantallaPrincipal();
         }
     }
 }

@@ -42,7 +42,6 @@
         android:layout_below="@id/editar_perfil_toolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:src="@drawable/mybets_icon_juega_ya_dialog_placeholder"
         app:civ_border_color="@color/gris_claro"
         app:civ_border_overlay="true"
         app:civ_border_width="8dp" />
@@ -70,7 +69,6 @@
             android:id="@+id/editar_perfil_text_nombre"
             android:layout_width="254dp"
             android:layout_height="wrap_content"
-            android:hint="Abbey"
             android:singleLine="true"
             android:textColor="@color/gris_medio"
             android:textColorHint="@color/gris_medio" />
@@ -80,7 +78,6 @@
             android:layout_width="254dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/editar_perfil_text_nombre"
-            android:hint="Abbey Christensen"
             android:singleLine="true"
             android:textColor="@color/gris_medio"
             android:textColorHint="@color/gris_medio" />
@@ -91,7 +88,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/editar_perfil_text_username"
             android:enabled="false"
-            android:hint="Abbey@mybets.com"
             android:inputType="textEmailAddress"
             android:singleLine="true"
             android:textColor="@color/gris_medio"

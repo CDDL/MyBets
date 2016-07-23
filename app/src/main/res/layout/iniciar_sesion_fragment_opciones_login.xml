@@ -1,95 +1,107 @@
-<RelativeLayout android:id="@+id/plantilla_fragment_opciones_login"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/plantilla_fragment_opciones_login"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".vistas.pantallas.iniciarSesion.fragments.IniciarSesionFragmentOpcionesLogin">
 
 
-    <TextView android:id="@+id/boton_login_text"
+    <TextView
+        android:id="@+id/iniciar_sesion_fragment_opciones_login_boton_login"
         style="@style/MyBetsTextAreaClickable"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:onClick="clickLoginText"
         android:clickable="true"
-        android:layout_centerHorizontal="true"
+        android:longClickable="true"
         android:text="@string/boton_login_text"
-        android:textSize="15sp"
-        android:longClickable="true"/>
+        android:textSize="15sp" />
 
-    <RelativeLayout android:id="@+id/boton_login_fb"
-        android:layout_below="@id/boton_login_text"
-        android:layout_centerHorizontal="true"
+    <RelativeLayout
+        android:id="@+id/iniciar_sesion_fragment_opciones_login_boton_facebook"
         android:layout_width="@dimen/boton_login_anchura"
-        android:layout_height="@dimen/boton_login_altura">
+        android:layout_height="@dimen/boton_login_altura"
+        android:layout_below="@id/iniciar_sesion_fragment_opciones_login_boton_login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/mybets_shape_rectangulo_azul">
 
         <ImageView
-
-            android:layout_width="@dimen/boton_login_anchura"
-            android:layout_height="@dimen/boton_login_altura"
-            android:src="@drawable/mybets_boton_login_azul"
-            android:contentDescription="@string/boton_login_facebook_text" />
-        <ImageView
-            android:layout_marginLeft="23dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
+            android:id="@+id/iniciar_sesion_fragment_opciones_login_icon_facebook"
             android:layout_width="@dimen/icon_fb_anchura"
             android:layout_height="@dimen/icon_fb_altura"
-            android:src="@drawable/mybets_icon_facebook"
-            android:contentDescription="@string/icon_facebook_desc" />
+            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="23dp"
+            android:contentDescription="@string/icon_facebook_desc"
+            android:src="@drawable/mybets_icon_facebook" />
+
+        <View
+            android:id="@+id/iniciar_sesion_fragment_opciones_login_separador_facebook"
+            android:layout_width="1dp"
+            android:layout_height="39dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="53dp"
+            android:background="@android:color/white" />
 
         <TextView
+            android:id="@+id/iniciar_sesion_fragment_opciones_login_text_boton_facebook"
             style="@style/MyBetsTextArea"
-            android:text="@string/boton_login_facebook_text"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="65dp"/>
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/iniciar_sesion_fragment_opciones_login_separador_facebook"
+            android:text="@string/boton_login_facebook_text" />
 
     </RelativeLayout>
 
-    <RelativeLayout android:id="@+id/boton_login_mail"
-        android:layout_below="@id/boton_login_fb"
-        android:layout_centerHorizontal="true"
+    <RelativeLayout
+        android:id="@+id/iniciar_sesion_fragment_opciones_login_boton_mail"
         android:layout_width="@dimen/boton_login_anchura"
-        android:layout_height="@dimen/boton_login_altura">
+        android:layout_height="@dimen/boton_login_altura"
+        android:layout_below="@id/iniciar_sesion_fragment_opciones_login_boton_facebook"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/mybets_shape_rectangulo_naranja">
+
 
         <ImageView
-
-            android:layout_width="@dimen/boton_login_anchura"
-            android:layout_height="@dimen/boton_login_altura"
-            android:src="@drawable/mybets_boton_login_naranja" />
-        <ImageView
-            android:layout_marginLeft="15dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
+            android:id="@+id/iniciar_sesion_fragment_opciones_login_icon_mail"
             android:layout_width="@dimen/icon_mail_anchura"
             android:layout_height="@dimen/icon_mail_altura"
-            android:src="@drawable/mybets_icon_mail"
-            android:contentDescription="@string/icon_facebook_desc" />
+            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:contentDescription="@string/icon_facebook_desc"
+            android:src="@drawable/mybets_icon_mail" />
+
+        <View
+            android:id="@+id/iniciar_sesion_fragment_opciones_login_separador_mail"
+            android:layout_width="1dp"
+            android:layout_height="39dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="53dp"
+            android:background="@android:color/white" />
 
         <TextView
             style="@style/MyBetsTextArea"
-            android:text="@string/boton_login_correo_text"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="65dp"/>
-
-
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@id/iniciar_sesion_fragment_opciones_login_separador_mail"
+            android:text="@string/boton_login_correo_text" />
 
     </RelativeLayout>
 
-    <TextView android:id="@+id/boton_registro"
+    <TextView
+        android:id="@+id/iniciar_sesion_fragment_opciones_login_boton_register"
         style="@style/MyBetsTextAreaClickable"
+        android:layout_below="@id/iniciar_sesion_fragment_opciones_login_boton_mail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp"
         android:clickable="true"
         android:fontFamily="sans-serif"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/boton_login_mail"
         android:text="@string/boton_crear_cuenta_text"
-        android:textSize="19sp"
-        android:layout_marginTop="10dp"
-        android:onClick="clickRegisterText"/>
-
-
-
+        android:textSize="19sp" />
 
 
 </RelativeLayout>

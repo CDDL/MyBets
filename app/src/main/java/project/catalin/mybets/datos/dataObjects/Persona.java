@@ -12,6 +12,7 @@ public class Persona {
     private int mId;
     private int mPuntos;
     private boolean mEstaEnSistema;
+    private String mPassword;
 
     public Persona() {
         mEstaEnSistema = true;
@@ -79,5 +80,9 @@ public class Persona {
 
     public boolean estaEnElsistema() {
         return mEstaEnSistema;
+    }
+
+    public void setPassword(String password) {
+        mPassword = password;
     }
 }

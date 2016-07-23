@@ -12,5 +12,5 @@ import project.catalin.mybets.datos.dataObjects.Persona;
  * Created by Trabajo on 18/04/2016.
  */
 public interface DataIdentificación {
-    Persona validarIdentificación(LoginData loginData) throws ContraseñaVaciaException, EmailVacioException, EmailMalFormadoException, ErrorInternoException, ErrorServerException;
+    Persona validarIdentificación(LoginData mLoginData) throws ErrorInternoException, ErrorServerException;
 }

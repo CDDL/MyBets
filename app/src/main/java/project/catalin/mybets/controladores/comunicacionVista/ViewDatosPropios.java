@@ -19,4 +19,6 @@ public interface ViewDatosPropios {
     String getValorCampoNombre();
 
     String getValorCampoUsername();
+
+    void cerrar();
 }

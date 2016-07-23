@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/mybets_color_categoria_azul_oscuro_alpha"
+    android:orientation="vertical"
+    android:paddingBottom="14dp"
+    android:paddingTop="14dp">
+
+    <RadioGroup
+        android:id="@+id/custom_view_teclado_radiogroup_botones_arriba"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="47dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/custom_view_teclado_boton1"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:background="@drawable/mybets_boton_circulo_azul"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/custom_view_teclado_boton2"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_marginLeft="19dp"
+            android:background="@drawable/mybets_boton_circulo_azul"
+            android:button="@null"
+            android:gravity="center"
+            android:text="2"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/custom_view_teclado_boton3"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_marginLeft="19dp"
+            android:background="@drawable/mybets_boton_circulo_azul"
+            android:button="@null"
+            android:gravity="center"
+            android:text="3"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/custom_view_teclado_boton4"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_marginLeft="19dp"
+            android:background="@drawable/mybets_boton_circulo_azul"
+            android:button="@null"
+            android:gravity="center"
+            android:text="4"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/custom_view_teclado_boton5"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_marginLeft="19dp"
+            android:background="@drawable/mybets_boton_circulo_azul"
+            android:button="@null"
+            android:gravity="center"
+            android:text="5"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/custom_view_teclado_boton_puntos"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_marginLeft="19dp"
+            android:background="@drawable/mybets_shape_ovalo_transparente_bordes_blancos"
+            android:gravity="center"
+            android:text="···"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"/>
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/custom_view_teclado_radiogroup_botones_abajo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/custom_view_teclado_radiogroup_botones_arriba"
+        android:layout_marginLeft="47dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <RadioButton
+            android:id="@+id/custom_view_teclado_boton6"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:background="@drawable/mybets_boton_circulo_azul"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="6"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/custom_view_teclado_boton7"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_marginLeft="19dp"
+            android:background="@drawable/mybets_boton_circulo_azul"
+            android:button="@null"
+            android:gravity="center"
+            android:text="7"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/custom_view_teclado_boton8"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_marginLeft="19dp"
+            android:background="@drawable/mybets_boton_circulo_azul"
+            android:button="@null"
+            android:gravity="center"
+            android:text="8"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/custom_view_teclado_boton9"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_marginLeft="19dp"
+            android:background="@drawable/mybets_boton_circulo_azul"
+            android:button="@null"
+            android:gravity="center"
+            android:text="9"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/custom_view_teclado_boton0"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:layout_marginLeft="19dp"
+            android:background="@drawable/mybets_boton_circulo_azul"
+            android:button="@null"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+    </RadioGroup>
+
+    <Button
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:layout_centerVertical="true"
+        android:id="@+id/custom_view_teclado_boton_flecha"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:background="@drawable/mybets_shape_ovalo_transparente_bordes_blancos"
+        android:gravity="center"
+        android:text="➜"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"/>
+
+</RelativeLayout>

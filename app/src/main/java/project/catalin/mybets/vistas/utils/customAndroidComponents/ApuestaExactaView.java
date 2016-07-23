@@ -19,6 +19,8 @@ import project.catalin.mybets.R;
  * Created by Trabajo on 04/05/2016.
  */
 public class ApuestaExactaView extends RelativeLayout {
+    public static final int FOCUS_LOCAL = 0;
+    public static final int FOCUS_VISITANTE = 1;
     private final ImageView mIconEquipoLocal;
     private final ImageView mIconEquipoVisitante;
     private final TextView mNombreEquipoLocal;
@@ -36,6 +38,7 @@ public class ApuestaExactaView extends RelativeLayout {
     private final View mSeparadorFondo;
     private boolean isActivoLocal;
     private boolean isActivoVisitante;
+    private int mFocus;
 
     public ApuestaExactaView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -85,7 +88,7 @@ public class ApuestaExactaView extends RelativeLayout {
 
     private void habilitarVisitante() {
         isActivoVisitante = true;
-        int colorAzul = getResources().getColor(R.color.mybets_color_categoria_azul_oscuro);
+        int colorAzul = getResources().getColor(R.color.azul_oscuro);
         int colorAzulAlpha = getResources().getColor(R.color.mybets_color_categoria_azul_oscuro_alpha);
         mSeparadorFondo.setBackgroundColor(Color.WHITE);
         mFondoNombreEquipoVisitante.setColor(colorAzul);
@@ -116,7 +119,7 @@ public class ApuestaExactaView extends RelativeLayout {
 
     private void habilitarLocal() {
         isActivoLocal = true;
-        int colorAzul = getResources().getColor(R.color.mybets_color_categoria_azul_oscuro);
+        int colorAzul = getResources().getColor(R.color.azul_oscuro);
         int colorAzulAlpha = getResources().getColor(R.color.mybets_color_categoria_azul_oscuro_alpha);
         mSeparadorFondo.setBackgroundColor(Color.WHITE);
         mFondoNombreEquipoLocal.setColor(colorAzul);
@@ -138,16 +141,19 @@ public class ApuestaExactaView extends RelativeLayout {
     }
 
     public void setFocusLocal() {
+        mFocus = FOCUS_LOCAL;
         if(isActivoLocal) mApuestaEquipoLocal.setBackgroundColor(getResources().getColor(R.color.colorFondoTextoClickable));
         else mApuestaEquipoLocal.setBackgroundColor(getResources().getColor(R.color.colorFondoTextoClickableGris));
     }
 
     public void setFocusVisitante() {
+        mFocus = FOCUS_VISITANTE;
         if(isActivoVisitante) mApuestaEquipoVisitante.setBackgroundColor(getResources().getColor(R.color.colorFondoTextoClickable));
         mApuestaEquipoVisitante.setBackgroundColor(getResources().getColor(R.color.colorFondoTextoClickableGris));
     }
 
     public void unFocus() {
+        mFocus = -1;
         mApuestaEquipoVisitante.setBackgroundColor(Color.TRANSPARENT);
         mApuestaEquipoLocal.setBackgroundColor(Color.TRANSPARENT);
     }
@@ -180,5 +186,17 @@ public class ApuestaExactaView extends RelativeLayout {
     public void setVisitanteClickListener(OnClickListener clickListener) {
         mAreaNombreEquipoVisitante.setOnClickListener(clickListener);
         mAreaScoreEquipoVisitante.setOnClickListener(clickListener);
+    }
+
+    public int getFocus() {
+        return mFocus;
+    }
+
+    public void apuestaLocal(int score) {
+        mApuestaEquipoLocal.setText(score);
+    }
+
+    public void apuestaVisitante(int score) {
+        mApuestaEquipoVisitante.setText(score);
     }
 }

@@ -12,7 +12,8 @@ import project.catalin.mybets.vistas.comunicacionControlador.ControllerPantallaP
 public class ControladorPantallaPrincipalPantallas implements INotificable,ControllerPantallaPrinciaplPantallas {
     private final ViewPantallaPrincipalPantallas mViewPantallas;
     private int[] listaEventos = {
-            TipoEvento.PARTIDA_CREADA
+            TipoEvento.PARTIDA_CREADA,
+            TipoEvento.APUESTA_REALIZADA
     };
 
     public ControladorPantallaPrincipalPantallas(ViewPantallaPrincipalPantallas pantallaPrincipal) {

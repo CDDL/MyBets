@@ -3,86 +3,109 @@ package project.catalin.mybets.vistas.pantallas.iniciarSesion;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Stack;
+
 import project.catalin.mybets.R;
-import project.catalin.mybets.controladores.controladoresPantallas.ControladorIniciarSesionPantallas;
-import project.catalin.mybets.controladores.comunicacionVista.ViewLoginBase;
-import project.catalin.mybets.vistas.comunicacionControlador.ControllerDestructible;
-import project.catalin.mybets.vistas.pantallas.iniciarSesion.fragments.IniciarSesionFragmentFormularioLogin;
-import project.catalin.mybets.vistas.pantallas.iniciarSesion.fragments.IniciarSesionFragmentOpcionesLogin;
+import project.catalin.mybets.controladores.comunicacionVista.ViewFragmentLoginPrincipal;
+import project.catalin.mybets.controladores.controladoresPantallas.ControladorFragmentLoginPrincipal;
+import project.catalin.mybets.datos.utils.SharedPreferencesUtils;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerFragmentLoginPrincipal;
+import project.catalin.mybets.vistas.pantallas.iniciarSesion.fragments.IniciarSesionFragmentBase;
 import project.catalin.mybets.vistas.pantallas.iniciarSesion.fragments.IniciarSesionFragmentFormularioRegistrarse;
 import project.catalin.mybets.vistas.pantallas.principal.PantallaPrincipal;
+import project.catalin.mybets.vistas.utils.CustomViewPager;
 
-public class IniciarSesionPantallaPrincipal extends AppCompatActivity implements ViewLoginBase {
+public class IniciarSesionPantallaPrincipal extends AppCompatActivity implements ViewFragmentLoginPrincipal {
 
-    private ControllerDestructible mControladorFragmentos;
-
-    private static final String TAG_FRAG_FORM_LOGIN = "tagFL";
-    private static final String TAG_FRAG_FORM_REG = "tagFR";
-    private static final String TAG_FRAG_OPT_LOGIN = "tagOL";
-
-    private Fragment mFragmentFormularioLogin;
-    private Fragment mFragmentFormularioRegistro;
-    private Fragment mFragmentOpcionesLogin;
-
-    public IniciarSesionPantallaPrincipal() {
-        mControladorFragmentos = new ControladorIniciarSesionPantallas(this);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mControladorFragmentos.destroy();
-    }
+    private ControllerFragmentLoginPrincipal mControladorFragmentLoginPrincipal;
+    private CustomViewPager mPagerFragmentos;
+    private AdapterFragmentos mAdapterFragmentos;
+    private Stack<Integer> mBackStack;
+    private IniciarSesionFragmentBase mFragmentBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        checkLoged();
+        setContentView(R.layout.iniciar_sesion_activity_principal);
 
-        setContentView(R.layout.iniciar_sesion_pantalla_principal);
-
-        if(savedInstanceState == null) {
-            añadirFragmentBase();
-        } else recuperarFragments();
+        inicializarComponentes();
+        inicializarBackStack();
+        inicializarAdapter();
+        inicializarControlador();
     }
 
-
-    private void recuperarFragments() {
-        mFragmentFormularioLogin = getSupportFragmentManager().findFragmentByTag(TAG_FRAG_FORM_LOGIN);
-        mFragmentFormularioRegistro = getSupportFragmentManager().findFragmentByTag(TAG_FRAG_FORM_REG);
-        mFragmentOpcionesLogin = getSupportFragmentManager().findFragmentByTag(TAG_FRAG_OPT_LOGIN);
+    private void checkLoged() {
+        if (SharedPreferencesUtils.isLogged()) {
+            startActivity(new Intent(this, PantallaPrincipal.class));
+            finish();
+        }
     }
 
-    private void añadirFragmentBase() {
-        if(mFragmentOpcionesLogin == null) mFragmentOpcionesLogin = new IniciarSesionFragmentOpcionesLogin();
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.plantilla_fragment_opciones_login, mFragmentOpcionesLogin, TAG_FRAG_OPT_LOGIN)
-                .commit();
+    private void inicializarBackStack() {
+        mBackStack = new Stack<>();
     }
 
-    @Override
-    public void cambiarFragmentALoginForm() {
-        if(mFragmentFormularioLogin == null) mFragmentFormularioLogin = new IniciarSesionFragmentFormularioLogin();
-        getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations( R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left,  R.anim.slide_out_right)
-                .replace(R.id.plantilla_fragment_opciones_login, mFragmentFormularioLogin, TAG_FRAG_FORM_LOGIN)
-                .addToBackStack(TAG_FRAG_FORM_LOGIN)
-                .commit();
+    private void inicializarAdapter() {
+        mAdapterFragmentos = new AdapterFragmentos(getSupportFragmentManager());
+        mPagerFragmentos.setAdapter(mAdapterFragmentos);
+        mPagerFragmentos.setPagingEnabled(false);
+        mFragmentBase = (IniciarSesionFragmentBase) mAdapterFragmentos.getItem(0);
     }
 
-    @Override
-    public void cambiarFragmentARegisterForm() {
-        if(mFragmentFormularioRegistro == null) mFragmentFormularioRegistro = new IniciarSesionFragmentFormularioRegistrarse();
-        getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations( R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left,  R.anim.slide_out_right)
-                .replace(R.id.plantilla_fragment_opciones_login, mFragmentFormularioRegistro, TAG_FRAG_FORM_REG)
-                .addToBackStack(null)
-                .commit();
+    private void inicializarComponentes() {
+        mPagerFragmentos = (CustomViewPager) findViewById(R.id.iniciar_sesion_activity_princpal_pager_fragments);
+    }
+
+    private void inicializarControlador() {
+        mControladorFragmentLoginPrincipal = new ControladorFragmentLoginPrincipal(this);
     }
 
     @Override
-    public void iniciarActivityPantallaPrincipal() {
-        startActivity(new Intent(this, PantallaPrincipal.class));
+    public void onBackPressed() {
+        if  ( mFragmentBase.hasStack()) mFragmentBase.popBackStack();
+        else if (hasStack()) popBackStack();
+        else super.onBackPressed();
+    }
+
+    private void popBackStack() {
+        mPagerFragmentos.setCurrentItem(mBackStack.pop());
+    }
+
+    private boolean hasStack() {
+        return mBackStack.size() > 0;
+    }
+
+    @Override
+    public void cambiarFragmentARegister() {
+        mBackStack.push(mPagerFragmentos.getCurrentItem());
+        mPagerFragmentos.setCurrentItem(1);
+    }
+
+    private class AdapterFragmentos extends FragmentPagerAdapter {
+        private final List<Fragment> mListaFragmentos;
+
+        public AdapterFragmentos(FragmentManager fm) {
+            super(fm);
+            mListaFragmentos = new LinkedList<>();
+            mListaFragmentos.add(new IniciarSesionFragmentBase());
+            mListaFragmentos.add(new IniciarSesionFragmentFormularioRegistrarse());
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mListaFragmentos.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mListaFragmentos.size();
+        }
     }
 }

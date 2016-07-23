@@ -1,5 +1,7 @@
 package project.catalin.mybets.datos.dataObjects;
 
+import java.util.List;
+
 /**
  * Created by Trabajo on 04/05/2016.
  */
@@ -57,4 +59,5 @@ public class Apuesta {
     public int getApuesta() {
         return mApuesta;
     }
+
 }

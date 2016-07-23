@@ -5,4 +5,5 @@ package project.catalin.mybets.vistas.comunicacionControlador;
  */
 public interface ControllerPartidasPopulares {
     void inicializarVista();
+
 }

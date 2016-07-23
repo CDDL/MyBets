@@ -25,8 +25,7 @@
             android:layout_width="77dp"
             android:layout_height="77dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/mybets_icon_juega_ya_dialog_placeholder" />
+            android:layout_marginTop="30dp" />
 
         <TextView
             android:id="@+id/historial_jornada_text_nombre"
@@ -58,7 +57,6 @@
             android:layout_height="75dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:src="@drawable/icon_balon"
             android:contentDescription="@string/historial_jornada_icon_cabecera_desc" />
 
         <TextView

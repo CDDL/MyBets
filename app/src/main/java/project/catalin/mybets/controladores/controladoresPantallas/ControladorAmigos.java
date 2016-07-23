@@ -32,13 +32,13 @@ public class ControladorAmigos implements INotificable, ControllerListaAmigos {
     }
 
     @Override
-    public void getContactos() {
+    public void inicializarVista() {
         new GetContactosTask().execute();
     }
 
     @Override
     public void notificar(final int idEvento, final Object event) {
-        getContactos();
+        inicializarVista();
     }
 
     @Override

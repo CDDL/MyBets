@@ -1,6 +1,7 @@
 package project.catalin.mybets.vistas.pantallas.categorias;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -123,18 +124,29 @@ public class PantallaCategorias extends AppCompatActivity implements ViewCategor
     private class AdapterCategorias extends AdapterRecargable<Categoria> {
         @Override
         public long getItemId(int position) {
-            return getItem(position).getid();
+            return getItem(position).getId();
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             final LinearLayout layout = convertView == null ? (LinearLayout) View.inflate(PantallaCategorias.this, R.layout.item_categoria, null) : (LinearLayout) convertView;
-            Categoria categoria = getItem(position);
+            final Categoria categoria = getItem(position);
             ImageView iconoCategoria = (ImageView) layout.findViewById(R.id.item_categoria_icon_categoria);
             TextView textCategoria = (TextView) layout.findViewById(R.id.item_categoria_text_nombre_categoria);
+            LinearLayout cuerpoCategoria = (LinearLayout) layout.findViewById(R.id.item_categoria_cuerpo);
 
             Picasso.with(PantallaCategorias.this).load(categoria.getUrlIcono()).into(iconoCategoria);
             textCategoria.setText(categoria.getNombre());
+            cuerpoCategoria.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle args = new Bundle();
+                    args.putInt(PantallaSubCategorias.TAG_ID_CATEGORIA, categoria.getId());
+                    args.putString(PantallaSubCategorias.TAG_NOMBRE_CATEGORIA, categoria.getNombre());
+                    startActivity(new Intent(PantallaCategorias.this, PantallaSubCategorias.class).putExtras(args));
+                }
+            });
+
 
             return layout;
         }

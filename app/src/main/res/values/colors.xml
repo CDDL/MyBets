@@ -44,7 +44,7 @@
 
 
     <color name="mybets_color_categoria_azul">#00B9FF</color>
-    <color name="mybets_color_categoria_azul_oscuro">#3F51B5</color>
+    <color name="azul_oscuro">#3F51B5</color>
     <color name="mybets_color_categoria_azul_oscuro_alpha">#B33F51B5</color>
     <color name="mybets_color_apuestas_fondo">#EEEEEE</color>
     <color name="timer_color">#F9A825</color>

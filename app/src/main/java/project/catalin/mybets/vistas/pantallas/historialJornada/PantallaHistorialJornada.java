@@ -90,9 +90,8 @@ public class PantallaHistorialJornada extends AppCompatActivity implements ViewH
 
     private void inicializarArgs() {
         Bundle extras = getIntent().getExtras();
-        mTipoPartida = Partida.TIPO_PARTIDA_1x2;
-//        mIdPartida = extras.getInt(TAG_ID_PARTIDA, -1);
-//        mTipoPartida = extras.getInt(TAG_TIPO_PARTIDA, -1);
+        mIdPartida = extras.getInt(TAG_ID_PARTIDA, -1);
+        mTipoPartida = extras.getInt(TAG_TIPO_PARTIDA, -1);
     }
 
     private void inicializarComponentes() {

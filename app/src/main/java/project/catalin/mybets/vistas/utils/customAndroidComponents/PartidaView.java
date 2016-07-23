@@ -75,8 +75,8 @@ public class PartidaView extends RelativeLayout {
         mBotonAcciones = (ImageView) findViewById(R.id.partida_item_boton_acciones);
         mTextPuntosGanados = (TextView) findViewById(R.id.partida_item_text_apuesta_ganada);
         mPopUpBox = findViewById(R.id.partida_item_popup_box);
-        mPopUp = new PopupMenu(getContext(), mPopUpBox);
-        mPopUp.getMenuInflater().inflate(R.menu.menu_acciones_partida, mPopUp.getMenu());
+;
+
 
         initParams(attrs);
     }
@@ -104,7 +104,6 @@ public class PartidaView extends RelativeLayout {
         mBotonAcciones.setVisibility(GONE);
         if (mostrar) mBotonAcciones.setVisibility(VISIBLE);
     }
-
     public void setEstadoPartida(int estadoPartida) {
         mEstadoPartida = estadoPartida;
 
@@ -116,15 +115,23 @@ public class PartidaView extends RelativeLayout {
         switch (estadoPartida) {
             case PARTIDA_JUGABLE:
                 mBotonJuegaYa.setVisibility(VISIBLE);
+                mPopUp = new PopupMenu(getContext(), mPopUpBox);
+                mPopUp.getMenuInflater().inflate(R.menu.menu_acciones_partida_juega_ya, mPopUp.getMenu());
                 break;
             case PARTIDA_RECHAZADA:
                 mTextApuestaRechazada.setVisibility(VISIBLE);
+                mPopUp = new PopupMenu(getContext(), mPopUpBox);
+                mPopUp.getMenuInflater().inflate(R.menu.menu_acciones_partida_rechazada, mPopUp.getMenu());
                 break;
             case PARTIDA_ESPERNANDO_RESLTADOS:
                 mTextEsperandoResultados.setVisibility(VISIBLE);
+                mPopUp = new PopupMenu(getContext(), mPopUpBox);
+                mPopUp.getMenuInflater().inflate(R.menu.menu_acciones_partida_esperando_resultados, mPopUp.getMenu());
                 break;
             case PARTIDA_GANADA:
                 mTextPuntosGanados.setVisibility(VISIBLE);
+                mPopUp = new PopupMenu(getContext(), mPopUpBox);
+                mPopUp.getMenuInflater().inflate(R.menu.menu_acciones_partida_ganada, mPopUp.getMenu());
                 break;
         }
     }
@@ -151,7 +158,6 @@ public class PartidaView extends RelativeLayout {
     public void setUrlImagenIcono(String urlImagenIcono) {
         Picasso.with(getContext())
                 .load(urlImagenIcono)
-                .placeholder(R.drawable.icon_balon)
                 .into(mIconoIzquierda);
     }
 

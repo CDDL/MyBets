@@ -76,6 +76,8 @@ public class PantallaPerfilUsuario extends AppCompatActivity implements ViewHist
         mBotonEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle args = new Bundle();
+                args.putInt(PantallaPerfilUsuario.TAG_ID_USUARIO, SharedPreferencesUtils.getMiId());
                 startActivity(new Intent(PantallaPerfilUsuario.this, EditarPerfil.class));
             }
         });
@@ -115,8 +117,12 @@ public class PantallaPerfilUsuario extends AppCompatActivity implements ViewHist
 
     @Override
     public void showLoadingDatosUsuario() {
-        mDialogLoadingDatosUsuario = ProgressDialog.show(this, "", "Cargando datos...", false, false);
-        mDialogLoadingDatosUsuario.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        if(mDialogLoadingDatosUsuario == null){
+            mDialogLoadingDatosUsuario = ProgressDialog.show(this, "", "Cargando datos...", false, false);
+            mDialogLoadingDatosUsuario.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        }
+        else
+            mDialogLoadingDatosUsuario.show();
     }
 
     @Override

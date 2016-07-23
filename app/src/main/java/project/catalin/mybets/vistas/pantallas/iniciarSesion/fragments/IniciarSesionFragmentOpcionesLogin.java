@@ -18,32 +18,23 @@ public class IniciarSesionFragmentOpcionesLogin extends Fragment {
     private View mBotonLoginFacebook;
     private View mBotonLoginMail;
 
-    public IniciarSesionFragmentOpcionesLogin() {
-        mControllerOpciones = new ControladorIniciarSesionOpciones();
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.iniciar_sesion_fragment_opciones_login, container, false);
 
-        mBotonLoginText = layout.findViewById(R.id.boton_login_text);
-        mBotonRegisterText = layout.findViewById(R.id.boton_registro);
-        mBotonLoginFacebook = layout.findViewById(R.id.boton_login_fb);
-        mBotonLoginMail = layout.findViewById(R.id.boton_login_mail);
-
-        asignarFuncionalidadBotones();
+        inicializarComponentes(layout);
+        inicializarBotones();
+        inicializarControlador();
 
         return layout;
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mControllerOpciones.destroy();
+    private void inicializarControlador() {
+        mControllerOpciones = new ControladorIniciarSesionOpciones();
     }
 
-    private void asignarFuncionalidadBotones() {
+    private void inicializarBotones() {
         mBotonLoginText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +62,12 @@ public class IniciarSesionFragmentOpcionesLogin extends Fragment {
                 mControllerOpciones.botonLoginMailPulsado();
             }
         });
+    }
 
-
+    private void inicializarComponentes(View layout) {
+        mBotonLoginText = layout.findViewById(R.id.iniciar_sesion_fragment_opciones_login_boton_login);
+        mBotonRegisterText = layout.findViewById(R.id.iniciar_sesion_fragment_opciones_login_boton_register);
+        mBotonLoginFacebook = layout.findViewById(R.id.iniciar_sesion_fragment_opciones_login_boton_facebook);
+        mBotonLoginMail = layout.findViewById(R.id.iniciar_sesion_fragment_opciones_login_boton_mail);
     }
 }

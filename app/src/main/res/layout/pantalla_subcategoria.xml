@@ -10,7 +10,7 @@
         android:id="@+id/pantalla_subcategoria_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/mybets_color_categoria_azul_oscuro" />
+        android:background="@color/azul_oscuro" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/pantalla_subcategoria_pageindicator"

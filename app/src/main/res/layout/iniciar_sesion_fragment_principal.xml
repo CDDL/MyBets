@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_logiin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".vistas.pantallas.iniciarSesion.IniciarSesionPantallaPrincipal">
+
+    <View
+        android:id="@+id/iniciar_sesion_fragment_principal_separador"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/iniciar_sesion_fragment_principal_separador"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iniciar_sesion_fragment_principal_logo"
+            android:layout_width="@dimen/logo_anchura"
+            android:layout_height="@dimen/logo_altura"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/mybets_logo" />
+    </LinearLayout>
+
+    <project.catalin.mybets.vistas.utils.CustomViewPager
+        android:id="@+id/iniciar_sesion_fragment_principal_fragment_opciones"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/iniciar_sesion_fragment_principal_separador" />
+
+</RelativeLayout>

@@ -1,6 +1,8 @@
 package project.catalin.mybets.vistas.pantallas.clasificacion;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -30,7 +32,8 @@ import project.catalin.mybets.vistas.utils.AdapterRecargable;
  */
 public class PantallaClasificacion extends AppCompatActivity implements ViewFichaClasificacion {
 
-    private static final String TAG_ID_PARTIDA = "idpartida";
+    public static final String TAG_ID_PARTIDA = "idpartida";
+    public static final String TAG_COLOR = "colorpartida";
     private RelativeLayout mFondoCabecera;
     private ImageView mBotonCerrar;
     private TextView mNombrePartida;
@@ -42,6 +45,7 @@ public class PantallaClasificacion extends AppCompatActivity implements ViewFich
     private ControllerFichaClasificacion mControladorFichaClasificacion;
     private int mIdPartida;
     private ProgressDialog mDialogLoadingClasificacion;
+    private String mColorIcono;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,9 +61,11 @@ public class PantallaClasificacion extends AppCompatActivity implements ViewFich
     }
 
     private void inicializarArgumentos() {
-        mIdPartida = 0;
-//        Bundle args = getIntent().getExtras();
-//        mIdPartida = args.getInt(TAG_ID_PARTIDA);
+        Bundle args = getIntent().getExtras();
+        mIdPartida = args.getInt(TAG_ID_PARTIDA);
+        mColorIcono = args.getString(TAG_COLOR);
+        GradientDrawable fondo = (GradientDrawable) mFondoCabecera.getBackground();
+        fondo.setColor(Color.parseColor(mColorIcono));
     }
 
     private void inicializarControladores() {

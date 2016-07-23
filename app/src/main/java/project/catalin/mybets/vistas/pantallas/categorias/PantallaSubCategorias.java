@@ -7,8 +7,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -25,6 +28,8 @@ import project.catalin.mybets.controladores.controladoresPantallas.ControladorSu
 import project.catalin.mybets.datos.dataObjects.Partida;
 import project.catalin.mybets.datos.dataObjects.Subcategoria;
 import project.catalin.mybets.vistas.comunicacionControlador.ControllerSubcategorias;
+import project.catalin.mybets.vistas.pantallas.apostar.PantallaApostar;
+import project.catalin.mybets.vistas.pantallas.principal.fragments.PantallaPrincipalFragmentDialogJuegaYa;
 import project.catalin.mybets.vistas.utils.AdapterRecargable;
 import project.catalin.mybets.vistas.utils.CustomPagerRecargable;
 import project.catalin.mybets.vistas.utils.customAndroidComponents.PartidaView;
@@ -32,6 +37,7 @@ import project.catalin.mybets.vistas.utils.customAndroidComponents.PartidaView;
 public class PantallaSubCategorias extends AppCompatActivity implements ViewSubcategorias {
 
     public static final String TAG_ID_CATEGORIA = "idcategoria";
+    public static final String TAG_NOMBRE_CATEGORIA = "nombreCategoria";
     private Toolbar mToolbar;
     private RecyclerView mIndicator;
     private ViewPager mPagerView;
@@ -40,6 +46,7 @@ public class PantallaSubCategorias extends AppCompatActivity implements ViewSubc
     private ControllerSubcategorias mControladorSubcategorias;
     private ProgressDialog mDialogLoadingSubcategorias;
     private int mIdCategoria;
+    private String mNombreCategoria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +62,9 @@ public class PantallaSubCategorias extends AppCompatActivity implements ViewSubc
     }
 
     private void inicializarParametros() {
-        mIdCategoria = 0;
-//        Bundle bundle = getIntent().getExtras();
-//        mIdCategoria = bundle.getInt(TAG_ID_CATEGORIA);
+        Bundle bundle = getIntent().getExtras();
+        mIdCategoria = bundle.getInt(TAG_ID_CATEGORIA);
+        mNombreCategoria = bundle.getString(TAG_NOMBRE_CATEGORIA);
     }
 
     private void inicializarControlador() {
@@ -81,8 +88,8 @@ public class PantallaSubCategorias extends AppCompatActivity implements ViewSubc
 
     private void inicializarToolbar() {
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(mNombreCategoria);
     }
 
     private void inicializarComponentes() {
@@ -114,6 +121,37 @@ public class PantallaSubCategorias extends AppCompatActivity implements ViewSubc
         mPagerView.setCurrentItem(0);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_search, menu);
+        SearchView searchView = (SearchView) menu.findItem(R.id.mybets_action_search).getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                mPagerAdapter.filter(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mPagerAdapter.filter(newText);
+                return true;
+            }
+        });
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return true;
+    }
+
     private class ListaPartidasAdapter extends AdapterRecargable<Partida> {
         @Override
         public long getItemId(int position) {
@@ -123,7 +161,7 @@ public class PantallaSubCategorias extends AppCompatActivity implements ViewSubc
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             final PartidaView partidaView = convertView == null ? (PartidaView) LayoutInflater.from(PantallaSubCategorias.this).inflate(R.layout.item_partida, parent, false) : (PartidaView) convertView;
-            Partida partida = getItem(position);
+            final Partida partida = getItem(position);
 
             partidaView.setColorFondoIcono(partida.getColorIcono());
             partidaView.setUrlImagenIcono(partida.getUrlIcono());
@@ -133,12 +171,38 @@ public class PantallaSubCategorias extends AppCompatActivity implements ViewSubc
             partidaView.setBoteNum(partida.getBote());
             partidaView.setNumPersonas(partida.getNumPersonas());
             partidaView.setEstadoPartida(partida.getEstadoPartida());
+            partidaView.setBotonJuegaYaClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(PantallaPrincipalFragmentDialogJuegaYa.TAG_COLOR, partida.getColorIcono());
+                    bundle.putString(PantallaPrincipalFragmentDialogJuegaYa.TAG_TITULO, partida.getTitulo());
+                    bundle.putInt(PantallaPrincipalFragmentDialogJuegaYa.TAG_BOTE, partida.getBote());
+                    bundle.putInt(PantallaApostar.TAG_TIPO_PARTIDA, partida.getTipoPartida());
+                    bundle.putInt(PantallaApostar.TAG_ID_PARTIDA, partida.getIdPartida());
+
+                    PantallaPrincipalFragmentDialogJuegaYa dialogFramgnet = new PantallaPrincipalFragmentDialogJuegaYa();
+                    dialogFramgnet.setArguments(bundle);
+                    dialogFramgnet.show(getSupportFragmentManager(), "DialogJuegaYa");
+                }
+            });
 
             return partidaView;
+        }
+
+        @Override
+        public boolean isFiltered(Partida elemento, String query) {
+            return elemento.getTitulo().toLowerCase().contains(query.toLowerCase());
         }
     }
 
     private class PagerAdapterCategorias extends CustomPagerRecargable<Subcategoria> {
+
+        private List<AdapterRecargable<Partida>> mListaAdapters;
+
+        public PagerAdapterCategorias() {
+            this.mListaAdapters = new LinkedList<>();
+        }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
@@ -146,6 +210,7 @@ public class PantallaSubCategorias extends AppCompatActivity implements ViewSubc
             AdapterRecargable<Partida> adapter = new ListaPartidasAdapter();
             adapter.recargarDatos(getItemPosition(position).getListPartidas());
             listView.setAdapter(adapter);
+            mListaAdapters.add(adapter);
             container.addView(listView);
 
             return listView;
@@ -154,6 +219,11 @@ public class PantallaSubCategorias extends AppCompatActivity implements ViewSubc
         @Override
         public int getIconResId(int index) {
             return R.drawable.mybets_boton_categoria_azul_oscuro;
+        }
+
+
+        public void filter(String query) {
+            for (AdapterRecargable<Partida> adapter:mListaAdapters) adapter.filter(query);
         }
     }
 

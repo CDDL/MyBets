@@ -53,7 +53,7 @@
         <item name="android:textColorHint">@color/textEditColor</item>
         <item name="android:textSize">19sp</item>
         <item name="android:fontFamily">sans-serif-light</item>
-        <item name="android:background">@drawable/mybets_formulario_input_fondo</item>
+        <item name="android:background">@drawable/mybets_shape_rectangulo_blanco</item>
         <item name="android:singleLine">true</item>
     </style>
 
@@ -81,6 +81,34 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">28dp</item>
         <item name="android:background">@drawable/mybets_boton_categoria_toggle</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingBottom">3dp</item>
+    </style>
+
+    <style name="MyBetsBotonCategoria.azul_oscuro" parent="android:Widget.Button" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">28dp</item>
+        <item name="android:background">@drawable/mybets_shape_rectangulo_bordes_redondos_azul_oscuro</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingBottom">3dp</item>
+    </style>
+
+    <style name="MyBetsBotonCategoria.azul_claro" parent="android:Widget.Button" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">28dp</item>
+        <item name="android:background">@drawable/mybets_shape_rectangulo_bordes_redondos_azul_claro</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textSize">13sp</item>
@@ -138,7 +166,7 @@
     <style name="pantalla_identificacion_boton">
         <item name="android:layout_width">@dimen/edittext_anchura</item>
         <item name="android:layout_height">@dimen/edittext_altura</item>
-        <item name="android:background">@drawable/mybets_boton_login_transparente</item>
+        <item name="android:background">@drawable/mybets_shape_rectangulo_transparente_con_bordes_blancos</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@android:color/white</item>

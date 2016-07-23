@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import project.catalin.mybets.controladores.comunicacionDatos.DataGestionPartidas;
 import project.catalin.mybets.controladores.comunicacionVista.ViewOponentes;
+import project.catalin.mybets.controladores.utils.ExceptionHandlingAsyncTask;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.GestorEventosUtil;
 import project.catalin.mybets.controladores.utils.comunicación.eventos.TipoEvento;
 import project.catalin.mybets.datos.GestorDataWebServices;
@@ -26,28 +27,23 @@ public class ControladorElegirOponentesBotones implements ControllerElegirOponen
         new TascaCrearPartida().execute();
     }
 
-    private class TascaCrearPartida extends AsyncTask<Void, Void, Void> {
-
-        private Exception mError;
+    private class TascaCrearPartida extends ExceptionHandlingAsyncTask<Void, Void,Void> {
 
         @Override
-        protected Void doInBackground(Void... params) {
-            try {
-                mDataPartidas.crearPartida(mViewOponentes.getIdJuego(), mViewOponentes.getListaOponentes());
-
-            } catch (Exception e) {
-                mError = e;
-            }
+        protected Void executeTask(Void... params) throws Exception {
+            mDataPartidas.crearPartida(mViewOponentes.getIdJuego(), mViewOponentes.getListaOponentes());
             return null;
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            if (mError == null) {
-                GestorEventosUtil.notificarEvento(TipoEvento.PARTIDA_CREADA);
-                mViewOponentes.cerrar();
-            } else mViewOponentes.alert(mError.getMessage());
+        protected void onTaskFailture(Exception e) {
+            mViewOponentes.alert(e.getMessage());
+        }
+
+        @Override
+        protected void onTaskSuccess(Void aVoid) {
+            GestorEventosUtil.notificarEvento(TipoEvento.PARTIDA_CREADA);
+            mViewOponentes.cerrar();
         }
     }
 }

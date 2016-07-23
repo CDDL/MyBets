@@ -1,5 +1,6 @@
 package project.catalin.mybets.vistas.pantallas.iniciarSesion.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import project.catalin.mybets.R;
 import project.catalin.mybets.controladores.comunicacionVista.ViewLoginForm;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorFormLogin;
 import project.catalin.mybets.vistas.comunicacionControlador.ControllerFormLogin;
+import project.catalin.mybets.vistas.pantallas.principal.PantallaPrincipal;
 
 public class IniciarSesionFragmentFormularioLogin extends Fragment implements ViewLoginForm {
     private ControllerFormLogin mControllerLoginForm;
@@ -20,40 +22,38 @@ public class IniciarSesionFragmentFormularioLogin extends Fragment implements Vi
     private TextView mCampoPassword;
     private View mBotonLogin;
 
-    public IniciarSesionFragmentFormularioLogin() {
-        mControllerLoginForm = new ControladorFormLogin(this);
-    }
-
     @Override
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
         View layout = inflater.inflate(R.layout.iniciar_sesion_fragment_formulario_login, container, false);
 
-        mCampoEmail = (TextView) layout.findViewById(R.id.input_email);
-        mCampoPassword = (TextView) layout.findViewById(R.id.input_password);
-        mBotonLogin = layout.findViewById(R.id.boton_login);
+        inicializarComponentes(layout);
+        inicializarControlador();
+        inicializarBotones();
 
-        asignarFuncionalidadBotones();
 
         return layout;
     }
 
-    private void asignarFuncionalidadBotones() {
+    private void inicializarControlador() {
+        mControllerLoginForm = new ControladorFormLogin(this);
+    }
+
+    private void inicializarComponentes(View layout) {
+        mCampoEmail = (TextView) layout.findViewById(R.id.iniciar_sesion_fragment_formulario_registrarse_input_email);
+        mCampoPassword = (TextView) layout.findViewById(R.id.iniciar_sesion_fragment_formulario_registrarse_input_contrasena);
+        mBotonLogin = layout.findViewById(R.id.boton_login);
+    }
+
+    private void inicializarBotones() {
         mBotonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mControllerLoginForm.botonLoginPulsado();
             }
         });
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mControllerLoginForm.destroy();
     }
 
     @Override
@@ -67,22 +67,18 @@ public class IniciarSesionFragmentFormularioLogin extends Fragment implements Vi
     }
 
     @Override
-    public void campoContraseñaErroneo(String errorMsg) {
-        mCampoPassword.setError(errorMsg);
-    }
-
-    @Override
-    public void campoEmailErroneo(String errorMsg) {
+    public void setEmailError(String errorMsg) {
         mCampoEmail.setError(errorMsg);
     }
 
     @Override
-    public void mensaje(final String message) {
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(getContext(),message,Toast.LENGTH_LONG).show();
-            }
-        });
+    public void alert(final String message) {
+        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void abrirPantallaPrincipal() {
+        startActivity(new Intent(getActivity(), PantallaPrincipal.class));
+        getActivity().finish();
     }
 }

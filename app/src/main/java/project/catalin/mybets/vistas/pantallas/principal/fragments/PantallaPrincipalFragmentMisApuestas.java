@@ -29,6 +29,7 @@ import project.catalin.mybets.datos.dataObjects.Partida;
 import project.catalin.mybets.vistas.comunicacionControlador.ControllerPartidasPasadas;
 import project.catalin.mybets.vistas.comunicacionControlador.ControllerPartidasPendientes;
 import project.catalin.mybets.vistas.pantallas.apostar.PantallaApostar;
+import project.catalin.mybets.vistas.pantallas.clasificacion.PantallaClasificacion;
 import project.catalin.mybets.vistas.pantallas.historialJornada.PantallaHistorialJornada;
 import project.catalin.mybets.vistas.utils.AdapterRecargable;
 import project.catalin.mybets.vistas.utils.customAndroidComponents.PartidaView;
@@ -102,7 +103,8 @@ public class PantallaPrincipalFragmentMisApuestas extends FragmentConTitulo impl
 
     @Override
     public void showLoadingPartidasPasadas() {
-        mDialogLoadingPartidasPasadas = ProgressDialog.show(getContext(), "", "Cargando partidas pasadas...", false, false);
+        if (mDialogLoadingPartidasPasadas == null)
+            mDialogLoadingPartidasPasadas = ProgressDialog.show(getContext(), "", "Cargando partidas pasadas...", false, false);
         mDialogLoadingPartidasPasadas.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
     }
 
@@ -141,63 +143,6 @@ public class PantallaPrincipalFragmentMisApuestas extends FragmentConTitulo impl
         return mEdicionPartidaTitulo;
     }
 
-
-    private class AdapterApuestasPendientes extends AdapterRecargable<Partida>{
-        @Override
-        public long getItemId(int position) {
-            return getItem(position).getIdPartida();
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            PartidaView partidaView = convertView == null ? (PartidaView) LayoutInflater.from(getContext()).inflate(R.layout.item_partida, parent, false) : (PartidaView) convertView;
-            final Partida partida = getItem(position);
-
-            partidaView.setTitulo(partida.getTitulo());
-            partidaView.setFechaFin(partida.getFecha());
-            partidaView.setBoteNum(partida.getBote());
-            partidaView.setColorFondoIcono(partida.getColorIcono());
-            partidaView.setUrlImagenIcono(partida.getUrlIcono());
-            partidaView.setNumPersonas(partida.getNumPersonas());
-            partidaView.setEstadoPartida(partida.getEstadoPartida());
-            partidaView.setColorFecha(R.color.gris_medio);
-            if(partida.getEstadoPartida() == Partida.ESTADO_JUEGA_YA) {
-                partidaView.setMostrarBotonAcciones(true);
-                partidaView.setAccionesItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.mybets_action_editar_nombre_partida:
-                                startDialogEditarNombre(partida.getIdPartida());
-                                break;
-                            case R.id.mybets_action_rechazar_partida:
-                                mEdicionPartidaId = partida.getIdPartida();
-                                mControladorPartidasPendientes.botonRechazarPartidaPulsado();
-                                break;
-                        }
-                        return true;
-                    }
-
-                });
-            }
-            partidaView.setBotonJuegaYaClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startJuegaActivity(partida.getIdPartida(), partida.getTipoPartida(), partida.getTitulo());
-                }
-            });
-
-            if(partida.getEstadoPartida() == Partida.ESTADO_ESPERANDO_RESULTADOS) partidaView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startHistorialActivity(partida.getIdPartida(), partida.getTipoPartida());
-                }
-            });
-
-            return partidaView;
-        }
-    }
-
     private void startDialogEditarNombre(final int idPartida) {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getContext());
         alertBuilder.setTitle("Editar titulo de la partida");
@@ -232,6 +177,74 @@ public class PantallaPrincipalFragmentMisApuestas extends FragmentConTitulo impl
         startActivity(new Intent(getContext(), PantallaApostar.class).putExtras(bundle));
     }
 
+    private void startHistorialActivity(int idPartida, int tipoPartida) {
+        Bundle bundle = new Bundle();
+        bundle.putInt(PantallaHistorialJornada.TAG_ID_PARTIDA, idPartida);
+        bundle.putInt(PantallaHistorialJornada.TAG_TIPO_PARTIDA, tipoPartida);
+
+        startActivity(new Intent(getContext(), PantallaHistorialJornada.class).putExtras(bundle));
+    }
+
+    private class AdapterApuestasPendientes extends AdapterRecargable<Partida> {
+        @Override
+        public long getItemId(int position) {
+            return getItem(position).getIdPartida();
+        }
+
+        @Override
+        public View getView(int position, View convertView, final ViewGroup parent) {
+            PartidaView partidaView = convertView == null ? (PartidaView) LayoutInflater.from(getContext()).inflate(R.layout.item_partida, parent, false) : (PartidaView) convertView;
+            final Partida partida = getItem(position);
+
+            partidaView.setTitulo(partida.getTitulo());
+            partidaView.setFechaFin(partida.getFecha());
+            partidaView.setBoteNum(partida.getBote());
+            partidaView.setColorFondoIcono(partida.getColorIcono());
+            partidaView.setUrlImagenIcono(partida.getUrlIcono());
+            partidaView.setNumPersonas(partida.getNumPersonas());
+            partidaView.setEstadoPartida(partida.getEstadoPartida());
+            partidaView.setColorFecha(R.color.gris_medio);
+            partidaView.setMostrarBotonAcciones(true);
+            partidaView.setAccionesItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.mybets_action_editar_nombre_partida:
+                            startDialogEditarNombre(partida.getIdPartida());
+                            break;
+                        case R.id.mybets_action_rechazar_partida:
+                            mEdicionPartidaId = partida.getIdPartida();
+                            mControladorPartidasPendientes.botonRechazarPartidaPulsado();
+                            break;
+                        case R.id.mybets_action_ver_clasificacion:
+                            Bundle args = new Bundle();
+                            args.putInt(PantallaClasificacion.TAG_ID_PARTIDA, partida.getIdPartida());
+                            args.putString(PantallaClasificacion.TAG_COLOR, partida.getColorIcono());
+                            startActivity(new Intent(getContext(), PantallaClasificacion.class).putExtras(args));
+                    }
+                    return true;
+                }
+
+            });
+            partidaView.setBotonJuegaYaClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startJuegaActivity(partida.getIdPartida(), partida.getTipoPartida(), partida.getTitulo());
+                }
+            });
+
+            if (partida.getEstadoPartida() == Partida.ESTADO_ESPERANDO_RESULTADOS)
+                partidaView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startHistorialActivity(partida.getIdPartida(), partida.getTipoPartida());
+                    }
+                });
+
+            return partidaView;
+        }
+    }
+
     private class AdapterApuestasPasadas extends AdapterRecargable<Partida> {
         @Override
         public long getItemId(int position) {
@@ -259,17 +272,8 @@ public class PantallaPrincipalFragmentMisApuestas extends FragmentConTitulo impl
             });
 
 
-
             return partidaView;
         }
-    }
-
-    private void startHistorialActivity(int idPartida, int tipoPartida) {
-        Bundle bundle = new Bundle();
-        bundle.putInt(PantallaHistorialJornada.TAG_ID_PARTIDA, idPartida);
-        bundle.putInt(PantallaHistorialJornada.TAG_TIPO_PARTIDA, tipoPartida);
-
-        startActivity(new Intent(getContext(), PantallaHistorialJornada.class));
     }
 }
 

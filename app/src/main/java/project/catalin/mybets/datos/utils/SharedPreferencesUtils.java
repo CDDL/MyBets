@@ -27,9 +27,7 @@ public class SharedPreferencesUtils {
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    private static int mId = 0;
-
-    public static void saveLogin(JSONObject loginData) {
+    public static void guardarJsonLogin(JSONObject loginData) {
         SharedPreferences.Editor editor = prefs.edit();
 
         editor.putString(SHARED_PREFS_KEY_JSON_LOGIN, loginData.toString());
@@ -41,8 +39,8 @@ public class SharedPreferencesUtils {
 
         return new JSONObject(prefs.getString(SHARED_PREFS_KEY_JSON_LOGIN, "{\n" +
                 "  \"request\": {\n" +
-                "    \"email\": \"EMAIL\",\n" +
-                "    \"password\": \"ENCRYPTED_PASSWORD\"\n" +
+//                "    \"email\": \"EMAIL\",\n" +
+//                "    \"password\": \"ENCRYPTED_PASSWORD\"\n" +
                 "  }\n" +
                 "}"));
     }
@@ -60,6 +58,12 @@ public class SharedPreferencesUtils {
     }
 
     public static int getMiId() {
-        return mId;
+        return prefs.getInt(SHARED_PREFS_KEY_ID, -1);
+    }
+
+    public static void guardarIdUsuario(int id) {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt(SHARED_PREFS_KEY_ID, id);
+        editor.apply();
     }
 }

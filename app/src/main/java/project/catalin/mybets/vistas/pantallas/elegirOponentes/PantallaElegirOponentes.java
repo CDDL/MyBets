@@ -1,6 +1,7 @@
 package project.catalin.mybets.vistas.pantallas.elegirOponentes;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -45,9 +46,9 @@ public class PantallaElegirOponentes extends AppCompatActivity implements ViewLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.elegir_oponentes);
 
-        crearToolBar();
-        crearAdapter();
-        crearControladores();
+        inicializarToolbar();
+        inicializarAdapter();
+        inicializarControladores();
         iniciarlizarBotonJuegaYa();
 
     }
@@ -62,21 +63,21 @@ public class PantallaElegirOponentes extends AppCompatActivity implements ViewLi
         });
     }
 
-    private void crearControladores() {
+    private void inicializarControladores() {
         mControllerElegirOponentesBotones = new ControladorElegirOponentesBotones(this);
         mControllerAmigos = new ControladorAmigos(this);
-        mControllerAmigos.getContactos();
+        mControllerAmigos.inicializarVista();
 
     }
 
-    private void crearAdapter() {
+    private void inicializarAdapter() {
         mAdaptadorPersonas = new AdaptadorPersonas();
 
         ListView mListContactos = (ListView) findViewById(R.id.elegir_oponentes_search_list);
         mListContactos.setAdapter(mAdaptadorPersonas);
     }
 
-    private void crearToolBar() {
+    private void inicializarToolbar() {
         setSupportActionBar((Toolbar) findViewById(R.id.elegir_oponentes_toolbar));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
@@ -124,7 +125,7 @@ public class PantallaElegirOponentes extends AppCompatActivity implements ViewLi
 
     @Override
     public int getIdJuego() {
-        return getIntent().getIntExtra(PantallaApostar.TAG_TIPO_PARTIDA, -1);
+        return getIntent().getIntExtra(PantallaApostar.TAG_ID_PARTIDA, -1);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class SharedPreferencesUtilTest {
     @Test
     public void saveLoginTest() throws JSONException {
         JSONObject loginData = createRequest_UsuarioIdentificado();
-        SharedPreferencesUtils.saveLogin(loginData);
+        SharedPreferencesUtils.guardarJsonLogin(loginData);
 
         JSONObject loginCopy = SharedPreferencesUtils.getLoginJsonCopy();
 
@@ -40,7 +40,7 @@ public class SharedPreferencesUtilTest {
         assertFalse(SharedPreferencesUtils.isLogged());
 
         JSONObject loginData = createRequest_UsuarioIdentificado();
-        SharedPreferencesUtils.saveLogin(loginData);
+        SharedPreferencesUtils.guardarJsonLogin(loginData);
 
         assertTrue(SharedPreferencesUtils.isLogged());
 

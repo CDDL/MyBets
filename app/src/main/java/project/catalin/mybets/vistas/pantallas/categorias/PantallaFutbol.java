@@ -17,11 +17,10 @@ import android.widget.Toast;
 import java.util.List;
 
 import project.catalin.mybets.R;
-import project.catalin.mybets.controladores.comunicacionVista.ViewPantallaPartidasHoy;
-import project.catalin.mybets.controladores.controladoresPantallas.ControladorPartidasHoy;
+import project.catalin.mybets.controladores.comunicacionVista.ViewPantallaPartidasFutbol;
+import project.catalin.mybets.controladores.controladoresPantallas.ControladorPartidasFutbol;
 import project.catalin.mybets.datos.dataObjects.Partida;
 import project.catalin.mybets.vistas.comunicacionControlador.ControllerPartidasHoy;
-import project.catalin.mybets.vistas.comunicacionControlador.ControllerPartidasPopulares;
 import project.catalin.mybets.vistas.pantallas.apostar.PantallaApostar;
 import project.catalin.mybets.vistas.pantallas.principal.fragments.PantallaPrincipalFragmentDialogJuegaYa;
 import project.catalin.mybets.vistas.utils.AdapterRecargable;
@@ -30,13 +29,15 @@ import project.catalin.mybets.vistas.utils.customAndroidComponents.PartidaView;
 /**
  * Created by CDD on 19/05/2016.
  */
-public class PantallaHoy extends AppCompatActivity implements ViewPantallaPartidasHoy {
+public class PantallaFutbol extends AppCompatActivity implements ViewPantallaPartidasFutbol {
 
+    public static final String TAG_ID_FUTBOL = "idfutbol";
     private Toolbar mToolbar;
     private ListView mListaPartidas;
     private AdapterPartidas mAdapterPartidas;
     private ControllerPartidasHoy mControladorPartidasHoy;
     private ProgressDialog mDialogLoadingPartidasPopulares;
+    private int mIdSubcategoriaFutbol;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,11 +47,17 @@ public class PantallaHoy extends AppCompatActivity implements ViewPantallaPartid
         inicializarComponentes();
         inicializarToolbar();
         inicializarAdapter();
+        inicializarArgs();
         inicializarControlador();
     }
 
+    private void inicializarArgs() {
+        Bundle bundle = getIntent().getExtras();
+        mIdSubcategoriaFutbol = bundle.getInt(TAG_ID_FUTBOL, -1);
+    }
+
     private void inicializarControlador() {
-        mControladorPartidasHoy = new ControladorPartidasHoy(this);
+        mControladorPartidasHoy = new ControladorPartidasFutbol(this, mIdSubcategoriaFutbol);
         mControladorPartidasHoy.inicializarVista();
     }
 
@@ -93,7 +100,7 @@ public class PantallaHoy extends AppCompatActivity implements ViewPantallaPartid
 
     private void inicializarToolbar() {
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle(R.string.pantalla_partidas_hoy_text_titulo);
+        getSupportActionBar().setTitle(R.string.pantalla_partidas_futbol_titulo);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -104,7 +111,7 @@ public class PantallaHoy extends AppCompatActivity implements ViewPantallaPartid
 
     @Override
     public void showLoadingPartidas() {
-        mDialogLoadingPartidasPopulares = ProgressDialog.show(this, "", "Cargando partidas populares...", false, false);
+        mDialogLoadingPartidasPopulares = ProgressDialog.show(this, "", "Cargando partidas...", false, false);
         mDialogLoadingPartidasPopulares.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
     }
 
@@ -138,7 +145,7 @@ public class PantallaHoy extends AppCompatActivity implements ViewPantallaPartid
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             final Partida partida = getItem(position);
-            PartidaView partidaView = convertView == null? (PartidaView) LayoutInflater.from(PantallaHoy.this).inflate(R.layout.item_partida, parent, false): (PartidaView) convertView;
+            PartidaView partidaView = convertView == null? (PartidaView) LayoutInflater.from(PantallaFutbol.this).inflate(R.layout.item_partida, parent, false): (PartidaView) convertView;
 
             partidaView.setUrlImagenIcono(partida.getUrlIcono());
             partidaView.setColorFondoIcono(partida.getColorIcono());
@@ -152,7 +159,6 @@ public class PantallaHoy extends AppCompatActivity implements ViewPantallaPartid
                     Bundle bundle = new Bundle();
                     bundle.putString(PantallaPrincipalFragmentDialogJuegaYa.TAG_COLOR, partida.getColorIcono());
                     bundle.putString(PantallaPrincipalFragmentDialogJuegaYa.TAG_TITULO, partida.getTitulo());
-                    bundle.putString(PantallaPrincipalFragmentDialogJuegaYa.TAG_ICON, partida.getUrlIcono());
                     bundle.putInt(PantallaPrincipalFragmentDialogJuegaYa.TAG_BOTE, partida.getBote());
                     bundle.putInt(PantallaApostar.TAG_TIPO_PARTIDA, partida.getTipoPartida());
                     bundle.putInt(PantallaApostar.TAG_ID_PARTIDA, partida.getIdPartida());

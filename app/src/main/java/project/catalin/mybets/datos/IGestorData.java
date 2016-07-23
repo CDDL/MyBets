@@ -24,7 +24,7 @@ public interface IGestorData extends DataIdentificación {
     int registrarUsuario(Persona dataUsuario, String password) throws EmailMalFormadoException, UsuarioRepetidoException, TelefonoMalFormadoException, EmailVacioException, NombreVacioException, ErrorInternoException, ErrorServerException;
 
     @Override
-    Persona validarIdentificación(LoginData dataLogin) throws ContraseñaVaciaException, EmailVacioException, EmailMalFormadoException, ErrorInternoException, ErrorServerException;
+    Persona validarIdentificación(LoginData dataLogin) throws ErrorInternoException, ErrorServerException;
 
     void añadirAmigo(int idAmigo) throws UsuarioNoIdentificadoException, ErrorInternoException, ErrorServerException;
 

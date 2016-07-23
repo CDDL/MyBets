@@ -67,4 +67,7 @@ public abstract class CustomPagerRecargable<Tipo> extends PagerAdapter implement
     public boolean isViewFromObject(View view, Object object) {
         return view == object;
     }
+
+
+
 }

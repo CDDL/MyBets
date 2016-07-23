@@ -36,6 +36,8 @@ public class ControladorDatosPropios implements ControllerDatosPropios {
         persona.setImagen(Base64.encodeToString(mViewDatosPropios.getDataIconImagen(), Base64.DEFAULT));
 
         new TascaGuardarDatosUsuario().execute(persona);
+        mViewDatosPropios.cerrar();
+        GestorEventosUtil.notificarEvento(TipoEvento.DATOS_PROPIOS_ACTUALIZADOS);
      }
 
     private class TascaInicializarVista extends ExceptionHandlingAsyncTask<Void, Void, Persona>{
@@ -64,6 +66,10 @@ public class ControladorDatosPropios implements ControllerDatosPropios {
     }
 
     private class TascaGuardarDatosUsuario extends ExceptionHandlingAsyncTask<Persona, Void, Void>{
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
 
         @Override
         protected Void executeTask(Persona... params) throws Exception {
@@ -73,7 +79,7 @@ public class ControladorDatosPropios implements ControllerDatosPropios {
 
         @Override
         protected void onTaskFailture(Exception e) {
-
+            mViewDatosPropios.alert(e.getMessage());
         }
 
         @Override

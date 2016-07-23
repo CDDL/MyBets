@@ -5,7 +5,7 @@
     <dimen name="logo_anchura">260dp</dimen>
     <dimen name="logo_altura">98dp</dimen>
     <dimen name="boton_login_anchura">266dp</dimen>
-    <dimen name="boton_login_altura">76dp</dimen>
+    <dimen name="boton_login_altura">56dp</dimen>
     <dimen name="icon_fb_anchura">10dp</dimen>
     <dimen name="icon_fb_altura">42dp</dimen>
     <dimen name="icon_mail_anchura">26dp</dimen>

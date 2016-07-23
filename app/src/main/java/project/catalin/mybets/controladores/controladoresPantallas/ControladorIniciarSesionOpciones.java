@@ -28,7 +28,4 @@ public class ControladorIniciarSesionOpciones implements ControllerOpcionesLogin
     public void botonLoginMailPulsado() {
         GestorEventosUtil.notificarEvento(TipoEvento.BOTON_LOGIN_EMAIL_PULSADO);
     }
-
-    @Override
-    public void destroy() {}
 }

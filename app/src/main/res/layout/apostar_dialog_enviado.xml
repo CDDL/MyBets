@@ -9,7 +9,7 @@
         android:layout_width="121dp"
         android:layout_height="64dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/mybets_icon_apuesta_enviada" />
 
     <TextView
@@ -18,20 +18,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/apuesta_dialog_enviada_dialog_icon"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:text="¡Apuesta enviada!"
         android:textColor="@color/gris_medio"
         android:textSize="21sp" />
 
-    <TextView
-        android:id="@+id/apuesta_dialog_enviada_puntos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/apuesta_dialog_enviada_text"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="500 puntos"
-        android:textColor="@color/gris_medio_oscuro"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+
 </RelativeLayout>

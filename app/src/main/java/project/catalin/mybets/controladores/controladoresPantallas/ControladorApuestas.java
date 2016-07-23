@@ -1,12 +1,10 @@
 package project.catalin.mybets.controladores.controladoresPantallas;
 
-import android.os.AsyncTask;
-
-import java.util.Collections;
 import java.util.List;
 
 import project.catalin.mybets.controladores.comunicacionDatos.DataPartidasPopulares;
 import project.catalin.mybets.controladores.comunicacionVista.ViewListaPartidas;
+import project.catalin.mybets.controladores.utils.ExceptionHandlingAsyncTask;
 import project.catalin.mybets.datos.GestorDataWebServices;
 import project.catalin.mybets.datos.dataObjects.Partida;
 import project.catalin.mybets.vistas.comunicacionControlador.ControllerPartidasPopulares;
@@ -29,30 +27,27 @@ public class ControladorApuestas implements ControllerPartidasPopulares {
         new TascaGetPartidas().execute();
     }
 
-
-    private class TascaGetPartidas extends AsyncTask<Void, Void, List<Partida>> {
-        private Exception mError;
+    private class TascaGetPartidas extends ExceptionHandlingAsyncTask<Void, Void, List<Partida>> {
 
         @Override
         protected void onPreExecute() {
-            super.onPreExecute();
             mVistaPartidas.showLoadingPartidas();
         }
 
         @Override
-        protected List<Partida> doInBackground(Void... params) {
-            try {
-                return mDatosPartidasPopulares.getPartidasPopulares();
-            } catch (Exception e) {
-                mError = e;
-                return Collections.emptyList();
-            }
+        protected List<Partida> executeTask(Void... params) throws Exception {
+            return mDatosPartidasPopulares.getPartidasPopulares();
         }
 
         @Override
-        protected void onPostExecute(List<Partida> partidas) {
+        protected void onTaskFailture(Exception e) {
+            mVistaPartidas.dismissLoadingPartidas();
+            mVistaPartidas.alert(e.getMessage());
+        }
+
+        @Override
+        protected void onTaskSuccess(List<Partida> partidas) {
             mVistaPartidas.setListaPartidas(partidas);
-            if (mError != null) mVistaPartidas.alert("Error: " + mError.getMessage());
             mVistaPartidas.dismissLoadingPartidas();
         }
     }

@@ -5,20 +5,29 @@ import java.util.List;
 import project.catalin.mybets.controladores.comunicacionDatos.DataPartidasPendientes;
 import project.catalin.mybets.controladores.comunicacionVista.ViewListaPartidasPendientes;
 import project.catalin.mybets.controladores.utils.ExceptionHandlingAsyncTask;
+import project.catalin.mybets.controladores.utils.comunicación.eventos.GestorEventosUtil;
+import project.catalin.mybets.controladores.utils.comunicación.eventos.INotificable;
+import project.catalin.mybets.controladores.utils.comunicación.eventos.TipoEvento;
 import project.catalin.mybets.datos.datosWebService.DatosPartidasPendientes;
 import project.catalin.mybets.datos.dataObjects.Partida;
+import project.catalin.mybets.vistas.comunicacionControlador.ControllerPartidasPendientes;
 
 /**
  * Created by Trabajo on 10/05/2016.
  */
-public class ControladorApuestasPendientes implements project.catalin.mybets.vistas.comunicacionControlador.ControllerPartidasPendientes {
+public class ControladorApuestasPendientes implements ControllerPartidasPendientes, INotificable {
 
     private final ViewListaPartidasPendientes mViewListaPartidas;
     private final DataPartidasPendientes mDatosPartidasPandientes;
+    private final int[] mEventosSuscritos = new int[]{
+            TipoEvento.PARTIDA_CREADA,
+            TipoEvento.APUESTA_REALIZADA
+    };
 
     public ControladorApuestasPendientes(ViewListaPartidasPendientes viewListaPartidas) {
         mViewListaPartidas = viewListaPartidas;
         mDatosPartidasPandientes = new DatosPartidasPendientes();
+        GestorEventosUtil.suscribirseAEventos(this, mEventosSuscritos);
     }
 
     @Override
@@ -37,6 +46,11 @@ public class ControladorApuestasPendientes implements project.catalin.mybets.vis
     public void botonRechazarPartidaPulsado() {
         int idPartida = mViewListaPartidas.getIdPartidaRechazar();
         new TascaRechazarPartida(idPartida).execute();
+    }
+
+    @Override
+    public void notificar(int idEvento, Object evento) {
+        inicializarVista();
     }
 
     private class TascaInicializarVista extends ExceptionHandlingAsyncTask<Void, Void, List<Partida>> {

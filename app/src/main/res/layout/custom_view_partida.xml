@@ -18,10 +18,12 @@
 
         <ImageView
             android:id="@+id/partida_item_boton_acciones"
-            android:layout_width="4dp"
-            android:layout_height="16dp"
+            android:layout_width="16dp"
+            android:paddingRight="6dp"
+            android:paddingLeft="6dp"
+            android:layout_height="32dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="4dp"
             android:src="@drawable/mybets_tres_puntos" />
 
         <ImageView
@@ -30,8 +32,8 @@
             android:layout_height="30dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:contentDescription="@string/partida_item_icono_placeholder_desc"
-            android:src="@drawable/mybets_icon_sobre" />
+            android:scaleType="fitStart"
+            android:contentDescription="@string/partida_item_icono_placeholder_desc" />
 
     </RelativeLayout>
 
@@ -116,10 +118,14 @@
             android:textStyle="italic|bold" />
 
         <TextView
+            android:layout_marginRight="10dp"
             android:id="@+id/partida_item_text_titulo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/partida_item_text_num_personas"
             android:fontFamily="sans-serif-medium"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="@string/apuestas_titulo_placeholder_text"
             android:textColor="@color/gris_oscuro"
             android:textSize="16sp" />
@@ -180,7 +186,7 @@
         android:id="@+id/partida_item_popup_box"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_toRightOf="@id/partida_item_fondo_icon"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/partida_item_fondo_icon" />
 
 </RelativeLayout>

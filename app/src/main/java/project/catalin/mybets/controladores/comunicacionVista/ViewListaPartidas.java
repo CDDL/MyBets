@@ -15,4 +15,10 @@ public interface ViewListaPartidas {
     void dismissLoadingPartidas();
 
     void setListaPartidas(List<Partida> objects);
+
+    void mostrarPantallaCategorias();
+
+    void mostrarPantallaPartidasPopulares();
+
+    void mostrarPantallaCategoriaFutbol();
 }

@@ -46,9 +46,9 @@ public class JsonWrapper {
         }
     }
 
-    public JsonWrapper getObject(String partida, JsonWrapper defaultValue) {
+    public JsonWrapper getObject(String identificador, JsonWrapper defaultValue) {
         try {
-            return new JsonWrapper(mJsonObject.getJSONObject("partida"));
+            return new JsonWrapper(mJsonObject.getJSONObject(identificador));
         } catch (JSONException e) {
             return defaultValue;
         }

@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_formulario_registrarse"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/iniciar_sesion_fragment_formulario_registrarse_input_nombre"
+        style="@style/MyBetsEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="6dp"
+        android:hint="Nombre" />
+
+    <EditText
+        android:id="@+id/iniciar_sesion_fragment_formulario_registrarse_input_email"
+        style="@style/MyBetsEditText"
+        android:layout_above="@id/iniciar_sesion_fragment_formulario_registrarse_input_nombre"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="6dp"
+        android:hint="@string/edittext_email_hint"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/iniciar_sesion_fragment_formulario_registrarse_input_contrasena"
+        style="@style/MyBetsEditText"
+        android:layout_below="@id/iniciar_sesion_fragment_formulario_registrarse_input_nombre"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="6dp"
+        android:hint="@string/edittext_password_hint"
+        android:inputType="textPassword" />
+
+
+    <EditText
+        android:id="@+id/iniciar_sesion_fragment_formulario_registrarse_input_repite_contrasena"
+        style="@style/MyBetsEditText"
+        android:layout_below="@id/iniciar_sesion_fragment_formulario_registrarse_input_contrasena"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="6dp"
+        android:inputType="textPassword"
+        android:hint="Repite contraseña" />
+
+    <EditText
+        android:id="@+id/iniciar_sesion_fragment_formulario_registrarse_input_username"
+        style="@style/MyBetsEditText"
+        android:layout_above="@id/iniciar_sesion_fragment_formulario_registrarse_input_email"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="6dp"
+        android:hint="Nickname" />
+
+    <EditText
+        android:id="@+id/iniciar_sesion_fragment_formulario_registrarse_input_telefono"
+        style="@style/MyBetsEditText"
+        android:layout_above="@id/iniciar_sesion_fragment_formulario_registrarse_input_username"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="6dp"
+        android:hint="Telefono" />
+
+
+    <Button
+        android:id="@+id/iniciar_sesion_fragment_formulario_boton_enviar"
+        style="@style/pantalla_identificacion_boton"
+        android:layout_below="@id/iniciar_sesion_fragment_formulario_registrarse_input_repite_contrasena"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="6dp"
+        android:text="Aceptar" />
+
+</RelativeLayout>

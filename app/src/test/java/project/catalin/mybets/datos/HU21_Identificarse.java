@@ -54,10 +54,13 @@ public class HU21_Identificarse {
     public void sistemaConUnUsuario_identificarUsuarioContraseñaNoCoincide_usuarioNoIdentificado() throws EmailMalFormadoException, UsuarioRepetidoException, IOException, JSONException, TelefonoMalFormadoException, NombreVacioException, EmailVacioException, ErrorInternoException, ContraseñaVaciaException, UsuarioVacioException, ErrorServerException {
         //Estado inicial
         mMyBetsMock.sistemaConUnUsuarioRegistrado();
+        LoginData datosLogin = new LoginData();
+        datosLogin.setEmail("datos@validos.com");
+        datosLogin.setPassword("123");
 
         //Acción
         try {
-            mGestorData.validarIdentificación(new LoginData("datos@validos.com", "123"));
+            mGestorData.validarIdentificación(datosLogin);
             fail("La persona se ha identificado con datos no válidos.");
 
         //Estado esperado
@@ -71,11 +74,11 @@ public class HU21_Identificarse {
 
         //Acción
         try {
-            mGestorData.validarIdentificación(new LoginData("",""));
+            mGestorData.validarIdentificación(new LoginData());
             fail("Se ha intentado validar la identificación de un campo vacío.");
 
         //Estado esperado
-        } catch (EmailVacioException e){}
+        } catch (Exception e){}
 
     }
 
@@ -84,9 +87,12 @@ public class HU21_Identificarse {
     public void sistemaConUnUsuario_identificarUsuarioCoincideContraseña_usuarioIdentificado() throws EmailMalFormadoException, UsuarioRepetidoException, IOException, JSONException, TelefonoMalFormadoException, NombreVacioException, EmailVacioException, ErrorInternoException, ErrorServerException, ContraseñaVaciaException {
         //Estado inicial
         mMyBetsMock.sistemaConUnUsuarioRegistrado();
+        LoginData datosLogin = new LoginData();
+        datosLogin.setEmail("datos@validos.com");
+        datosLogin.setPassword("123456");
 
         //Acción
-        Persona usuarioIdentificado = mGestorData.validarIdentificación(new LoginData("datos@validos.com", "123456"));
+        Persona usuarioIdentificado = mGestorData.validarIdentificación(datosLogin);
 
         //Estado esperado
         assertTrue(usuarioIdentificado.getEmail().equals("datos@validos.com"));

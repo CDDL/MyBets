@@ -45,6 +45,7 @@ public class EditarPerfil extends AppCompatActivity implements ViewDatosPropios 
     private ImageView mBotonCerrar;
     private ControllerDatosPropios mControladorDatosPropios;
     private ProgressDialog mDialogLoadingPartidas;
+    private boolean mImgCambiada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +97,7 @@ public class EditarPerfil extends AppCompatActivity implements ViewDatosPropios 
         mInputPassword = (EditText) findViewById(R.id.editar_perfil_text_password);
         mBotonGuardar = (TextView) findViewById(R.id.editar_perfil_boton_guardar);
         mBotonCerrar = (ImageView) findViewById(R.id.editar_perfil_boton_cerrar);
+        mImgCambiada = false;
 
         int gris = getResources().getColor(R.color.gris_medio);
         mInputUsername.getBackground().setColorFilter(gris, PorterDuff.Mode.SRC_IN);
@@ -132,6 +134,7 @@ public class EditarPerfil extends AppCompatActivity implements ViewDatosPropios 
                 InputStream streamImagen = getContentResolver().openInputStream(data.getData());
                 Bitmap bitmapSeleccionado = BitmapFactory.decodeStream(streamImagen);
                 mImagenPerfil.setImageBitmap(bitmapSeleccionado);
+                mImgCambiada = true;
             } catch (FileNotFoundException ignored) {
                 alert("Ha ocurrido un error");
             }
@@ -160,6 +163,7 @@ public class EditarPerfil extends AppCompatActivity implements ViewDatosPropios 
 
     @Override
     public byte[] getDataIconImagen() {
+        if(!mImgCambiada) return new byte[] {};
         BitmapDrawable drawableData = (BitmapDrawable) mImagenPerfil.getDrawable();
         Bitmap bitmapData = drawableData.getBitmap();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -175,5 +179,10 @@ public class EditarPerfil extends AppCompatActivity implements ViewDatosPropios 
     @Override
     public String getValorCampoUsername() {
         return mInputUsername.getText().toString();
+    }
+
+    @Override
+    public void cerrar() {
+        finish();
     }
 }
