@@ -21,6 +21,7 @@ import project.catalin.mybets.R;
 import project.catalin.mybets.controladores.comunicacionVista.ViewPantallaPrincipalPantallas;
 import project.catalin.mybets.controladores.controladoresPantallas.ControladorPantallaPrincipalPantallas;
 import project.catalin.mybets.datos.utils.SharedPreferencesUtils;
+import project.catalin.mybets.vistas.pantallas.configuracion.PantallaConfiguracion;
 import project.catalin.mybets.vistas.pantallas.iniciarSesion.IniciarSesionPantallaPrincipal;
 import project.catalin.mybets.vistas.pantallas.perfil.PantallaPerfilUsuario;
 import project.catalin.mybets.vistas.pantallas.principal.fragments.FragmentConTitulo;
@@ -82,6 +83,7 @@ public class PantallaPrincipal extends AppCompatActivity implements ViewPantalla
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.mybets_action_configuracion:
+                startActivity(new Intent(this, PantallaConfiguracion.class));
                 break;
             case R.id.mybets_action_perfil:
                 Bundle args = new Bundle();

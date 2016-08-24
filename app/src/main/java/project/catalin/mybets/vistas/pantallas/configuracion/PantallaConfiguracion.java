@@ -1,8 +1,10 @@
 package project.catalin.mybets.vistas.pantallas.configuracion;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -13,6 +15,9 @@ import java.util.Collections;
 
 import project.catalin.mybets.R;
 import project.catalin.mybets.datos.dataObjects.Configuracion;
+import project.catalin.mybets.datos.utils.SharedPreferencesUtils;
+import project.catalin.mybets.vistas.pantallas.iniciarSesion.IniciarSesionPantallaPrincipal;
+import project.catalin.mybets.vistas.pantallas.perfil.PantallaPerfilUsuario;
 import project.catalin.mybets.vistas.utils.AdapterRecargable;
 
 public class PantallaConfiguracion extends AppCompatActivity {
@@ -41,6 +46,16 @@ public class PantallaConfiguracion extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.pantalla_configuracion_title);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return true;
     }
 
     private void inicializarComponentes() {

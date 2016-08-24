@@ -34,7 +34,6 @@ public class PantallaCategorias extends AppCompatActivity implements ViewCategor
     private AdapterCategorias mAdapterCategorias;
     private ControllerCategorias mControladorCategorias;
     private ProgressDialog mDialogLoadingCategorias;
-    private SearchView mCampoBusqueda;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
