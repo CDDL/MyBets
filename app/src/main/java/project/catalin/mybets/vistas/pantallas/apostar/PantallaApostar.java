@@ -3,6 +3,7 @@ package project.catalin.mybets.vistas.pantallas.apostar;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -77,6 +78,7 @@ public class PantallaApostar extends AppCompatActivity implements ViewApostar {
                 finish();
             }
         });
+        mPopUpEnviada.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
     }
 
     private void inicializarBotones() {

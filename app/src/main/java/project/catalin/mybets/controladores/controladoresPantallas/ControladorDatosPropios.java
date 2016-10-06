@@ -37,7 +37,6 @@ public class ControladorDatosPropios implements ControllerDatosPropios {
 
         new TascaGuardarDatosUsuario().execute(persona);
         mViewDatosPropios.cerrar();
-        GestorEventosUtil.notificarEvento(TipoEvento.DATOS_PROPIOS_ACTUALIZADOS);
      }
 
     private class TascaInicializarVista extends ExceptionHandlingAsyncTask<Void, Void, Persona>{

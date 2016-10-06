@@ -1,12 +1,17 @@
 package project.catalin.mybets.controladores.controladoresPantallas;
 
+import org.json.JSONException;
+
 import project.catalin.mybets.controladores.comunicacionDatos.DataRegister;
 import project.catalin.mybets.controladores.comunicacionVista.ViewRegisterForm;
 import project.catalin.mybets.controladores.utils.ExceptionHandlingAsyncTask;
 import project.catalin.mybets.controladores.utils.comunicación.Constantes;
+import project.catalin.mybets.datos.dataObjects.LoginData;
 import project.catalin.mybets.datos.dataObjects.Persona;
 import project.catalin.mybets.datos.datosWebService.DatosUsuario;
 import project.catalin.mybets.datos.utils.EncryptionUtils;
+import project.catalin.mybets.datos.utils.JsonParserUtils;
+import project.catalin.mybets.datos.utils.SharedPreferencesUtils;
 import project.catalin.mybets.datos.utils.UserInputValidationUtils;
 import project.catalin.mybets.vistas.comunicacionControlador.ControllerRegister;
 
@@ -29,6 +34,8 @@ public class ControladorFormRegister implements ControllerRegister {
     }
 
     private class TascaRegistrarUsuario extends ExceptionHandlingAsyncTask<Void, Void, Void>{
+
+        private Persona mUsuario;
 
         @Override
         protected void onPreExecute() {
@@ -55,6 +62,14 @@ public class ControladorFormRegister implements ControllerRegister {
         @Override
         protected void onTaskSuccess(Void aVoid) {
             mViewRegister.abrirPantallaPrincipal();
+            LoginData loginData = new LoginData();
+            loginData.setEmail(mViewRegister.getEmail());
+            loginData.setPassword(mViewRegister.getPassword());
+            try {
+                SharedPreferencesUtils.guardarJsonLogin(JsonParserUtils.loginToJson(loginData));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
         private void comprobarDatosCorrectos() {

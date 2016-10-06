@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
@@ -34,6 +35,8 @@ import project.catalin.mybets.vistas.pantallas.historialJornada.PantallaHistoria
 import project.catalin.mybets.vistas.utils.AdapterRecargable;
 import project.catalin.mybets.vistas.utils.customAndroidComponents.PartidaView;
 
+import static android.view.View.GONE;
+
 /**
  * Created by Trabajo on 10/05/2016.
  */
@@ -51,6 +54,8 @@ public class PantallaPrincipalFragmentMisApuestas extends FragmentConTitulo impl
     private ProgressDialog mDialogLoadingPartidasPasadas;
     private int mEdicionPartidaId;
     private String mEdicionPartidaTitulo;
+    private TextView mTextNoTienesPasadas;
+    private TextView mTextNoTienesPendientes;
 
     public PantallaPrincipalFragmentMisApuestas() {
         super();
@@ -72,8 +77,20 @@ public class PantallaPrincipalFragmentMisApuestas extends FragmentConTitulo impl
     private void inicializarControladores() {
         mControladorPartidasPendientes = new ControladorApuestasPendientes(this);
         mControladorPartidasPasadas = new ControladorApuestasPasadas(this);
-        mControladorPartidasPasadas.inicializarVista();
-        mControladorPartidasPendientes.inicializarVista();
+
+    }
+
+    @Override
+    public void setMenuVisibility(boolean menuVisible) {
+        super.setMenuVisibility(menuVisible);
+        if (menuVisible)
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+                    mControladorPartidasPasadas.inicializarVista();
+                    mControladorPartidasPendientes.inicializarVista();
+                }
+            });
     }
 
     private void inicializarAdapters() {
@@ -85,6 +102,8 @@ public class PantallaPrincipalFragmentMisApuestas extends FragmentConTitulo impl
 
     private void inicializarComponentes(RelativeLayout layout) {
         mTextPendientes = (TextView) layout.findViewById(R.id.mis_apuestas_text_pendientes);
+        mTextNoTienesPendientes = (TextView) layout.findViewById(R.id.mis_apuestas_text_pendientes_no_tienes);
+        mTextNoTienesPasadas = (TextView) layout.findViewById(R.id.mis_apuestas_text_pasadas_no_tienes);
         mListaPendientes = (ListView) layout.findViewById(R.id.mis_apuestas_list_pendientes);
         mTextPasdas = (TextView) layout.findViewById(R.id.mis_apuestas_text_pasadas);
         mListaPasadas = (ListView) layout.findViewById(R.id.mis_apuestas_list_pasadas);
@@ -92,25 +111,50 @@ public class PantallaPrincipalFragmentMisApuestas extends FragmentConTitulo impl
 
     @Override
     public void showLoadingPartidasPendientes() {
-        mDialogLoadingPartidasPendientes = ProgressDialog.show(getContext(), "", "Cargando partidas pendientes...", false, false);
-        mDialogLoadingPartidasPendientes.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (mDialogLoadingPartidasPendientes != null)
+                        mDialogLoadingPartidasPendientes.dismiss();
+                    mDialogLoadingPartidasPendientes = ProgressDialog.show(getActivity(), "", "Cargando partidas pendientes...", false, false);
+                    mDialogLoadingPartidasPendientes.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        },500);
+
     }
 
     @Override
     public void dismissLoadingPartidasPendientes() {
-        mDialogLoadingPartidasPendientes.dismiss();
+        if(mDialogLoadingPartidasPendientes != null) mDialogLoadingPartidasPendientes.dismiss();
     }
 
     @Override
     public void showLoadingPartidasPasadas() {
-        if (mDialogLoadingPartidasPasadas == null)
-            mDialogLoadingPartidasPasadas = ProgressDialog.show(getContext(), "", "Cargando partidas pasadas...", false, false);
-        mDialogLoadingPartidasPasadas.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (mDialogLoadingPartidasPasadas != null) mDialogLoadingPartidasPasadas.dismiss();
+                    if (mDialogLoadingPartidasPasadas == null)
+                        mDialogLoadingPartidasPasadas = ProgressDialog.show(getActivity(), "", "Cargando partidas pasadas...", false, false);
+                    mDialogLoadingPartidasPasadas.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }, 500);
+
     }
 
     @Override
     public void dismissLoadingPartidasPasadas() {
-        mDialogLoadingPartidasPasadas.dismiss();
+        if(mDialogLoadingPartidasPasadas != null) mDialogLoadingPartidasPasadas.dismiss();
     }
 
     @Override
@@ -192,6 +236,13 @@ public class PantallaPrincipalFragmentMisApuestas extends FragmentConTitulo impl
         }
 
         @Override
+        public void recargarDatos(List<Partida> listaElementos) {
+            super.recargarDatos(listaElementos);
+            if (listaElementos.isEmpty()) mTextNoTienesPendientes.setVisibility(View.VISIBLE);
+            else mTextNoTienesPendientes.setVisibility(GONE);
+        }
+
+        @Override
         public View getView(int position, View convertView, final ViewGroup parent) {
             PartidaView partidaView = convertView == null ? (PartidaView) LayoutInflater.from(getContext()).inflate(R.layout.item_partida, parent, false) : (PartidaView) convertView;
             final Partida partida = getItem(position);
@@ -252,6 +303,13 @@ public class PantallaPrincipalFragmentMisApuestas extends FragmentConTitulo impl
         }
 
         @Override
+        public void recargarDatos(List<Partida> listaElementos) {
+            super.recargarDatos(listaElementos);
+            if (listaElementos.isEmpty()) mTextNoTienesPasadas.setVisibility(View.VISIBLE);
+            else mTextNoTienesPasadas.setVisibility(GONE);
+        }
+
+        @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             PartidaView partidaView = convertView == null ? (PartidaView) LayoutInflater.from(getContext()).inflate(R.layout.item_partida, parent, false) : (PartidaView) convertView;
             final Partida partida = getItem(position);
@@ -267,7 +325,11 @@ public class PantallaPrincipalFragmentMisApuestas extends FragmentConTitulo impl
             partidaView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startHistorialActivity(partida.getIdPartida(), partida.getTipoPartida());
+//                    startHistorialActivity(partida.getIdPartida(), partida.getTipoPartida());
+                    Bundle args = new Bundle();
+                    args.putInt(PantallaClasificacion.TAG_ID_PARTIDA, partida.getIdPartida());
+                    args.putString(PantallaClasificacion.TAG_COLOR, partida.getColorIcono());
+                    startActivity(new Intent(getContext(), PantallaClasificacion.class).putExtras(args));
                 }
             });
 

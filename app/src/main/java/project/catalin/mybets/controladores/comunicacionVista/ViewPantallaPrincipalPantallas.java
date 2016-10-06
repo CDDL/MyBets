@@ -5,4 +5,6 @@ package project.catalin.mybets.controladores.comunicacionVista;
  */
 public interface ViewPantallaPrincipalPantallas {
     void cambiarAPantallaMisApuestas();
+
+    void actualizarPuntuación(Integer puntuación);
 }

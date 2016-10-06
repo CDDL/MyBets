@@ -20,4 +20,5 @@ public abstract class TipoEvento{
     public static final int PARTIDA_CREADA = 16;
     public static final int DATOS_PROPIOS_ACTUALIZADOS = 17;
     public static final int APUESTA_REALIZADA = 18;
+    public static final int PUNTUACIÓN_UPDATED = 19;
 }

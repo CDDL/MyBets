@@ -52,7 +52,6 @@ public class JsonWebServiceUtilsTest {
         JSONObject datosRequest = JsonCreatorUtils.createRequest_Login_Valido();
         JSONObject datosResponse = JsonWebServiceUtils.petición(GestorDataWebServices.URL_PETICIÓN_LOGIN, datosRequest);
 
-
         assertTrue(datosResponse.getInt("code") == 0);
     }
 

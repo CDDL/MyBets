@@ -3,6 +3,7 @@ package project.catalin.mybets.vistas.pantallas.principal.fragments;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,7 @@ public class PantallaPrincipalFragmentMuro extends FragmentConTitulo implements 
     private AdapterEntradasMuro mAdapterEntradas;
     private ControllerMuro mControllerMuro;
     private ProgressDialog mDialogLoadingEntradas;
+    private TextView mTextNoNada;
 
     public PantallaPrincipalFragmentMuro() {
         super();
@@ -59,6 +61,18 @@ public class PantallaPrincipalFragmentMuro extends FragmentConTitulo implements 
         return layout;
     }
 
+    @Override
+    public void setMenuVisibility(boolean menuVisible) {
+        super.setMenuVisibility(menuVisible);
+        if(menuVisible)
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+                    mControllerMuro.inicializarVista();
+                }
+            });
+    }
+
     private void inicializarControlador() {
         mControllerMuro = new ControladorMuro(this);
         mControllerMuro.inicializarVista();
@@ -71,6 +85,7 @@ public class PantallaPrincipalFragmentMuro extends FragmentConTitulo implements 
 
     private void inicializarComponentes(View layout) {
         mListEntradasMuro = (ListView) layout.findViewById(R.id.muro_list_entradas);
+        mTextNoNada = (TextView) layout.findViewById(R.id.muro_text_no_hay_nada);
     }
 
     @Override
@@ -80,6 +95,7 @@ public class PantallaPrincipalFragmentMuro extends FragmentConTitulo implements 
 
     @Override
     public void showLoadingEntradas() {
+        if(mDialogLoadingEntradas != null) mDialogLoadingEntradas.dismiss();
         mDialogLoadingEntradas = ProgressDialog.show(getContext(), "", "Cargando muro...", false, false);
         mDialogLoadingEntradas.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
     }
@@ -100,6 +116,14 @@ public class PantallaPrincipalFragmentMuro extends FragmentConTitulo implements 
 
         public AdapterEntradasMuro() {
             mListaCabeceras = new ArrayList<>();
+        }
+
+        @Override
+        public void recargarDatos(List<EntradaMuro> listaNueva) {
+            super.recargarDatos(listaNueva);
+            if(listaNueva.isEmpty()) mTextNoNada.setVisibility(View.VISIBLE);
+            else mTextNoNada.setVisibility(View.GONE);
+
         }
 
         @Override

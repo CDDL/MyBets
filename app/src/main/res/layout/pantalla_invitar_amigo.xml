@@ -73,7 +73,7 @@
         android:visibility="gone"/>
 
 
-    <com.andraskindler.quickscroll.QuickScroll
+    <project.catalin.mybets.vistas.utils.customAndroidComponents.quickscroll.QuickScroll
         android:id="@+id/pantalla_invitar_amigo_quickscroll"
         android:layout_width="30dp"
         android:layout_height="match_parent"

@@ -106,4 +106,8 @@ public class Partida {
     public void setEstadoPartida(int estadoPartida) {
         mEstadoPartida = estadoPartida;
     }
+
+    public void setPuntosGanados(int puntosGanados) {
+        mPuntosGanados = puntosGanados;
+    }
 }

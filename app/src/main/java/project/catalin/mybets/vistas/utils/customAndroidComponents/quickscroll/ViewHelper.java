@@ -1,10 +1,10 @@
-package com.andraskindler.quickscroll;
+package project.catalin.mybets.vistas.utils.customAndroidComponents.quickscroll;
 
 import android.annotation.SuppressLint;
 import android.view.View;
 
-import static com.andraskindler.quickscroll.animation.AnimatorProxy.NEEDS_PROXY;
-import static com.andraskindler.quickscroll.animation.AnimatorProxy.wrap;
+import static project.catalin.mybets.vistas.utils.customAndroidComponents.quickscroll.animation.AnimatorProxy.NEEDS_PROXY;
+import static project.catalin.mybets.vistas.utils.customAndroidComponents.quickscroll.animation.AnimatorProxy.wrap;
 
 public final class ViewHelper {
     private ViewHelper() {}

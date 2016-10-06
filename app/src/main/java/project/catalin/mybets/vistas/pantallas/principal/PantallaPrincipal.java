@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import org.json.JSONException;
 
@@ -38,6 +39,7 @@ public class PantallaPrincipal extends AppCompatActivity implements ViewPantalla
     private TabLayout mTabLayout;
     private AdaptadorPestanas mAdaptadorPestañas;
     private ControladorPantallaPrincipalPantallas mControllerPantallas;
+    private TextView mTextPuntos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,7 @@ public class PantallaPrincipal extends AppCompatActivity implements ViewPantalla
         mToolBar = (Toolbar) findViewById(R.id.pantalla_principal_toolbar);
         mViewPager = (ViewPager) findViewById(R.id.container);
         mTabLayout = (TabLayout) findViewById(R.id.tabs);
+        mTextPuntos = (TextView) findViewById(R.id.main_text_puntos);
     }
 
     private void inicializarToolBar() {
@@ -102,6 +105,11 @@ public class PantallaPrincipal extends AppCompatActivity implements ViewPantalla
     @Override
     public void cambiarAPantallaMisApuestas() {
         mViewPager.setCurrentItem(1);
+    }
+
+    @Override
+    public void actualizarPuntuación(Integer puntuación) {
+        mTextPuntos.setText(puntuación + " puntos");
     }
 
     public class AdaptadorPestanas extends FragmentPagerAdapter {

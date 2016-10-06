@@ -1,4 +1,4 @@
-package com.andraskindler.quickscroll.animation;
+package project.catalin.mybets.vistas.utils.customAndroidComponents.quickscroll.animation;
 
 import android.graphics.Camera;
 import android.graphics.Matrix;

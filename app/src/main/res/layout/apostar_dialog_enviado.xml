@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="223dp"
     android:layout_height="201dp"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:layout_gravity="center">
 
     <ImageView
         android:id="@+id/apuesta_dialog_enviada_dialog_icon"

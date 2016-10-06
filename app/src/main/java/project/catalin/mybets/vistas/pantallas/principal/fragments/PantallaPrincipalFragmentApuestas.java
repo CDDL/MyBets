@@ -4,6 +4,7 @@ package project.catalin.mybets.vistas.pantallas.principal.fragments;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +48,7 @@ public class PantallaPrincipalFragmentApuestas extends FragmentConTitulo impleme
     private TextView mBotonMas;
     private ControllerPantallaPrincipalApuestas mControllerPantallaPrincipalApuestas;
     private int mIdFutbol;
+    private TextView mTextNoHayNada;
 
     public PantallaPrincipalFragmentApuestas() {
         super();
@@ -91,7 +93,6 @@ public class PantallaPrincipalFragmentApuestas extends FragmentConTitulo impleme
     private void inicializarControladores() {
         mControllerPantallaPrincipalApuestas = new ControladorPantallaPrincipalApuestas(this);
         mControllerPartidasPopulares = new ControladorPartidasPopulares(this);
-        mControllerPartidasPopulares.inicializarVista();
     }
 
     private void inicializarAdapter() {
@@ -100,12 +101,25 @@ public class PantallaPrincipalFragmentApuestas extends FragmentConTitulo impleme
 
     }
 
+    @Override
+    public void setMenuVisibility(boolean menuVisible) {
+        super.setMenuVisibility(menuVisible);
+        if(menuVisible)
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+                    mControllerPartidasPopulares.inicializarVista();
+                }
+            });
+    }
+
     private void inicializarComponentes(View layout) {
         mListaPartidasHoy = (ListView) layout.findViewById(R.id.pantalla_principal_fragment_apuestas_apuestas);
         mBotonCategorias = (Button) layout.findViewById(R.id.pantalla_principal_fragment_apuestas_boton_categoria);
         mBotonPopulares = (Button) layout.findViewById(R.id.pantalla_principal_fragment_apuestas_boton_populares);
         mBotonFutbol = (Button) layout.findViewById(R.id.pantalla_principal_fragment_apuestas_boton_futbol);
         mBotonMas = (TextView) layout.findViewById(R.id.pantalla_principal_fragment_apuestas_boton_mas);
+        mTextNoHayNada = (TextView) layout.findViewById(R.id.pantalla_principal_fragment_apuestas_text_no_hay_nada);
     }
 
     @Override
@@ -153,6 +167,14 @@ public class PantallaPrincipalFragmentApuestas extends FragmentConTitulo impleme
     }
 
     public class AdapterPartidas extends AdapterRecargable<Partida> {
+
+        @Override
+        public void recargarDatos(List<Partida> listaNueva) {
+            super.recargarDatos(listaNueva);
+            if(listaNueva.isEmpty()) mTextNoHayNada.setVisibility(View.VISIBLE);
+            else mTextNoHayNada.setVisibility(View.GONE);
+        }
+
 
         @Override
         public long getItemId(int position) {
