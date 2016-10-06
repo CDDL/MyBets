@@ -114,8 +114,10 @@ public class JsonParserUtils {
             partida.setColorIcono(jsonDataObject.getString("coloricono", jsonWrapper.getString("color", "#111111")));
             partida.setTipoPartida(jsonDataObject.getInt("tipopartida", -1));
             partida.setEstadoPartida(jsonDataObject.getInt("estadoapuesta", Partida.ESTADO_JUEGA_YA));
+            partida.setPuntosGanados(jsonDataObject.getInt("puntosganados", 0));
 
             partidas.add(partida);
+
         }
         return partidas;
     }

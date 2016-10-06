@@ -1,4 +1,4 @@
-package com.andraskindler.quickscroll;
+package project.catalin.mybets.vistas.utils.customAndroidComponents.quickscroll;
 
 /**
  * Interface required for FastTrack.

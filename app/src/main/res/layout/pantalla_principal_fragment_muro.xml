@@ -11,5 +11,14 @@
         android:dividerHeight="1dp"
         android:divider="@color/gris_claro" />
 
+    <TextView
+        android:layout_centerInParent="true"
+        android:textColor="@android:color/black"
+        android:id="@+id/muro_text_no_hay_nada"
+        android:text="No hay nada en tu muro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
 
 </RelativeLayout>

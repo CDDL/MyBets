@@ -1,4 +1,4 @@
-package com.andraskindler.quickscroll;
+package project.catalin.mybets.vistas.utils.customAndroidComponents.quickscroll;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,6 +8,8 @@ import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import project.catalin.mybets.R;
 
 public class Pin extends View {
 

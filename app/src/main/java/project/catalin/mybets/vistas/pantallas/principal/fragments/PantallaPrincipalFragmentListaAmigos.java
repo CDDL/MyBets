@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -38,6 +39,7 @@ public class PantallaPrincipalFragmentListaAmigos extends FragmentConTitulo impl
     private ListView mListaElementos;
     private ProgressDialog mDialogLoadingPartidas;
     private FloatingActionButton mBotonNuevoAmigo;
+    private TextView mTextNoTienesAmigos;
 
     public PantallaPrincipalFragmentListaAmigos() {
         super();
@@ -68,7 +70,18 @@ public class PantallaPrincipalFragmentListaAmigos extends FragmentConTitulo impl
 
     private void inicializarControlador() {
         mControladorMisAmigos = new ControladorAmigos(this);
-        mControladorMisAmigos.inicializarVista();
+    }
+
+    @Override
+    public void setMenuVisibility(boolean menuVisible) {
+        super.setMenuVisibility(menuVisible);
+        if(menuVisible)
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+                    mControladorMisAmigos.inicializarVista();
+                }
+            });
     }
 
     private void inicializarAdapter() {
@@ -79,6 +92,7 @@ public class PantallaPrincipalFragmentListaAmigos extends FragmentConTitulo impl
     private void inicializarComponentes(View layout) {
         mListaElementos = (ListView) layout.findViewById(R.id.lista_contactos);
         mBotonNuevoAmigo = (FloatingActionButton) layout.findViewById(R.id.fab);
+        mTextNoTienesAmigos = (TextView) layout.findViewById(R.id.mis_amigos_text_no_tienes);
     }
 
     @Override
@@ -110,6 +124,12 @@ public class PantallaPrincipalFragmentListaAmigos extends FragmentConTitulo impl
 
 
     public class AdaptadorPersonas extends AdapterRecargable<Persona>{
+        @Override
+        public void recargarDatos(List<Persona> listaElementos) {
+            super.recargarDatos(listaElementos);
+            if(listaElementos.isEmpty()) mTextNoTienesAmigos.setVisibility(View.VISIBLE);
+            else mTextNoTienesAmigos.setVisibility(View.GONE);
+        }
 
         @Override
         public long getItemId(int position) {

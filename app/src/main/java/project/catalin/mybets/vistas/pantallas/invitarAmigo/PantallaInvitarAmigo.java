@@ -2,7 +2,6 @@ package project.catalin.mybets.vistas.pantallas.invitarAmigo;
 
 import android.Manifest;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -22,8 +21,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.andraskindler.quickscroll.QuickScroll;
-import com.andraskindler.quickscroll.Scrollable;
+import project.catalin.mybets.vistas.utils.customAndroidComponents.quickscroll.QuickScroll;
+import project.catalin.mybets.vistas.utils.customAndroidComponents.quickscroll.Scrollable;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

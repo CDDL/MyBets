@@ -1,4 +1,4 @@
-package com.andraskindler.quickscroll;
+package project.catalin.mybets.vistas.utils.customAndroidComponents.quickscroll;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -20,6 +20,9 @@ import android.view.animation.Animation.AnimationListener;
 import android.widget.*;
 import android.widget.AbsListView.OnScrollListener;
 
+import project.catalin.mybets.R;
+
+@SuppressWarnings("ResourceType")
 public class QuickScroll extends View {
 
     // IDs
